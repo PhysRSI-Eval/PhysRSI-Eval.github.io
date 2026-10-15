@@ -63,6 +63,8 @@
     figure { margin: 32px 0 8px; }
     figure img { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--rule); border-radius: 4px; }
     figcaption { font-size: 15px; color: var(--muted); margin-top: 12px; line-height: 1.55; max-width: 64em; }
+    .radargrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .radargrid img { border-radius: 4px; }
     .figrow { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; align-items: start; }
     .figrow figure { margin-top: 32px; }
     figcaption b { color: var(--ink); font-weight: normal; font-style: italic; }
@@ -103,7 +105,7 @@
       nav { display: none; }
       .hero { padding: 64px 0 48px; }
       section { padding: 52px 0; }
-      .grid3, .grid2, .compare, .figrow { grid-template-columns: 1fr; }
+      .grid3, .grid2, .compare, .figrow, .radargrid { grid-template-columns: 1fr; }
       .stats { grid-template-columns: repeat(2, 1fr); }
       p, ol.contrib li { font-size: 17px; }
     }
@@ -246,13 +248,18 @@
             <tfoot><tr><th>MAE</th><td>0.051</td><td>0.054</td><td>0.065</td><td>0.124</td><td>0.089</td></tr></tfoot>
           </table></div>
           <p class="note">Reference / predicted. &dagger;&nbsp;Includes a fitted continuation for one unfinished GPT-5.6 Sol task (K7&ndash;K17). The predictor for each axis was chosen among 98 configurations using these same leave-one-model-out errors, so the MAE is not an unbiased estimate on new agents. No uncertainty intervals are reported.</p>
-          <details>
-            <summary>Per-agent radars</summary>
-            <figure>
-              <img src="static/img/six_model_panels.svg" alt="Six radar panels, one per agent, each overlaying the actual reference profile (solid) and the predicted profile (dashed)." loading="lazy">
-              <figcaption><b>Per-agent comparison.</b> Solid: working reference; dashed: prediction.</figcaption>
-            </figure>
-          </details>
+          <h3 style="margin-top:40px">Per-agent profiles</h3>
+          <figure>
+            <div class="radargrid">
+              <a href="static/img/radar_models/gpt6_astra.png"><img src="static/img/radar_models/gpt6_astra.png" alt="GPT-6 Astra: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
+              <a href="static/img/radar_models/gpt61_sol.png"><img src="static/img/radar_models/gpt61_sol.png" alt="GPT-6.1 Sol: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
+              <a href="static/img/radar_models/gpt6_sol.png"><img src="static/img/radar_models/gpt6_sol.png" alt="GPT-6 Sol: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
+              <a href="static/img/radar_models/gpt56_sol.png"><img src="static/img/radar_models/gpt56_sol.png" alt="GPT-5.6 Sol: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
+              <a href="static/img/radar_models/opus55.png"><img src="static/img/radar_models/opus55.png" alt="Claude Opus 5.5: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
+              <a href="static/img/radar_models/sonnet55.png"><img src="static/img/radar_models/sonnet55.png" alt="Claude Sonnet 5.5: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
+            </div>
+            <figcaption><b>Actual and benchmark-predicted A1&ndash;A5 for each agent.</b> Blue: actual; orange: predicted with the target agent held out. Each card lists the axis values, the prediction error and the method selected per axis. Click a card to enlarge.</figcaption>
+          </figure>
         </div>
       </div>
     </section>
