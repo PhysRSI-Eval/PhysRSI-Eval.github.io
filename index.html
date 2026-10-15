@@ -150,13 +150,25 @@
           <img src="static/img/paired_overlay.svg" alt="Two radar charts of six agents on five axes: Prior knowledge, Efficiency, Success, Cost and Improvement. Left: actual reference profiles; right: profiles predicted from public VLM benchmark scores." style="max-width:1100px;margin:0 auto">
           <figcaption><b>Actual and predicted profiles of six agents.</b> Axes clockwise from the top: Prior knowledge (A1, zero-shot performance), Efficiency (A2, gain timing), Success (A3, performance level), Cost (A4, budget savings; higher saves more budget) and Improvement (A5, failure recovery), on a shared 0&ndash;1 scale. Left: working reference over 18 tasks through K17, with three zero-shot repeats per task at K0. Right: each agent predicted from public VLM benchmark scores by a model trained on the other five agents.</figcaption>
         </figure>
+        <h3 style="margin-top:40px">Per-agent profiles</h3>
         <figure>
-          <img src="static/img/agent_generalize.jpg" alt="Three task chains with and without a cross-task workspace: with the workspaces of the 17 other tasks, first success moves from K9 to K1 for Sonnet 5.5 on Cover Blocks, from K14 to K7 for Opus 5.5 on Organize Table, and from K15 to K8 for Opus 5.5 on Deposit Coin." loading="lazy">
-          <figcaption><b>Self-improved agents generalize to unseen tasks.</b> Starting from the workspaces built on the 17 other tasks, the first success arrives earlier: K9&rarr;K1 (Sonnet 5.5, Cover Blocks), K14&rarr;K7 (Opus 5.5, Organize Table) and K15&rarr;K8 (Opus 5.5, Deposit Coin). First runs only; three distinct tasks.</figcaption>
+          <div class="radargrid">
+            <a href="static/img/radar_models/gpt6_astra.png"><img src="static/img/radar_models/gpt6_astra.png" alt="GPT-6 Astra: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
+            <a href="static/img/radar_models/gpt61_sol.png"><img src="static/img/radar_models/gpt61_sol.png" alt="GPT-6.1 Sol: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
+            <a href="static/img/radar_models/gpt6_sol.png"><img src="static/img/radar_models/gpt6_sol.png" alt="GPT-6 Sol: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
+            <a href="static/img/radar_models/gpt56_sol.png"><img src="static/img/radar_models/gpt56_sol.png" alt="GPT-5.6 Sol: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
+            <a href="static/img/radar_models/opus55.png"><img src="static/img/radar_models/opus55.png" alt="Claude Opus 5.5: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
+            <a href="static/img/radar_models/sonnet55.png"><img src="static/img/radar_models/sonnet55.png" alt="Claude Sonnet 5.5: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
+          </div>
+          <figcaption><b>Actual and benchmark-predicted A1&ndash;A5 for each agent.</b> Blue: actual; orange: predicted with the target agent held out. Each card lists the axis values, the prediction error and the method selected per axis. Click a card to enlarge.</figcaption>
         </figure>
         <figure>
           <img src="static/img/physical_barrel.jpg" alt="Five barrels, one per RSI dimension, with staves for spatial reasoning, harness use, perception and coding; the shortest stave is spatial reasoning for A1, A2 and A4 and perception for A3 and A5." loading="lazy">
           <figcaption><b>The barrel hypothesis.</b> One barrel per RSI dimension, with one stave per capability factor (spatial, harness, perception, coding); a larger association weight means a shorter stave. Spatial reasoning limits zero-shot performance, gain timing and budget savings; perception limits performance level and failure recovery. Weights are normalized associations, not fitted causal effects; the water illustrates the hypothesis, not measured scores.</figcaption>
+        </figure>
+        <figure>
+          <img src="static/img/agent_generalize.jpg" alt="Three task chains with and without a cross-task workspace: with the workspaces of the 17 other tasks, first success moves from K9 to K1 for Sonnet 5.5 on Cover Blocks, from K14 to K7 for Opus 5.5 on Organize Table, and from K15 to K8 for Opus 5.5 on Deposit Coin." loading="lazy">
+          <figcaption><b>Self-improved agents generalize to unseen tasks.</b> Starting from the workspaces built on the 17 other tasks, the first success arrives earlier: K9&rarr;K1 (Sonnet 5.5, Cover Blocks), K14&rarr;K7 (Opus 5.5, Organize Table) and K15&rarr;K8 (Opus 5.5, Deposit Coin). First runs only; three distinct tasks.</figcaption>
         </figure>
       </div>
     </section>
@@ -259,18 +271,6 @@
             <tfoot><tr><th>MAE</th><td>0.051</td><td>0.054</td><td>0.065</td><td>0.124</td><td>0.089</td></tr></tfoot>
           </table></div>
           <p class="note">Reference / predicted. &dagger;&nbsp;Includes a fitted continuation for one unfinished GPT-5.6 Sol task (K7&ndash;K17). The predictor for each axis was chosen among 98 configurations using these same leave-one-model-out errors, so the MAE is not an unbiased estimate on new agents. No uncertainty intervals are reported.</p>
-          <h3 style="margin-top:40px">Per-agent profiles</h3>
-          <figure>
-            <div class="radargrid">
-              <a href="static/img/radar_models/gpt6_astra.png"><img src="static/img/radar_models/gpt6_astra.png" alt="GPT-6 Astra: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
-              <a href="static/img/radar_models/gpt61_sol.png"><img src="static/img/radar_models/gpt61_sol.png" alt="GPT-6.1 Sol: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
-              <a href="static/img/radar_models/gpt6_sol.png"><img src="static/img/radar_models/gpt6_sol.png" alt="GPT-6 Sol: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
-              <a href="static/img/radar_models/gpt56_sol.png"><img src="static/img/radar_models/gpt56_sol.png" alt="GPT-5.6 Sol: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
-              <a href="static/img/radar_models/opus55.png"><img src="static/img/radar_models/opus55.png" alt="Claude Opus 5.5: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
-              <a href="static/img/radar_models/sonnet55.png"><img src="static/img/radar_models/sonnet55.png" alt="Claude Sonnet 5.5: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
-            </div>
-            <figcaption><b>Actual and benchmark-predicted A1&ndash;A5 for each agent.</b> Blue: actual; orange: predicted with the target agent held out. Each card lists the axis values, the prediction error and the method selected per axis. Click a card to enlarge.</figcaption>
-          </figure>
         </div>
       </div>
     </section>
