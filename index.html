@@ -165,7 +165,7 @@
         </ul>
         <p class="agents">Agents: GPT-6 Astra, GPT-6.1 Sol, GPT-6.0 Sol, GPT-5.6 Sol, Claude Opus 5.5, Claude Sonnet 5.5, Gemini 4 and Gemini 3.1 Pro.</p>
         <figure>
-          <img src="static/img/fig1_workflow.png" alt="Two-stage protocol: a zero-shot evaluate stage K0 with one in-context episode, and an optimize stage K1 to K17 in which the agent executes, is graded, freely revises a persistent workspace and commits it before the next round." loading="lazy">
+          <img src="static/img/fig1_workflow.png" alt="Shared task input and RoboDojo interface on top; below, the Evaluate stage (K0: observe, reason, act, native grade, no workspace) and the Optimize stage (K1 to K17: persistent workspace of skills, memory, tools and policy, native grade, free revision, commit, until termination)." loading="lazy" style="max-width:820px;margin:0 auto">
           <figcaption><b>Two stages, one interface.</b> (a) Zero-shot round K0: one in-context episode through the shared MCP tools, without a workspace. (b) Self-improvement rounds K1&ndash;K17: each round runs from a persistent workspace, is graded natively, revised without robot actions and committed, until the first success or K17.</figcaption>
         </figure>
       </div>
