@@ -3,36 +3,238 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Where is Physical RSI capability from? An Observational Scaling Law of Code-as-Policy Agents. Coming soon...">
+  <meta name="description" content="Where is Physical RSI capability from? An Observational Scaling Law of Code-as-Policy Agents. PhysRSI-Eval measures, diagnoses and predicts physical recursive self-improvement of Code-as-Policy agents.">
   <meta name="color-scheme" content="light">
   <title>Where is Physical RSI capability from? — PhysRSI-Eval</title>
   <style>
+    :root {
+      --bg: #f5f3ed; --paper: #fbfaf6; --ink: #222c28; --muted: #60665e; --accent: #60705c;
+      --dot: #5a7552; --rule: #c9cec4; --warm: #a0674b; --warm-bg: #f2e3d8;
+    }
     * { box-sizing: border-box; }
-    body { margin: 0; background: #f5f3ed; color: #222c28; font-family: Georgia, 'Times New Roman', serif; }
-    .page { min-height: 100vh; min-height: 100svh; padding: 36px 6vw; display: flex; flex-direction: column; }
-    header, footer { display: flex; justify-content: space-between; gap: 24px; font-family: 'Courier New', monospace; font-size: 12px; }
-    header { padding-bottom: 22px; border-bottom: 1px solid #c9cec4; align-items: center; }
-    .brand { font-size: 17px; font-weight: bold; letter-spacing: -.6px; }
-    .status { display: flex; align-items: center; gap: 8px; }
-    .status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #5a7552; }
-    main { flex: 1; display: grid; align-content: center; padding: 90px 0; }
-    .eyebrow { color: #60705c; font-family: 'Courier New', monospace; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; }
-    h1 { font-size: clamp(36px, 4.6vw, 72px); line-height: 1.15; font-weight: normal; letter-spacing: -.035em; margin: 28px 0 34px; }
-    h1 span { display: block; margin-top: 24px; font-size: .72em; line-height: 1.3; font-style: italic; color: #60705c; }
-    .description { font-size: clamp(17px, 2vw, 22px); line-height: 1.6; color: #60665e; margin: 0; max-width: 34em; }
-    footer { border-top: 1px solid #c9cec4; padding-top: 22px; color: #666e63; line-height: 1.6; }
-    @media (max-width: 480px) { .page { padding: 24px; } header, footer { font-size: 10px; } .brand { font-size: 15px; } main { padding: 70px 0; } }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; line-height: 1.65; }
+    a { color: inherit; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 6vw; }
+    .mono { font-family: 'Courier New', monospace; }
+
+    header.top { position: sticky; top: 0; z-index: 10; background: rgba(245,243,237,.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--rule); }
+    header.top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-top: 14px; padding-bottom: 14px; font-family: 'Courier New', monospace; font-size: 12px; }
+    .brand { font-size: 17px; font-weight: bold; letter-spacing: -.6px; text-decoration: none; }
+    nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    nav a { text-decoration: none; color: var(--muted); }
+    nav a:hover { color: var(--ink); }
+
+    .hero { padding: 96px 0 72px; border-bottom: 1px solid var(--rule); }
+    .eyebrow { color: var(--accent); font-family: 'Courier New', monospace; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; margin: 0; }
+    h1 { font-size: clamp(34px, 5vw, 64px); line-height: 1.15; font-weight: normal; letter-spacing: -.035em; margin: 24px 0 28px; }
+    h1 span { display: block; margin-top: 18px; font-size: .62em; line-height: 1.3; font-style: italic; color: var(--accent); }
+    .authors { font-family: 'Courier New', monospace; font-size: 13px; color: var(--muted); margin: 0 0 28px; }
+    .tldr { font-size: clamp(18px, 2.1vw, 23px); line-height: 1.55; color: var(--ink); max-width: 36em; margin: 0 0 32px; }
+    .links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .pill { font-family: 'Courier New', monospace; font-size: 13px; padding: 8px 16px; border: 1px solid var(--rule); border-radius: 999px; color: var(--muted); background: var(--paper); }
+    .pill b { color: var(--ink); font-weight: bold; margin-right: 6px; }
+
+    section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
+    h2 { font-weight: normal; font-size: clamp(26px, 3.2vw, 38px); letter-spacing: -.02em; line-height: 1.25; margin: 10px 0 24px; }
+    h3 { font-weight: normal; font-size: 22px; margin: 0 0 10px; letter-spacing: -.01em; }
+    p { margin: 0 0 18px; font-size: 18px; color: #2f3833; max-width: 40em; }
+    .lead { color: var(--muted); }
+
+    .callout { border-left: 3px solid var(--accent); background: var(--paper); padding: 18px 22px; margin: 28px 0; max-width: 42em; }
+    .callout p { margin: 0; font-size: 17px; }
+    .callout .label { display: block; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
+    .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 28px; }
+    .card { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 22px; }
+    .card .tag { font-family: 'Courier New', monospace; font-size: 12px; color: var(--accent); letter-spacing: 1px; }
+    .card p { font-size: 16px; margin: 8px 0 0; }
+
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 32px 0; }
+    .stat { border-top: 2px solid var(--ink); padding-top: 12px; }
+    .stat .num { font-size: clamp(30px, 4vw, 44px); line-height: 1; letter-spacing: -.03em; }
+    .stat .cap { font-family: 'Courier New', monospace; font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+    .axes { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 24px; padding: 0; list-style: none; }
+    .axes li { font-family: 'Courier New', monospace; font-size: 13px; padding: 6px 12px; border-radius: 4px; background: #e6eae0; color: var(--ink); }
+    .agents { font-size: 16px; color: var(--muted); }
+
+    figure { margin: 32px 0 8px; }
+    figure img { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--rule); border-radius: 4px; }
+    figcaption { font-size: 15px; color: var(--muted); margin-top: 12px; line-height: 1.55; max-width: 46em; }
+    figcaption b { color: var(--ink); font-weight: normal; font-style: italic; }
+
+    .finding { padding-top: 40px; }
+    .finding + .finding { border-top: 1px dashed var(--rule); margin-top: 48px; }
+    .finding .num { font-family: 'Courier New', monospace; font-size: 12px; letter-spacing: 2px; color: var(--warm); text-transform: uppercase; }
+    .barrel { border-left-color: var(--warm); background: var(--warm-bg); }
+    .barrel .label { color: var(--warm); }
+
+    .compare { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 24px 0; max-width: 42em; }
+    .compare .card .big { font-size: 34px; letter-spacing: -.03em; line-height: 1.1; }
+    .compare .card .big small { font-size: 16px; color: var(--muted); letter-spacing: 0; }
+
+    ol.contrib { padding-left: 1.2em; max-width: 40em; }
+    ol.contrib li { font-size: 18px; margin-bottom: 12px; color: #2f3833; }
+    ol.contrib li b { font-weight: normal; font-style: italic; color: var(--ink); }
+
+    pre { font-family: 'Courier New', monospace; font-size: 13px; background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 18px; overflow-x: auto; color: var(--muted); }
+
+    footer { padding: 28px 0 40px; font-family: 'Courier New', monospace; font-size: 12px; color: #666e63; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+
+    @media (max-width: 760px) {
+      .wrap { padding: 0 16px; }
+      nav { display: none; }
+      .hero { padding: 64px 0 48px; }
+      section { padding: 52px 0; }
+      .grid3, .grid2, .compare { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      p, ol.contrib li { font-size: 17px; }
+    }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header><div class="brand">PhysRSI-Eval</div><div class="status">In preparation</div></header>
-    <main>
-      <p class="eyebrow">PhysRSI-Eval</p>
-      <h1>Where is Physical RSI capability from?<span>An Observational Scaling Law of Code-as-Policy Agents</span></h1>
-      <p class="description">Coming soon...</p>
-    </main>
-    <footer><span>PhysRSI-Eval</span><span>Stay curious. Stay tuned.</span></footer>
-  </div>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#">PhysRSI-Eval</a>
+      <nav>
+        <a href="#questions">Questions</a>
+        <a href="#benchmark">Benchmark</a>
+        <a href="#findings">Findings</a>
+        <a href="#contributions">Contributions</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="wrap">
+        <p class="eyebrow">PhysRSI-Eval · Paper in preparation</p>
+        <h1>Where is Physical RSI capability from?<span>An Observational Scaling Law of Code-as-Policy Agents</span></h1>
+        <p class="authors">Anonymous Authors</p>
+        <p class="tldr">Physical recursive self-improvement is capped by the weakest critical ability of the underlying VLM. We measure it under a fixed budget of judged physical attempts, predict it from public VLM capability, and test whether improved policies generalize.</p>
+        <div class="links">
+          <span class="pill"><b>Paper</b>coming soon</span>
+          <span class="pill"><b>Code</b>coming soon</span>
+          <span class="pill"><b>Data</b>coming soon</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="motivation">
+      <div class="wrap">
+        <p class="eyebrow">Motivation</p>
+        <h2>Code-as-Policy agents now improve themselves in the physical world</h2>
+        <p>Code-as-Policy agents drive embodied tasks with self-written control code instead of direct action outputs. They have grown from few-shot programs over hand-built primitives into agents that write, execute and revise their own control code from graded outcomes &mdash; yet a self-written fix can work once and fail on the repeat.</p>
+        <div class="callout">
+          <span class="label">Physical RSI</span>
+          <p>A frozen model revises its own code, tools and notes from graded physical outcomes, without weight updates.</p>
+        </div>
+        <p>Existing evaluations cannot tell where this capability comes from. Embodied benchmarks report endpoint success over independent attempts or wall-clock budgets, which conflates search with improvement: at a constant per-attempt success rate of 0.1, 17 attempts already give an <b>83%</b> chance of at least one success. Self-evolution benchmarks that do measure improvement live in digital domains without a physical outcome verifier.</p>
+      </div>
+    </section>
+
+    <section id="questions">
+      <div class="wrap">
+        <p class="eyebrow">Three questions</p>
+        <h2>What we ask</h2>
+        <div class="grid3">
+          <div class="card"><span class="tag">Q1 · Capability</span><p>Which capabilities drive physical RSI, and how can they be quantified?</p></div>
+          <div class="card"><span class="tag">Q2 · Prediction</span><p>Can VLM capabilities predict physical RSI &mdash; its relative ranking across agents and its trend over rounds?</p></div>
+          <div class="card"><span class="tag">Q3 · Generalization</span><p>Do improved policies generalize beyond the scenes they were refined on?</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="benchmark">
+      <div class="wrap">
+        <p class="eyebrow">The benchmark</p>
+        <h2>PhysRSI-Eval: a fixed budget of judged physical attempts</h2>
+        <p>Each task starts with one zero-shot round (K0). The agent then gets at most 17 self-improvement rounds (K1&ndash;K17), revising a persistent workspace of skills, tools, policy and memory after every graded attempt, and stops at its first success. Every agent faces the same budget.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">18</div><div class="cap">manipulation tasks</div></div>
+          <div class="stat"><div class="num">K0 + 17</div><div class="cap">zero-shot + self-improvement rounds</div></div>
+          <div class="stat"><div class="num">5</div><div class="cap">profile axes</div></div>
+          <div class="stat"><div class="num">8</div><div class="cap">agents evaluated</div></div>
+        </div>
+        <h3>Five-axis profile</h3>
+        <ul class="axes">
+          <li>Prior capability</li><li>RSI speed</li><li>RSI improvement</li><li>Cost</li><li>Failure recovery</li>
+        </ul>
+        <p class="agents">Agents: GPT-6 Astra, GPT-6.1 Sol, GPT-6.0 Sol, GPT-5.6 Sol, Claude Opus 5.5, Claude Sonnet 5.5, Gemini 4 and Gemini 3.1 Pro.</p>
+        <figure>
+          <img src="static/img/fig1_workflow.png" alt="Two-stage protocol: a zero-shot evaluate stage K0 with one in-context episode, and an optimize stage K1 to K17 in which the agent executes, is graded, freely revises a persistent workspace and commits it before the next round." loading="lazy">
+          <figcaption><b>Two stages, one interface.</b> (a) Zero-shot round K0: one in-context episode through the shared MCP tools, without a workspace. (b) Self-improvement rounds K1&ndash;K17: each round runs from a persistent workspace, is graded natively, revised without robot actions and committed, until the first success or K17.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="findings">
+      <div class="wrap">
+        <p class="eyebrow">Findings</p>
+        <h2>What we find</h2>
+
+        <div class="finding">
+          <span class="num">Finding 1</span>
+          <h3>Physical Barrel Theory</h3>
+          <p>Strong VLM agents are good in many areas &mdash; coding, planning, forecasting &mdash; yet some of them stay near zero success on embodied tasks across every round.</p>
+          <div class="callout barrel">
+            <span class="label">The shortest stave</span>
+            <p>As a barrel holds water only up to its shortest stave, each dimension of embodied performance (e.g. success rate, cost) hinges on one critical VLM ability. If this ability falls below a minimum requirement, the other VLM abilities can hardly compensate.</p>
+          </div>
+          <figure>
+            <img src="static/img/killing-zone.jpg" alt="Cumulative success rate over self-improvement rounds K1 to K17 for four GPT models; a shaded kill zone separates the models that improve from GPT-5.6 Sol, which stays near zero." loading="lazy">
+            <figcaption><b>The kill zone.</b> Cumulative success over K1&ndash;K17 on 18 tasks. Agents above the minimum requirement keep improving; GPT-5.6 Sol stays near zero for 16 rounds. Shading marks the between-model gap.</figcaption>
+          </figure>
+          <figure>
+            <img src="static/img/physrsi_vlm_mapping.jpg" alt="Mapping from VLM benchmark mean (range 24 percentage points) to physical RSI radar mean (range 59.5 percentage points) for four GPT models." loading="lazy">
+            <figcaption><b>From benchmark scores to physical RSI.</b> A 24-point spread in mean VLM benchmark score becomes a 59.5-point spread in physical RSI, consistent with a capability floor (hypothesis; no threshold is fitted).</figcaption>
+          </figure>
+        </div>
+
+        <div class="finding">
+          <span class="num">Finding 2</span>
+          <h3>Physical RSI is predictable</h3>
+          <p>Rather than exact scores, we predict two coarser quantities. Public VLM benchmark scores predict the relative ranking of agents on PhysRSI-Eval, and physical RSI follows a predictable scaling curve over self-improvement rounds, resembling the scaling laws of LLMs: later rounds can be anticipated from earlier ones.</p>
+          <figure>
+            <img src="static/img/physrsi_scaling_law_pred.jpg" alt="Per-model curves fitted on rounds K1 to K13 and forecasts for K14 to K17 compared with held-out actual scores for six models." loading="lazy">
+            <figcaption><b>Forecasting later rounds.</b> Curves fitted on K1&ndash;K13 forecast K14&ndash;K17 for each model; open circles are held-out actual scores.</figcaption>
+          </figure>
+        </div>
+
+        <div class="finding">
+          <span class="num">Finding 3</span>
+          <h3>Gains reflect improvement; transfer is limited</h3>
+          <p>Wiping the workspace every round collapses late-round success, so the gains are not resampling. Yet part of the gain is scene memorization.</p>
+          <div class="compare">
+            <div class="card"><span class="tag">No-history control</span><div class="big">42% <small>vs</small> 8%</div><p>late-round success with the full loop vs. a workspace wiped every round</p></div>
+            <div class="card"><span class="tag">Layout transfer</span><div class="big">88% <small>vs</small> 45%</div><p>success on the trained layout vs. frozen workspaces on held-out layouts</p></div>
+          </div>
+          <p class="lead">Ablation on GPT-6 Astra, six tasks. Cross-task generalization results are coming soon.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contributions">
+      <div class="wrap">
+        <p class="eyebrow">Contributions</p>
+        <h2>In short</h2>
+        <ol class="contrib">
+          <li><b>Benchmark.</b> PhysRSI-Eval with a five-axis profile of physical RSI under a fixed trial budget.</li>
+          <li><b>Physical Barrel Theory.</b> Evidence across eight agents that the weakest critical ability caps physical RSI.</li>
+          <li><b>Prediction.</b> VLM capability predicts the relative ranking of physical RSI, and physical RSI follows a predictable scaling curve over self-improvement rounds.</li>
+          <li><b>Generalization.</b> Ablation and held-out tests of whether improved policies transfer.</li>
+        </ol>
+        <h3 style="margin-top:36px">Citation</h3>
+        <pre>BibTeX will be available when the paper is released.</pre>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap"><span>PhysRSI-Eval · Anonymous Authors</span><span>Stay curious. Stay tuned.</span></div>
+  </footer>
 </body>
 </html>
