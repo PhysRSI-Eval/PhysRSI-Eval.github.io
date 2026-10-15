@@ -65,6 +65,7 @@
     figcaption { font-size: 15px; color: var(--muted); margin-top: 12px; line-height: 1.55; max-width: 64em; }
     .radargrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .radargrid img { border-radius: 4px; }
+    table.defs td, table.defs th { white-space: normal; text-align: left; }
     .figrow { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; align-items: start; }
     .figrow figure { margin-top: 32px; }
     figcaption b { color: var(--ink); font-weight: normal; font-style: italic; }
@@ -121,7 +122,6 @@
         <a href="#setup">Setup</a>
         <a href="#source">RSI source</a>
         <a href="#embodied">Embodied gains</a>
-        <a href="atlas/">Metric Atlas</a>
       </nav>
     </div>
   </header>
@@ -136,7 +136,7 @@
         <div class="links">
           <span class="pill"><b>Paper</b>coming soon</span>
           <span class="pill"><b>Code</b>coming soon</span>
-          <a class="pill" href="atlas/"><b>Metric Atlas</b>full results &rarr;</a>
+          <a class="pill" href="static/data/rsi_reference_and_prediction.csv" download><b>Data</b>results CSV &darr;</a>
         </div>
       </div>
     </div>
@@ -188,7 +188,11 @@
           <div class="stat"><div class="num">5</div><div class="cap">RSI metrics</div></div>
           <div class="stat"><div class="num">8</div><div class="cap">agents evaluated</div></div>
         </div>
-        <p class="agents">Agents: GPT-6 Astra, GPT-6.1 Sol, GPT-6.0 Sol, GPT-5.6 Sol, Claude Opus 5.5, Claude Sonnet 5.5, Gemini 4 and Gemini 3.1 Pro.</p>
+        <p class="agents">Agents: GPT-6 Astra, GPT-6.1 Sol, GPT-6.0 Sol, GPT-5.6 Sol, Claude Opus 5.5, Claude Sonnet 5.5, Gemini 4 and Gemini 3.1 Pro. Full five-axis profiles are available for the first six; Gemini 4 is a partial run.</p>
+        <div class="callout">
+          <span class="label">Gemini 4 · partial snapshot</span>
+          <p>7 tasks observed through K10: 2 of 7 solved (Arrange the largest number at K3, Cover blocks at K2); mean score 0.07 at K0 and 0.40 at K10. Not comparable with the 18-task, K17 profiles above.</p>
+        </div>
 
         <h3 style="margin-top:48px">Balanced task sampling</h3>
         <p>All 18 tasks come from RoboDojo. We sample them uniformly over difficulty &mdash; three tasks in each of six strata &mdash; and across six task types.</p>
@@ -208,9 +212,16 @@
           <span class="num">Step 1</span>
           <h3>Quantifying RSI: score(metrics(model))</h3>
           <p>Each agent's run is reduced to five metrics, and each metric to a score on a fixed 0&ndash;1 scale:</p>
-          <ul class="axes">
-            <li>A1 Prior knowledge · zero-shot performance</li><li>A2 Efficiency · gain timing</li><li>A3 Success · performance level</li><li>A4 Cost · budget savings</li><li>A5 Improvement · failure recovery</li>
-          </ul>
+          <div class="table-wrap"><table class="defs">
+            <thead><tr><th>Metric</th><th>What it measures</th></tr></thead>
+            <tbody>
+              <tr><th>A1 Prior knowledge</th><td>Mean native score in the zero-shot round K0, counting partial progress on failed tasks.</td></tr>
+              <tr><th>A2 Efficiency</th><td>How early the final gain over K0 is realized: 1 if all of it arrives at K1 and is kept, 0 if it arrives only at K17.</td></tr>
+              <tr><th>A3 Success</th><td>Mean score from the round where the agent first reaches 90% of its own gain through K17.</td></tr>
+              <tr><th>A4 Cost</th><td>Budget saved on solved tasks: one minus the physical attempt quota used up to the first success, out of 17.</td></tr>
+              <tr><th>A5 Improvement</th><td>Failure recovery: the share of tasks failed at K1 that are solved by K17.</td></tr>
+            </tbody>
+          </table></div>
           <figure>
             <img src="static/img/mean_score_growth.jpg" alt="Observed mean native score from K0 to K17 for four agents with the first 90% gain crossing marked (Astra K5, Sol 6.1 K7, Sonnet 5.5 K13, Opus 5.5 K14), per-round increments, net growth speed and increment uniformity." loading="lazy" style="max-width:900px;margin:0 auto">
             <figcaption><b>Mean-score change across rounds.</b> Observed task-mean score from K0 to K17; large markers show where each agent first reaches 90% of its own gain (Astra K5, Sol 6.1 K7, Sonnet 5.5 K13, Opus 5.5 K14). Lower panels: per-round increments, net growth speed and how evenly the gain is spread. Four-agent snapshot; Sonnet 5.5 incomplete.</figcaption>
@@ -225,10 +236,10 @@
           <span class="num">Step 2</span>
           <h3>Predicting RSI from benchmark factors</h3>
           <p>We relate public VLM benchmark factors to the RSI metrics, first to find the main source of RSI capability, then to predict specific elements of the improvement curve, such as its inflection point and final score.</p>
-          <div class="callout">
-            <span class="label">Factor &times; metric heatmap</span>
-            <p>The matrix of associations between benchmark factors and RSI metrics, which identifies the main source of RSI capability, will be added here.</p>
-          </div>
+<figure>
+            <img src="static/img/vlm_fitting.jpg" alt="Left: Spearman correlations between four benchmark factors (spatial, harness, perception, coding) and the five RSI metrics across six models. Right: cumulative success curves of four GPT models with shaded 70 to 90 percent growth windows and the resulting rank order." loading="lazy" style="max-width:1100px;margin:0 auto">
+            <figcaption><b>From benchmark factors to RSI metrics and ranks.</b> (a)&nbsp;Spearman correlation between four benchmark factors and the five RSI metrics (six models, 17 common tasks): spatial reasoning correlates most with A1, A2 and A4 and perception with A3 and A5, whereas coding correlates least with every metric (&rho; &le; 0.54). Exploratory; minimum BH-adjusted q = 0.194. (b)&nbsp;Observed cumulative success of four GPT models with the window in which each grows from 70% to 90% of its gain; the windows give a timing proxy whose rank order is the prediction target.</figcaption>
+          </figure>
           <figure>
             <img src="static/img/physrsi_scaling_law_pred.jpg" alt="Per-model curves fitted on rounds K1 to K13 and forecasts for K14 to K17 compared with held-out actual scores for six models." loading="lazy">
             <figcaption><b>The improvement curve is predictable.</b> Curves fitted on K1&ndash;K13 forecast K14&ndash;K17 for each agent; open circles are held-out actual scores. Like LLM scaling laws, the curve exposes its inflection point and saturation level early.</figcaption>
@@ -302,12 +313,9 @@
       </div>
     </section>
 
-    <section id="atlas">
+    <section id="cite">
       <div class="wrap">
-        <p class="eyebrow">Full results</p>
-        <h2>Metric Atlas</h2>
-        <p>All metrics, per-model radars, growth curves, ablations, data downloads and their definitions are collected in the <a href="atlas/">Metric Atlas</a> (in Chinese).</p>
-        <h3 style="margin-top:36px">Citation</h3>
+        <p class="eyebrow">Citation</p>
         <pre>BibTeX will be available when the paper is released.</pre>
       </div>
     </section>
