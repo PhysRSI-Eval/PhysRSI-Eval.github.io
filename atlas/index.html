@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="六模型参考与预测及 K0–K17 得分曲线；附属指标保留原四模型快照，分母与证据可复核。">
+  <title>Robot Learning · Metric Atlas｜六模型参考与预测 · Gemini 4 部分快照</title>
+  <meta property="og:title" content="Robot Learning · Metric Atlas">
+  <meta property="og:description" content="六模型五轴参考值与预测值，包含 GPT-5.6 Sol 拟合参考说明。">
+  <meta property="og:type" content="website"><meta property="og:locale" content="zh_CN">
+  <meta property="og:url" content="https://physrsi-eval.github.io/atlas/">
+  <meta property="og:image" content="https://physrsi-eval.github.io/atlas/og.png">
+  <meta property="og:image:alt" content="Robot Learning · Metric Atlas · Progress · Coverage · Cost">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Robot Learning · Metric Atlas">
+  <meta name="twitter:description" content="六模型 v3：参考与预测五轴对照。">
+  <meta name="twitter:image" content="https://physrsi-eval.github.io/atlas/og.png">
+  <link rel="stylesheet" href="vendor/katex.min.css"><link rel="stylesheet" href="style.css">
+  <script defer src="vendor/katex.min.js"></script><script defer src="growth.js"></script><script defer src="radar.js"></script><script defer src="radar_a1a5.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+<a class="skip" href="#latest-results">跳到关键结果</a>
+<header class="topbar"><a class="brand" href="#top"><span class="brand-mark">R<span>↗</span></span> ROBOT LEARNING <b> / METRIC ATLAS</b></a><nav aria-label="页面导航"><a href="../">← PhysRSI-Eval</a><a href="#latest-results">最新结果</a><a href="#gemini4">Gemini 4</a><a href="#results">历史指标</a><a href="#existing">已有指标</a><a href="#computed">本轮计算</a><a href="#ablation">消融</a><a href="#methods">方法与数据</a></nav></header>
+<main id="top">
+<section class="hero">
+  <p class="eyebrow">EXPERIMENT NOTEBOOK · 2026.10.16 · SIX-MODEL REFERENCE & PREDICTION</p>
+  <h1>从一次尝试，<br>到跨轮求解。</h1>
+  <p class="hero-en">Progress, coverage & the cost of solving.</p>
+  <p class="lede">最新结果比较 <strong>GPT-6 Astra / GPT-6.1 Sol / GPT-6 Sol / GPT-5.6 Sol / Opus 5.5 / Sonnet 5.5</strong> 的五轴工作参考与 Benchmark 预测。采用 2026-10-16 v3 数据包，另纳入 Gemini 4 的 7 任务 K0–K10 部分快照。</p>
+  <div class="resource-links"><a href="#latest-results">最新六模型结果 ↓</a><a href="assets/reference-v3/radar_atlas.pdf" download>最新图册 PDF ↓</a><a href="data/reference-v3/source_values.csv" download>最新结果 CSV ↓</a><a href="#results">历史曲线与指标 ↓</a></div>
+  <div class="hero-facts"><div><b>18</b><span>参考任务</span></div><div><b>3</b><span>K0 Context 重复 / 任务</span></div><div><b>6 + 1</b><span>六模型参考 + Gemini 4 部分快照</span></div><div><b>30</b><span>参考值 / 预测值配对</span></div></div>
+</section>
+<section id="latest-results" class="section-start"><p class="eyebrow">01 / LATEST RESULTS · 2026.10.16 · V3</p><h2>六模型：参考画像与 Benchmark 预测</h2>
+<p class="section-intro">同一份 v3 数据，30 个轴值及 30 个预测值。K0 使用每任务 3 次 Context 重复；五轴仍按 A1–A5 顺序，Cost 越高表示预算节余越多。Gemini 4 部分快照见下方独立面板，未纳入这 30 对参考/预测值。</p>
+<aside class="evidence-note"><p><strong>Actual 是工作参考值，不全是独立实测。</strong>GPT-5.6 Sol 的 pack_objects_into_box 在 K7–K17 使用拟合延续：分数影响 A2/A3，未成功假设影响 A4/A5。每次预测使用其余 5 个模型；方法按六模型留一误差从 98 个配置中事后选择，因此不是独立测试集上的无偏泛化估计。本包没有新的置信区间。</p></aside>
+<figure class="static-figure"><img src="assets/reference-v3/paired_overlay.svg" alt="六模型 Actual 工作参考与 Predicted 预测五轴画像，左右对照"><figcaption>Prior knowledge / Efficiency / Success / Cost / Improvement 为展示标签，分别对应起点、增益兑现时机、高位窗口均分、预算节余、首败恢复。阴影为刻度带，不是置信区间。</figcaption></figure>
+<div class="resource-links"><a href="assets/reference-v3/paired_overlay.pdf" download>最新对照图 PDF ↓</a><a href="assets/reference-v3/radar_atlas.pdf" download>最新六模型图册 PDF ↓</a><a href="data/reference-v3/source_values.csv" download>最新参考值与预测 CSV ↓</a><a href="data/reference-v3/paper_caption.txt" download>数据口径与图注 ↓</a></div>
+<h3>五轴参考值 / 预测值</h3><p class="micro">每格顺序为 Actual / Predicted；† 含拟合参考或未成功假设。保留原始精度的数据见 CSV。</p><div class="table-wrap"><table><thead><tr><th scope="col">模型</th><th scope="col">A1 Prior knowledge</th><th scope="col">A2 Efficiency</th><th scope="col">A3 Success</th><th scope="col">A4 Cost</th><th scope="col">A5 Improvement</th></tr></thead><tbody>
+<tr><th scope="row">GPT-6 Astra</th>
+<td>0.3676 / 0.2896</td>
+<td>0.8594 / 0.8420</td>
+<td>0.8509 / 0.7809</td>
+<td>0.8429 / 0.8104</td>
+<td>0.7500 / 0.6508</td>
+</tr>
+<tr><th scope="row">GPT-6.1 Sol</th>
+<td>0.2843 / 0.2751</td>
+<td>0.8224 / 0.8035</td>
+<td>0.7028 / 0.7370</td>
+<td>0.8081 / 0.7357</td>
+<td>0.5714 / 0.6635</td>
+</tr>
+<tr><th scope="row">GPT-6 Sol</th>
+<td>0.0306 / 0.1495</td>
+<td>0.4658 / 0.5216</td>
+<td>0.4722 / 0.5610</td>
+<td>0.3718 / 0.5759</td>
+<td>0.3889 / 0.4684</td>
+</tr>
+<tr><th scope="row">GPT-5.6 Sol</th>
+<td>0.0120 / 0.0000</td>
+<td>0.2247 † / 0.1761</td>
+<td>0.1037 † / 0.0000</td>
+<td>0.3013 † / 0.3444</td>
+<td>0.0556 † / 0.0000</td>
+</tr>
+<tr><th scope="row">Claude Opus 5.5</th>
+<td>0.1769 / 0.1817</td>
+<td>0.6091 / 0.6131</td>
+<td>0.7444 / 0.6654</td>
+<td>0.5794 / 0.6476</td>
+<td>0.6875 / 0.5408</td>
+</tr>
+<tr><th scope="row">Claude Sonnet 5.5</th>
+<td>0.1241 / 0.0407</td>
+<td>0.6946 / 0.5181</td>
+<td>0.7006 / 0.6849</td>
+<td>0.6984 / 0.3732</td>
+<td>0.5625 / 0.6249</td>
+</tr>
+</tbody></table></div><h3>逐轴预测误差</h3><p class="micro">MAE 为本包六模型留一预测的平均绝对误差，含拟合参考值；方法选择也使用了这些误差。</p><div class="table-wrap"><table><thead><tr><th>轴</th><th>方法</th><th>特征集</th><th>MAE</th></tr></thead><tbody>
+<tr><th>A1 Prior knowledge</th><td>PLS (1 component)</td><td>legacy26</td><td>0.0511</td></tr>
+<tr><th>A2 Efficiency</th><td>Perception Ridge</td><td>legacy26</td><td>0.0535</td></tr>
+<tr><th>A3 Success</th><td>Spatial Ridge</td><td>core11</td><td>0.0653</td></tr>
+<tr><th>A4 Cost</th><td>PLS (1 component)</td><td>legacy26</td><td>0.1242</td></tr>
+<tr><th>A5 Improvement</th><td>Spatial Ridge</td><td>core11</td><td>0.0892</td></tr>
+</tbody></table></div><h3>逐模型图与下载</h3>
+<details><summary>GPT-6 Astra · Actual / Predicted</summary><figure class="static-figure"><img loading="lazy" src="assets/reference-v3/models/gpt6_astra.svg" alt="GPT-6 Astra 参考与预测雷达"><figcaption>实线为工作参考，虚线为预测。</figcaption></figure><div class="resource-links"><a href="assets/reference-v3/models/gpt6_astra.svg" download>SVG ↓</a><a href="assets/reference-v3/models/gpt6_astra.pdf" download>PDF ↓</a><a href="assets/reference-v3/models/gpt6_astra.png" download>PNG ↓</a></div></details>
+<details><summary>GPT-6.1 Sol · Actual / Predicted</summary><figure class="static-figure"><img loading="lazy" src="assets/reference-v3/models/gpt61_sol.svg" alt="GPT-6.1 Sol 参考与预测雷达"><figcaption>实线为工作参考，虚线为预测。</figcaption></figure><div class="resource-links"><a href="assets/reference-v3/models/gpt61_sol.svg" download>SVG ↓</a><a href="assets/reference-v3/models/gpt61_sol.pdf" download>PDF ↓</a><a href="assets/reference-v3/models/gpt61_sol.png" download>PNG ↓</a></div></details>
+<details><summary>GPT-6 Sol · Actual / Predicted</summary><figure class="static-figure"><img loading="lazy" src="assets/reference-v3/models/gpt6_sol.svg" alt="GPT-6 Sol 参考与预测雷达"><figcaption>实线为工作参考，虚线为预测。</figcaption></figure><div class="resource-links"><a href="assets/reference-v3/models/gpt6_sol.svg" download>SVG ↓</a><a href="assets/reference-v3/models/gpt6_sol.pdf" download>PDF ↓</a><a href="assets/reference-v3/models/gpt6_sol.png" download>PNG ↓</a></div></details>
+<details><summary>GPT-5.6 Sol · Actual / Predicted</summary><figure class="static-figure"><img loading="lazy" src="assets/reference-v3/models/gpt56_sol.svg" alt="GPT-5.6 Sol 参考与预测雷达"><figcaption>实线为工作参考，虚线为预测。A2–A5 含拟合延续或未成功假设。</figcaption></figure><div class="resource-links"><a href="assets/reference-v3/models/gpt56_sol.svg" download>SVG ↓</a><a href="assets/reference-v3/models/gpt56_sol.pdf" download>PDF ↓</a><a href="assets/reference-v3/models/gpt56_sol.png" download>PNG ↓</a></div></details>
+<details><summary>Claude Opus 5.5 · Actual / Predicted</summary><figure class="static-figure"><img loading="lazy" src="assets/reference-v3/models/opus55.svg" alt="Claude Opus 5.5 参考与预测雷达"><figcaption>实线为工作参考，虚线为预测。</figcaption></figure><div class="resource-links"><a href="assets/reference-v3/models/opus55.svg" download>SVG ↓</a><a href="assets/reference-v3/models/opus55.pdf" download>PDF ↓</a><a href="assets/reference-v3/models/opus55.png" download>PNG ↓</a></div></details>
+<details><summary>Claude Sonnet 5.5 · Actual / Predicted</summary><figure class="static-figure"><img loading="lazy" src="assets/reference-v3/models/sonnet55.svg" alt="Claude Sonnet 5.5 参考与预测雷达"><figcaption>实线为工作参考，虚线为预测。</figcaption></figure><div class="resource-links"><a href="assets/reference-v3/models/sonnet55.svg" download>SVG ↓</a><a href="assets/reference-v3/models/sonnet55.pdf" download>PDF ↓</a><a href="assets/reference-v3/models/sonnet55.png" download>PNG ↓</a></div></details>
+<p class="caption">下方内容为 2026-10-15 历史快照。新包未提供六模型逐轮结果、更新后的任务明细或成本日志，因此不把新 K0 或预测值拼接进旧曲线，也不沿用旧区间解释新参考值。旧快照中 Sonnet 的未完成状态只描述旧记录。</p></section>
+<!-- GEMINI4 START -->
+<section id="gemini4" class="section-start"><p class="eyebrow">GEMINI 4 · PARTIAL SNAPSHOT</p><h2>Gemini 4：7 任务，观察至 K10</h2>
+<p class="section-intro">Gemini 4 已纳入本站，当前为独立的部分结果。62 条有评分记录、17 条无终局评分尝试；2/7 个任务成功（28.57%），另外 5 个任务观察至 K10 尚未成功。完整 K17 五轴和 Benchmark 预测尚缺。</p>
+<aside class="evidence-note"><p><strong>任务范围与基线口径不同。</strong>K0 每任务仅一次，7 次均因推理时限结束；下方 K0 采用 manifest 与暂存原生分数，不视为完整原生终局评测。现有六模型 v3 使用 18 任务与三次 K0，不能直接按同一分母排名。11 条已评分记录处于 REVISING，17 条无终局评分尝试不填零。</p></aside>
+<div class="hero-facts"><div><b>7</b><span>任务子集</span></div><div><b>62</b><span>带评分记录 · 含 K0</span></div><div><b>2/7</b><span>K10 内任务覆盖</span></div><div><b>0.4000</b><span>K10 末次观察均分</span></div></div>
+<figure class="static-figure"><img src="assets/gemini4-observed.svg" alt="Gemini 4 七任务 K0–K10 的均分与累计任务覆盖"><figcaption>首胜后仅沿用记录，不表示复测；未观测的 K11–K17 不外推。</figcaption></figure>
+<div class="resource-links"><a href="data/gemini4/episodes.csv" download>评分记录 CSV ↓</a><a href="data/gemini4/tasks.csv" download>逐任务汇总 CSV ↓</a><a href="data/gemini4/curves.csv" download>观察曲线 CSV ↓</a><a href="data/gemini4/attempts.csv" download>全部尝试 CSV ↓</a><a href="data/gemini4/README.md" download>口径说明 ↓</a><a href="data/gemini4/summary.json" download>快照摘要 JSON ↓</a></div>
+<div class="table-wrap"><table><thead><tr><th scope="col">任务</th><th scope="col">K0 暂存分数</th><th scope="col">最后观察轮</th><th scope="col">最后分数</th><th scope="col">首次成功轮</th><th scope="col">无终局评分尝试</th></tr></thead><tbody>
+<tr><th scope="row">arrange_largest_number</th><td>0.15</td><td>K3</td><td>1.00</td><td>K3</td><td>1</td></tr>
+<tr><th scope="row">cover_blocks</th><td>0.00</td><td>K2</td><td>1.00</td><td>K2</td><td>1</td></tr>
+<tr><th scope="row">deposit_coin</th><td>0.00</td><td>K10</td><td>0.20</td><td>截至 K10 未成功</td><td>2</td></tr>
+<tr><th scope="row">fill_pen_holder</th><td>0.10</td><td>K10</td><td>0.25</td><td>截至 K10 未成功</td><td>5</td></tr>
+<tr><th scope="row">insert_key</th><td>0.00</td><td>K10</td><td>0.00</td><td>截至 K10 未成功</td><td>3</td></tr>
+<tr><th scope="row">organize_table</th><td>0.25</td><td>K10</td><td>0.25</td><td>截至 K10 未成功</td><td>2</td></tr>
+<tr><th scope="row">pack_objects_into_box</th><td>0.00</td><td>K10</td><td>0.10</td><td>截至 K10 未成功</td><td>3</td></tr>
+</tbody></table></div><details><summary>逐轮均分与覆盖数据</summary><div class="table-wrap"><table><thead><tr><th>轮次</th><th>末次观察均分</th><th>累计任务覆盖</th></tr></thead><tbody>
+<tr><th>K0</th><td>0.0714</td><td>不适用（Context）</td></tr>
+<tr><th>K1</th><td>0.0643</td><td>0/7</td></tr>
+<tr><th>K2</th><td>0.2357</td><td>1/7</td></tr>
+<tr><th>K3</th><td>0.3571</td><td>2/7</td></tr>
+<tr><th>K4</th><td>0.4357</td><td>2/7</td></tr>
+<tr><th>K5</th><td>0.3929</td><td>2/7</td></tr>
+<tr><th>K6</th><td>0.3929</td><td>2/7</td></tr>
+<tr><th>K7</th><td>0.3857</td><td>2/7</td></tr>
+<tr><th>K8</th><td>0.4286</td><td>2/7</td></tr>
+<tr><th>K9</th><td>0.4786</td><td>2/7</td></tr>
+<tr><th>K10</th><td>0.4000</td><td>2/7</td></tr>
+</tbody></table></div></details></section><!-- GEMINI4 END -->
+<section id="results" class="section-start"><p class="eyebrow">HISTORICAL SNAPSHOT · 2026.10.15</p><h2>历史五模型曲线与四模型附属指标</h2><p class="section-intro">以下 PROFILE 保留旧版五模型雷达及得分曲线，并有独立五模型开关。其余阶段、覆盖、<a href="#metric-m68">M68</a>、<a href="#metric-m72">M72</a>、成本及 M70 保留原四模型已核验快照，尚未填入 GPT-6 Sol 的对应统计。</p><div id="model-controls" class="model-controls" aria-label="选择原四模型附属指标"></div><p class="micro">这里的开关控制原四模型附属指标；PROFILE 内的五模型开关控制新雷达和曲线。表格和分母保持不变。</p></section>
+<div id="priority-cards"></div>
+<section id="existing" class="section-start"><p class="eyebrow">02 / EXISTING RESULTS</p><h2>历史已有结果，按五类组织</h2><p class="section-intro">远程服务器已经产出的指标与原始统计。补齐模型、核对口径和重画图不重复算成新指标。</p></section>
+<div id="existing-cards"></div>
+<section id="computed" class="section-start"><p class="eyebrow">03 / DERIVED METRICS</p><h2>历史快照的派生结果</h2><p class="section-intro">保留一个主编号作为阅读入口；同一指标的不同分量分别写明定义。覆盖 AUC、恢复率与观察改进不代替冻结能力评测。</p></section>
+<div id="computed-cards"></div>
+<section id="ablation" class="section-start"><p class="eyebrow">04 / ABLATION STUDIES</p><h2>经验来自哪里？</h2><p class="section-intro">以下为 Astra 的实验条件比较。Sol 6.1、Opus 5.5、Sonnet 5.5 没有匹配消融数据，记为 NA。</p><div id="ablation-key"></div></section>
+<div id="ablation-cards"></div>
+<section id="methods" class="section-start"><p class="eyebrow">05 / METHODS & EVIDENCE</p><h2>历史快照的适用范围</h2><div class="method-grid"><div><h3>观察与冻结分开读</h3><p>K 是求解轮次预算。S<sub>u</sub> 是更新 u 次后冻结系统的留出成功率。M05 是文档编号。M68 的 G<sup>obs</sup> / ΔS<sup>obs</sup> 直接用 K0–K17 算前后变化；M72 在同一观察曲线上统计增长速度和增量均匀性。旧 G<sub>u</sub>=S<sub>u</sub>(A0)−S<sub>u</sub>(A5) 仍需冻结对照。</p></div><div><h3>缺失不填零</h3><p>Sonnet 的 pack_objects_into_box、fill_pen_holder 到 K15，store_tools_in_toolbox 到 K11。deposit_coin 的 K19 成功不计入 K17。原四模型审计追回 37 次额外尝试的会话时长，实际步数和其他无成本目录仍缺；新增记录与旧 37 个非规范绑定并非同一集合。</p></div><div><h3>阶段不等于子目标真值</h3><p>现行任务代码与 19 个分档指纹一致；历史运行时指纹未全部取得。分数可给出兼容阶段范围，无法完整恢复曾达成 SG、终止保持率或重新加权的 Q。</p></div><div><h3>数据可复核</h3><p>2026-10-15 旧版五轴雷达和五模型曲线使用 919 个规范回合（新增 GPT-6 Sol 273 个）。其余附属指标保留原四模型 646 个回合。四模型会话表对齐 628 个，2512 个成绩字段一致；另有 80 次额外尝试。原四模型 M72 的 144 个曲线点从规范回合独立重建，图表、表格和 CSV 使用同一结果。首胜停止与未完成快照不构成后续复测。</p></div></div><div id="downloads" class="download-grid"></div></section>
+<section id="archive" class="section-start"><p class="eyebrow">06 / DIAGNOSTICS & GAPS</p><h2>历史诊断与尚缺的证据</h2><p class="section-intro">旧编号继续可追溯。历史三模型或 Sol 5.6 结果保留原样；未重算的条目不冒充四模型完整比较。没有数值的指标显示缺口表。</p><label class="search-label">查找指标<input id="archive-search" type="search" placeholder="例如：M47、子目标、冻结" autocomplete="off"></label><div id="archive-cards"></div><p id="archive-empty" hidden>没有匹配的指标。</p></section>
+</main>
+<footer><span>ROBOT LEARNING / METRIC ATLAS</span><p>基于已有实验记录 · 未启动新测评<br>研究长页的信息组织参考 <a href="https://embodiedswe.github.io/" target="_blank" rel="noreferrer">EmbodiedSWE ↗</a>。图表与文字由本项目数据生成。</p><a href="#top">回到顶部 ↑</a></footer>
+<div id="tooltip" role="status" aria-live="polite" hidden></div>
+<noscript><p class="nojs">交互视图需要 JavaScript。可直接下载 <a href="assets/four-model-atlas.pdf">完整图册 PDF</a> 或阅读 <a href="report.html">静态结果与公式表</a>。</p></noscript>
+</body></html>

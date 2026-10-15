@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="748.8pt" height="648pt" viewBox="0 0 748.8 648" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-15T01:05:25.102630</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 648
+L 748.8 648
+L 748.8 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="line2d_1">
+    <path d="M 374.4 258.715862
+L 404.62392 280.674825
+L 393.07941 316.205175
+L 355.72059 316.205175
+L 344.17608 280.674825
+L 374.4 258.715862
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke: #e0e5e8; stroke-width: 0.7; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 374.4 226.936552
+L 434.84784 270.854478
+L 411.75882 341.915177
+L 337.04118 341.915177
+L 313.95216 270.854478
+L 374.4 226.936552
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke: #e0e5e8; stroke-width: 0.7; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 374.4 195.157241
+L 465.071761 261.034132
+L 430.43823 367.625179
+L 318.36177 367.625179
+L 283.728239 261.034132
+L 374.4 195.157241
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke: #e0e5e8; stroke-width: 0.7; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 374.4 163.377931
+L 495.295681 251.213785
+L 449.11764 393.335181
+L 299.68236 393.335181
+L 253.504319 251.213785
+L 374.4 163.377931
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke: #e0e5e8; stroke-width: 0.7; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 374.4 131.598621
+L 525.519601 241.393438
+L 467.79705 419.045183
+L 281.00295 419.045183
+L 223.280399 241.393438
+L 374.4 131.598621
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke: #bcc4ca; stroke-width: 0.9; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 374.4 290.495172
+L 374.4 131.598621
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke: #e0e5e8; stroke-width: 0.7; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_7">
+    <path d="M 374.4 290.495172
+L 525.519601 241.393438
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke: #e0e5e8; stroke-width: 0.7; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_8">
+    <path d="M 374.4 290.495172
+L 467.79705 419.045183
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke: #e0e5e8; stroke-width: 0.7; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_9">
+    <path d="M 374.4 290.495172
+L 281.00295 419.045183
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke: #e0e5e8; stroke-width: 0.7; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_10">
+    <path d="M 374.4 290.495172
+L 223.280399 241.393438
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke: #e0e5e8; stroke-width: 0.7; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <g id="patch_2">
+     <path d="M 356.283767 262.842737
+L 369.717517 262.842737
+L 369.717517 254.588987
+L 356.283767 254.588987
+z
+" style="fill: #ffffff"/>
+    </g>
+    <text style="font-size: 8px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; text-anchor: end; fill: #707980" x="368.997517" y="260.793987" transform="rotate(-0 368.997517 260.793987)">0.2</text>
+   </g>
+   <g id="text_2">
+    <g id="patch_3">
+     <path d="M 356.283767 231.063427
+L 369.717517 231.063427
+L 369.717517 222.809677
+L 356.283767 222.809677
+z
+" style="fill: #ffffff"/>
+    </g>
+    <text style="font-size: 8px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; text-anchor: end; fill: #707980" x="368.997517" y="229.014677" transform="rotate(-0 368.997517 229.014677)">0.4</text>
+   </g>
+   <g id="text_3">
+    <g id="patch_4">
+     <path d="M 356.283767 199.284116
+L 369.717517 199.284116
+L 369.717517 191.030366
+L 356.283767 191.030366
+z
+" style="fill: #ffffff"/>
+    </g>
+    <text style="font-size: 8px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; text-anchor: end; fill: #707980" x="368.997517" y="197.235366" transform="rotate(-0 368.997517 197.235366)">0.6</text>
+   </g>
+   <g id="text_4">
+    <g id="patch_5">
+     <path d="M 356.283767 167.504806
+L 369.717517 167.504806
+L 369.717517 159.251056
+L 356.283767 159.251056
+z
+" style="fill: #ffffff"/>
+    </g>
+    <text style="font-size: 8px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; text-anchor: end; fill: #707980" x="368.997517" y="165.456056" transform="rotate(-0 368.997517 165.456056)">0.8</text>
+   </g>
+   <g id="text_5">
+    <g id="patch_6">
+     <path d="M 356.283767 135.725496
+L 369.717517 135.725496
+L 369.717517 127.471746
+L 356.283767 127.471746
+z
+" style="fill: #ffffff"/>
+    </g>
+    <text style="font-size: 8px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; text-anchor: end; fill: #707980" x="368.997517" y="133.676746" transform="rotate(-0 368.997517 133.676746)">1.0</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 374.4 252.095172
+L 508.728534 246.849186
+L 452.649964 398.197008
+L 295.671854 398.855169
+L 261.060299 253.668871
+z
+" clip-path="url(#pa7c6aeeb86)" style="fill: #2563a6; opacity: 0.025"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 374.4 248.564138
+L 499.96261 249.697407
+L 440.037371 380.837263
+L 298.928836 394.372318
+L 288.045942 262.437038
+z
+" clip-path="url(#pa7c6aeeb86)" style="fill: #6c9dcc; opacity: 0.025"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 374.4 282.550345
+L 441.074067 268.831455
+L 418.504162 351.199344
+L 339.677152 338.287073
+L 315.631266 271.400053
+z
+" clip-path="url(#pa7c6aeeb86)" style="fill: #23584f; opacity: 0.025"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 374.4 276.812414
+L 474.58847 257.941965
+L 442.437156 384.140284
+L 320.282039 364.982155
+L 270.505274 256.73773
+z
+" clip-path="url(#pa7c6aeeb86)" style="fill: #ae4a46; opacity: 0.025"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 374.4 272.84
+L 480.255003 256.100797
+L 439.67416 380.337347
+L 309.1702 380.27629
+L 289.395224 262.875447
+z
+" clip-path="url(#pa7c6aeeb86)" style="fill: #d38a68; opacity: 0.025"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11.5px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; fill: #202b34" transform="translate(335.536289 97.466827)">A1  零样本起点</text>
+    <text style="font-size: 11.5px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; fill: #202b34" transform="translate(331.167188 113.004405)">K0 平均原生得分</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 11.5px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; fill: #202b34" transform="translate(541.387159 218.790099)">A2  求解速度</text>
+    <text style="font-size: 11.5px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; fill: #202b34" transform="translate(541.387159 234.327677)">增益兑现时机</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 11.5px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; fill: #202b34" transform="translate(477.60374 441.606372)">A3  能力水平</text>
+    <text style="font-size: 11.5px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; fill: #202b34" transform="translate(477.60374 457.413481)">达到阈值后的均分</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 11.5px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; fill: #202b34" transform="translate(204.968838 441.706997)">A4  执行成本</text>
+    <text style="font-size: 11.5px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; fill: #202b34" transform="translate(167.69626 457.344301)">已解任务的预算节余</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 11.5px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; fill: #202b34" transform="translate(141.185419 218.318419)">A5  失败恢复</text>
+    <text style="font-size: 11.5px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; fill: #202b34" transform="translate(109.447216 234.327677)">K1 失败后解出比例</text>
+   </g>
+   <g id="line2d_11">
+    <path d="M 374.4 252.095172
+L 508.728534 246.849186
+L 452.649964 398.197008
+L 295.671854 398.855169
+L 261.060299 253.668871
+L 374.4 252.095172
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke: #2563a6; stroke-width: 2.2; stroke-linecap: square"/>
+    <defs>
+     <path id="m7ff1f923ef" d="M 0 3
+C 0.795609 3 1.55874 2.683901 2.12132 2.12132
+C 2.683901 1.55874 3 0.795609 3 0
+C 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132
+C 1.55874 -2.683901 0.795609 -3 0 -3
+C -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132
+C -2.683901 -1.55874 -3 -0.795609 -3 0
+C -3 0.795609 -2.683901 1.55874 -2.12132 2.12132
+C -1.55874 2.683901 -0.795609 3 0 3
+z
+" style="stroke: #2563a6; stroke-width: 1.5"/>
+    </defs>
+    <g clip-path="url(#pa7c6aeeb86)">
+     <use xlink:href="#m7ff1f923ef" x="374.4" y="252.095172" style="fill: #ffffff; stroke: #2563a6; stroke-width: 1.5"/>
+     <use xlink:href="#m7ff1f923ef" x="508.728534" y="246.849186" style="fill: #ffffff; stroke: #2563a6; stroke-width: 1.5"/>
+     <use xlink:href="#m7ff1f923ef" x="452.649964" y="398.197008" style="fill: #ffffff; stroke: #2563a6; stroke-width: 1.5"/>
+     <use xlink:href="#m7ff1f923ef" x="295.671854" y="398.855169" style="fill: #ffffff; stroke: #2563a6; stroke-width: 1.5"/>
+     <use xlink:href="#m7ff1f923ef" x="261.060299" y="253.668871" style="fill: #ffffff; stroke: #2563a6; stroke-width: 1.5"/>
+     <use xlink:href="#m7ff1f923ef" x="374.4" y="252.095172" style="fill: #ffffff; stroke: #2563a6; stroke-width: 1.5"/>
+    </g>
+   </g>
+   <g id="line2d_12">
+    <path d="M 374.4 248.564138
+L 499.96261 249.697407
+L 440.037371 380.837263
+L 298.928836 394.372318
+L 288.045942 262.437038
+L 374.4 248.564138
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke-dasharray: 8.14,3.52; stroke-dashoffset: 0; stroke: #6c9dcc; stroke-width: 2.2"/>
+    <defs>
+     <path id="m6c8dc8d8f1" d="M -3 3
+L 3 3
+L 3 -3
+L -3 -3
+z
+" style="stroke: #6c9dcc; stroke-width: 1.5; stroke-linejoin: miter"/>
+    </defs>
+    <g clip-path="url(#pa7c6aeeb86)">
+     <use xlink:href="#m6c8dc8d8f1" x="374.4" y="248.564138" style="fill: #ffffff; stroke: #6c9dcc; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m6c8dc8d8f1" x="499.96261" y="249.697407" style="fill: #ffffff; stroke: #6c9dcc; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m6c8dc8d8f1" x="440.037371" y="380.837263" style="fill: #ffffff; stroke: #6c9dcc; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m6c8dc8d8f1" x="298.928836" y="394.372318" style="fill: #ffffff; stroke: #6c9dcc; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m6c8dc8d8f1" x="288.045942" y="262.437038" style="fill: #ffffff; stroke: #6c9dcc; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m6c8dc8d8f1" x="374.4" y="248.564138" style="fill: #ffffff; stroke: #6c9dcc; stroke-width: 1.5; stroke-linejoin: miter"/>
+    </g>
+   </g>
+   <g id="line2d_13">
+    <path d="M 374.4 282.550345
+L 441.074067 268.831455
+L 418.504162 351.199344
+L 339.677152 338.287073
+L 315.631266 271.400053
+L 374.4 282.550345
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke-dasharray: 14.08,3.52,2.2,3.52; stroke-dashoffset: 0; stroke: #23584f; stroke-width: 2.2"/>
+    <defs>
+     <path id="mc08b0ef80e" d="M -1 3
+L 1 3
+L 1 1
+L 3 1
+L 3 -1
+L 1 -1
+L 1 -3
+L -1 -3
+L -1 -1
+L -3 -1
+L -3 1
+L -1 1
+z
+" style="stroke: #23584f; stroke-width: 1.5; stroke-linejoin: miter"/>
+    </defs>
+    <g clip-path="url(#pa7c6aeeb86)">
+     <use xlink:href="#mc08b0ef80e" x="374.4" y="282.550345" style="fill: #ffffff; stroke: #23584f; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#mc08b0ef80e" x="441.074067" y="268.831455" style="fill: #ffffff; stroke: #23584f; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#mc08b0ef80e" x="418.504162" y="351.199344" style="fill: #ffffff; stroke: #23584f; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#mc08b0ef80e" x="339.677152" y="338.287073" style="fill: #ffffff; stroke: #23584f; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#mc08b0ef80e" x="315.631266" y="271.400053" style="fill: #ffffff; stroke: #23584f; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#mc08b0ef80e" x="374.4" y="282.550345" style="fill: #ffffff; stroke: #23584f; stroke-width: 1.5; stroke-linejoin: miter"/>
+    </g>
+   </g>
+   <g id="line2d_14">
+    <path d="M 374.4 276.812414
+L 474.58847 257.941965
+L 442.437156 384.140284
+L 320.282039 364.982155
+L 270.505274 256.73773
+L 374.4 276.812414
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke: #ae4a46; stroke-width: 2.2; stroke-linecap: square"/>
+    <defs>
+     <path id="m06676ae429" d="M 0 -3
+L -3 3
+L 3 3
+z
+" style="stroke: #ae4a46; stroke-width: 1.5; stroke-linejoin: miter"/>
+    </defs>
+    <g clip-path="url(#pa7c6aeeb86)">
+     <use xlink:href="#m06676ae429" x="374.4" y="276.812414" style="fill: #ffffff; stroke: #ae4a46; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m06676ae429" x="474.58847" y="257.941965" style="fill: #ffffff; stroke: #ae4a46; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m06676ae429" x="442.437156" y="384.140284" style="fill: #ffffff; stroke: #ae4a46; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m06676ae429" x="320.282039" y="364.982155" style="fill: #ffffff; stroke: #ae4a46; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m06676ae429" x="270.505274" y="256.73773" style="fill: #ffffff; stroke: #ae4a46; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m06676ae429" x="374.4" y="276.812414" style="fill: #ffffff; stroke: #ae4a46; stroke-width: 1.5; stroke-linejoin: miter"/>
+    </g>
+   </g>
+   <g id="line2d_15">
+    <path d="M 374.4 272.84
+L 480.255003 256.100797
+L 439.67416 380.337347
+L 309.1702 380.27629
+L 289.395224 262.875447
+L 374.4 272.84
+" clip-path="url(#pa7c6aeeb86)" style="fill: none; stroke-dasharray: 8.14,3.52; stroke-dashoffset: 0; stroke: #d38a68; stroke-width: 2.2"/>
+    <defs>
+     <path id="m225f1693fb" d="M -0 4.242641
+L 4.242641 0
+L 0 -4.242641
+L -4.242641 -0
+z
+" style="stroke: #d38a68; stroke-width: 1.5; stroke-linejoin: miter"/>
+    </defs>
+    <g clip-path="url(#pa7c6aeeb86)">
+     <use xlink:href="#m225f1693fb" x="374.4" y="272.84" style="fill: #ffffff; stroke: #d38a68; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m225f1693fb" x="480.255003" y="256.100797" style="fill: #ffffff; stroke: #d38a68; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m225f1693fb" x="439.67416" y="380.337347" style="fill: #ffffff; stroke: #d38a68; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m225f1693fb" x="309.1702" y="380.27629" style="fill: #ffffff; stroke: #d38a68; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m225f1693fb" x="289.395224" y="262.875447" style="fill: #ffffff; stroke: #d38a68; stroke-width: 1.5; stroke-linejoin: miter"/>
+     <use xlink:href="#m225f1693fb" x="374.4" y="272.84" style="fill: #ffffff; stroke: #d38a68; stroke-width: 1.5; stroke-linejoin: miter"/>
+    </g>
+   </g>
+  </g>
+  <g id="text_11">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; text-anchor: middle; fill: #202b34" x="374.4" y="34.344469" transform="rotate(-0 374.4 34.344469)">五模型 A1–A5 雷达图</text>
+  </g>
+  <g id="text_12">
+   <text style="font-size: 12px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; text-anchor: middle; fill: #53616d" x="374.4" y="58.32" transform="rotate(-0 374.4 58.32)">同一 v4 定义  ·  固定 0–1 刻度  ·  18 个共同任务  ·  K1–K17</text>
+  </g>
+  <g id="text_13">
+   <text style="font-size: 10px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; text-anchor: middle; fill: #53616d" x="374.4" y="611.712" transform="rotate(-0 374.4 611.712)">A4 越高表示预算节余越多；Sonnet 有 3 条未完成链，按当前快照展示</text>
+  </g>
+  <g id="text_14">
+   <text style="font-size: 9.5px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; text-anchor: middle; fill: #707980" x="374.4" y="629.208" transform="rotate(-0 374.4 629.208)">图例 Ā 为排列平均归一化面积；任务配对 bootstrap 95% 区间见说明文档</text>
+  </g>
+  <g id="legend_1">
+   <g id="line2d_16">
+    <path d="M 192.506406 516.152719
+L 210.656406 516.152719
+L 228.806406 516.152719
+" style="fill: none; stroke: #2563a6; stroke-width: 2.2; stroke-linecap: square"/>
+    <defs>
+     <path id="m13a25ca004" d="M 0 3
+C 0.795609 3 1.55874 2.683901 2.12132 2.12132
+C 2.683901 1.55874 3 0.795609 3 0
+C 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132
+C 1.55874 -2.683901 0.795609 -3 0 -3
+C -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132
+C -2.683901 -1.55874 -3 -0.795609 -3 0
+C -3 0.795609 -2.683901 1.55874 -2.12132 2.12132
+C -1.55874 2.683901 -0.795609 3 0 3
+z
+" style="stroke: #2563a6"/>
+    </defs>
+    <g>
+     <use xlink:href="#m13a25ca004" x="210.656406" y="516.152719" style="fill: #ffffff; stroke: #2563a6"/>
+    </g>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 11px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; text-anchor: start" x="237.606406" y="520.002719" transform="rotate(-0 237.606406 520.002719)">GPT-6 Astra   Ā = 0.4930</text>
+   </g>
+   <g id="line2d_17">
+    <path d="M 192.506406 538.207719
+L 210.656406 538.207719
+L 228.806406 538.207719
+" style="fill: none; stroke-dasharray: 8.14,3.52; stroke-dashoffset: 0; stroke: #6c9dcc; stroke-width: 2.2"/>
+    <defs>
+     <path id="m242edc9451" d="M -3 3
+L 3 3
+L 3 -3
+L -3 -3
+z
+" style="stroke: #6c9dcc; stroke-linejoin: miter"/>
+    </defs>
+    <g>
+     <use xlink:href="#m242edc9451" x="210.656406" y="538.207719" style="fill: #ffffff; stroke: #6c9dcc; stroke-linejoin: miter"/>
+    </g>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 11px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; text-anchor: start" x="237.606406" y="542.057719" transform="rotate(-0 237.606406 542.057719)">GPT-6.1 Sol   Ā = 0.3930</text>
+   </g>
+   <g id="line2d_18">
+    <path d="M 192.506406 560.262719
+L 210.656406 560.262719
+L 228.806406 560.262719
+" style="fill: none; stroke-dasharray: 14.08,3.52,2.2,3.52; stroke-dashoffset: 0; stroke: #23584f; stroke-width: 2.2"/>
+    <defs>
+     <path id="ma05cecaa2c" d="M -1 3
+L 1 3
+L 1 1
+L 3 1
+L 3 -1
+L 1 -1
+L 1 -3
+L -1 -3
+L -1 -1
+L -3 -1
+L -3 1
+L -1 1
+z
+" style="stroke: #23584f; stroke-linejoin: miter"/>
+    </defs>
+    <g>
+     <use xlink:href="#ma05cecaa2c" x="210.656406" y="560.262719" style="fill: #ffffff; stroke: #23584f; stroke-linejoin: miter"/>
+    </g>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 11px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; text-anchor: start" x="237.606406" y="564.112719" transform="rotate(-0 237.606406 564.112719)">GPT-6 Sol   Ā = 0.1131</text>
+   </g>
+   <g id="line2d_19">
+    <path d="M 390.466875 516.152719
+L 408.616875 516.152719
+L 426.766875 516.152719
+" style="fill: none; stroke: #ae4a46; stroke-width: 2.2; stroke-linecap: square"/>
+    <defs>
+     <path id="mf654c11e5b" d="M 0 -3
+L -3 3
+L 3 3
+z
+" style="stroke: #ae4a46; stroke-linejoin: miter"/>
+    </defs>
+    <g>
+     <use xlink:href="#mf654c11e5b" x="408.616875" y="516.152719" style="fill: #ffffff; stroke: #ae4a46; stroke-linejoin: miter"/>
+    </g>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 11px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; text-anchor: start" x="435.566875" y="520.002719" transform="rotate(-0 435.566875 520.002719)">Opus 5.5   Ā = 0.2873</text>
+   </g>
+   <g id="line2d_20">
+    <path d="M 390.466875 538.218031
+L 408.616875 538.218031
+L 426.766875 538.218031
+" style="fill: none; stroke-dasharray: 8.14,3.52; stroke-dashoffset: 0; stroke: #d38a68; stroke-width: 2.2"/>
+    <defs>
+     <path id="meb479c73c4" d="M -0 4.242641
+L 4.242641 0
+L 0 -4.242641
+L -4.242641 -0
+z
+" style="stroke: #d38a68; stroke-linejoin: miter"/>
+    </defs>
+    <g>
+     <use xlink:href="#meb479c73c4" x="408.616875" y="538.218031" style="fill: #ffffff; stroke: #d38a68; stroke-linejoin: miter"/>
+    </g>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 11px; font-family: 'WenQuanYi Zen Hei', 'DejaVu Sans'; text-anchor: start" x="435.566875" y="542.068031" transform="rotate(-0 435.566875 542.068031)">Sonnet 5.5   Ā = 0.2942</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pa7c6aeeb86">
+   <rect x="132.877241" y="68.04" width="483.045517" height="414.72"/>
+  </clipPath>
+ </defs>
+</svg>

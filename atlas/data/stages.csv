@@ -1,0 +1,647 @@
+model,task,k,score,success,mode,stage_min,stage_max,n_stages,fail_gate,label,low,high
+Astra,arrange_largest_number,0,0.15,False,transition,2,2,5,False,阶段 2：任意 2 个数字放到“最大数”排列中各自的垫子上（距离 ≤2 cm、朝向正确），夹爪张开（共布局中 4 或 5 个数字）,0.4,0.5
+Astra,classify_objects_by_language,0,1.0,True,transition,3,3,3,False,成功,1.0,1.0
+Astra,cover_blocks,0,0.15,False,transition,4,4,6,False,阶段 4：掀开：红块露出，绿、蓝仍被盖,0.6666666666666666,0.6666666666666666
+Astra,deposit_coin,0,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Astra,fill_pen_holder,0,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,insert_key,0,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,match_and_pick_from_conveyor,0,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Astra,organize_table,0,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,pack_objects_into_box,0,0.5,False,transition,3,4,4,True,阶段 3：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 3 件放进箱底且朝向正确，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Astra,play_Xylophone,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,plug_in_charger,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,pour_by_language,0,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Astra,pour_liquid_into_cup,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,push_T,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,put_bottles_into_dustbin,0,0.4,False,transition,3,4,4,True,阶段 3：任意 3 个瓶子落到垃圾桶底，夹爪张开（共4 个瓶子）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Astra,stack_blocks_by_language,0,1.0,True,transition,2,2,2,False,成功,1.0,1.0
+Astra,store_tools_in_toolbox,0,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,swap_blocks,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,arrange_largest_number,1,1.0,True,transition,5,5,5,False,成功,1.0,1.0
+Astra,classify_objects_by_language,1,1.0,True,transition,3,3,3,False,成功,1.0,1.0
+Astra,cover_blocks,1,1.0,True,transition,6,6,6,False,成功,1.0,1.0
+Astra,deposit_coin,1,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Astra,deposit_coin,2,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Astra,deposit_coin,3,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Astra,deposit_coin,4,1.0,True,transition,2,2,2,False,成功,1.0,1.0
+Astra,fill_pen_holder,1,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Astra,fill_pen_holder,2,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Astra,fill_pen_holder,3,1.0,True,transition,4,4,4,False,成功,1.0,1.0
+Astra,insert_key,1,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,2,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,3,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,4,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,5,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,6,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,7,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,8,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,9,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,10,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,11,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,12,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,13,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,14,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,15,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,16,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,insert_key,17,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Astra,match_and_pick_from_conveyor,1,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Astra,organize_table,1,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Astra,organize_table,2,1.0,True,transition,4,4,4,False,成功,1.0,1.0
+Astra,pack_objects_into_box,1,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,pack_objects_into_box,2,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,pack_objects_into_box,3,0.5,False,transition,3,4,4,True,阶段 3：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 3 件放进箱底且朝向正确，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Astra,pack_objects_into_box,4,0.5,False,transition,3,4,4,True,阶段 3：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 3 件放进箱底且朝向正确，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Astra,pack_objects_into_box,5,0.5,False,transition,3,4,4,True,阶段 3：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 3 件放进箱底且朝向正确，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Astra,pack_objects_into_box,6,0.5,False,transition,3,4,4,True,阶段 3：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 3 件放进箱底且朝向正确，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Astra,pack_objects_into_box,7,0.5,False,transition,3,4,4,True,阶段 3：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 3 件放进箱底且朝向正确，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Astra,pack_objects_into_box,8,0.1,False,transition,1,1,4,False,阶段 1：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 1 件放进箱底且朝向正确，夹爪张开（共4 件）,0.25,0.25
+Astra,pack_objects_into_box,9,1.0,True,transition,4,4,4,False,成功,1.0,1.0
+Astra,play_Xylophone,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,play_Xylophone,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,play_Xylophone,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,play_Xylophone,4,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Astra,plug_in_charger,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,plug_in_charger,2,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Astra,pour_by_language,1,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Astra,pour_by_language,2,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Astra,pour_by_language,3,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Astra,pour_by_language,4,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Astra,pour_by_language,5,1.0,True,by_count_trigger,3,3,3,False,成功,1.0,1.0
+Astra,pour_liquid_into_cup,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,pour_liquid_into_cup,2,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Astra,push_T,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,push_T,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,push_T,3,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Astra,put_bottles_into_dustbin,1,1.0,True,transition,4,4,4,False,成功,1.0,1.0
+Astra,stack_blocks_by_language,1,1.0,True,transition,2,2,2,False,成功,1.0,1.0
+Astra,store_tools_in_toolbox,1,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,store_tools_in_toolbox,2,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,store_tools_in_toolbox,3,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,store_tools_in_toolbox,4,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,store_tools_in_toolbox,5,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,store_tools_in_toolbox,6,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,store_tools_in_toolbox,7,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,store_tools_in_toolbox,8,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,store_tools_in_toolbox,9,0.25,False,transition,1,1,4,False,阶段 1：钳子/锤子/卷尺/扳手中任意 1 件放进对应卡槽并被工具箱覆盖，夹爪张开（共4 件）,0.25,0.25
+Astra,store_tools_in_toolbox,10,0.25,False,transition,1,1,4,False,阶段 1：钳子/锤子/卷尺/扳手中任意 1 件放进对应卡槽并被工具箱覆盖，夹爪张开（共4 件）,0.25,0.25
+Astra,store_tools_in_toolbox,11,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,store_tools_in_toolbox,12,0.25,False,transition,1,1,4,False,阶段 1：钳子/锤子/卷尺/扳手中任意 1 件放进对应卡槽并被工具箱覆盖，夹爪张开（共4 件）,0.25,0.25
+Astra,store_tools_in_toolbox,13,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,store_tools_in_toolbox,14,0.25,False,transition,1,1,4,False,阶段 1：钳子/锤子/卷尺/扳手中任意 1 件放进对应卡槽并被工具箱覆盖，夹爪张开（共4 件）,0.25,0.25
+Astra,store_tools_in_toolbox,15,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,store_tools_in_toolbox,16,0.5,False,transition,2,2,4,False,阶段 2：钳子/锤子/卷尺/扳手中任意 2 件放进对应卡槽并被工具箱覆盖，夹爪张开（共4 件）,0.5,0.5
+Astra,store_tools_in_toolbox,17,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Astra,swap_blocks,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,4,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,5,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,6,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,7,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,8,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,9,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,10,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,11,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,12,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,13,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,14,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,15,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,16,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Astra,swap_blocks,17,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,classify_objects_by_language,1,1.0,True,transition,3,3,3,False,成功,1.0,1.0
+Sol 6.1,push_T,1,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Sol 6.1,deposit_coin,12,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sol 6.1,deposit_coin,2,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,deposit_coin,7,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sol 6.1,deposit_coin,4,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,deposit_coin,11,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sol 6.1,deposit_coin,13,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,deposit_coin,1,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,deposit_coin,3,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,deposit_coin,6,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,deposit_coin,17,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,deposit_coin,15,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sol 6.1,deposit_coin,5,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,deposit_coin,9,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sol 6.1,deposit_coin,14,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,deposit_coin,16,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,deposit_coin,8,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sol 6.1,deposit_coin,10,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sol 6.1,play_Xylophone,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,play_Xylophone,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,play_Xylophone,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,play_Xylophone,4,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Sol 6.1,pack_objects_into_box,5,0.5,False,transition,3,4,4,True,阶段 3：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 3 件放进箱底且朝向正确，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Sol 6.1,pack_objects_into_box,1,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,pack_objects_into_box,2,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,pack_objects_into_box,6,1.0,True,transition,4,4,4,False,成功,1.0,1.0
+Sol 6.1,pack_objects_into_box,3,0.25,False,transition,2,2,4,False,阶段 2：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 2 件放进箱底且朝向正确，夹爪张开（共4 件）,0.5,0.5
+Sol 6.1,pack_objects_into_box,4,0.25,False,transition,2,2,4,False,阶段 2：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 2 件放进箱底且朝向正确，夹爪张开（共4 件）,0.5,0.5
+Sol 6.1,insert_key,17,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,insert_key,13,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,insert_key,1,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,insert_key,15,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,insert_key,2,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,insert_key,11,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,insert_key,8,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,insert_key,9,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,insert_key,12,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,insert_key,7,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,insert_key,3,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,insert_key,10,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,insert_key,5,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,insert_key,6,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,insert_key,4,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,insert_key,16,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,insert_key,14,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,fill_pen_holder,3,0.25,False,transition,2,2,4,False,阶段 2：笔筒直立，任意 2 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.5,0.5
+Sol 6.1,fill_pen_holder,7,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Sol 6.1,fill_pen_holder,6,0.25,False,transition,2,2,4,False,阶段 2：笔筒直立，任意 2 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.5,0.5
+Sol 6.1,fill_pen_holder,2,0.1,False,transition,1,1,4,False,阶段 1：笔筒直立，任意 1 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.25,0.25
+Sol 6.1,fill_pen_holder,4,0.25,False,transition,2,2,4,False,阶段 2：笔筒直立，任意 2 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.5,0.5
+Sol 6.1,fill_pen_holder,8,1.0,True,transition,4,4,4,False,成功,1.0,1.0
+Sol 6.1,fill_pen_holder,5,0.1,False,transition,1,1,4,False,阶段 1：笔筒直立，任意 1 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.25,0.25
+Sol 6.1,fill_pen_holder,1,0.25,False,transition,2,2,4,False,阶段 2：笔筒直立，任意 2 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.5,0.5
+Sol 6.1,pour_by_language,4,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,pour_by_language,3,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,pour_by_language,7,1.0,True,by_count_trigger,3,3,3,False,成功,1.0,1.0
+Sol 6.1,pour_by_language,1,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,pour_by_language,6,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,pour_by_language,2,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,pour_by_language,5,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,store_tools_in_toolbox,15,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,store_tools_in_toolbox,8,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,store_tools_in_toolbox,17,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,store_tools_in_toolbox,7,0.25,False,transition,1,1,4,False,阶段 1：钳子/锤子/卷尺/扳手中任意 1 件放进对应卡槽并被工具箱覆盖，夹爪张开（共4 件）,0.25,0.25
+Sol 6.1,store_tools_in_toolbox,11,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,store_tools_in_toolbox,13,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,store_tools_in_toolbox,4,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,store_tools_in_toolbox,16,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,store_tools_in_toolbox,12,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,store_tools_in_toolbox,14,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,store_tools_in_toolbox,1,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,store_tools_in_toolbox,3,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,store_tools_in_toolbox,10,0.25,False,transition,1,1,4,False,阶段 1：钳子/锤子/卷尺/扳手中任意 1 件放进对应卡槽并被工具箱覆盖，夹爪张开（共4 件）,0.25,0.25
+Sol 6.1,store_tools_in_toolbox,6,0.25,False,transition,1,1,4,False,阶段 1：钳子/锤子/卷尺/扳手中任意 1 件放进对应卡槽并被工具箱覆盖，夹爪张开（共4 件）,0.25,0.25
+Sol 6.1,store_tools_in_toolbox,5,0.25,False,transition,1,1,4,False,阶段 1：钳子/锤子/卷尺/扳手中任意 1 件放进对应卡槽并被工具箱覆盖，夹爪张开（共4 件）,0.25,0.25
+Sol 6.1,store_tools_in_toolbox,9,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,store_tools_in_toolbox,2,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,swap_blocks,6,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,17,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,10,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,14,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,7,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,8,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,9,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,11,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,5,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,13,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,16,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,4,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,12,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,swap_blocks,15,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,stack_blocks_by_language,1,1.0,True,transition,2,2,2,False,成功,1.0,1.0
+Sol 6.1,match_and_pick_from_conveyor,1,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Sol 6.1,put_bottles_into_dustbin,2,1.0,True,transition,4,4,4,False,成功,1.0,1.0
+Sol 6.1,put_bottles_into_dustbin,1,0.4,False,transition,3,4,4,True,阶段 3：任意 3 个瓶子落到垃圾桶底，夹爪张开（共4 个瓶子）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Sol 6.1,arrange_largest_number,1,0.3,False,transition,3,4,4,True,阶段 3：任意 3 个数字放到“最大数”排列中各自的垫子上（距离 ≤2 cm、朝向正确），夹爪张开（共布局中 4 或 5 个数字）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Sol 6.1,arrange_largest_number,2,1.0,True,transition,5,5,5,False,成功,1.0,1.0
+Sol 6.1,cover_blocks,2,0.15,False,transition,4,4,6,False,阶段 4：掀开：红块露出，绿、蓝仍被盖,0.6666666666666666,0.6666666666666666
+Sol 6.1,cover_blocks,1,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Sol 6.1,cover_blocks,3,1.0,True,transition,6,6,6,False,成功,1.0,1.0
+Sol 6.1,organize_table,5,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sol 6.1,organize_table,2,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sol 6.1,organize_table,3,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sol 6.1,organize_table,15,0.25,False,transition,1,1,4,False,阶段 1：鼠标/键盘/车库模型/闹钟中任意 1 件摆到位且静止，夹爪张开（共4 件）,0.25,0.25
+Sol 6.1,organize_table,17,0.25,False,transition,1,1,4,False,阶段 1：鼠标/键盘/车库模型/闹钟中任意 1 件摆到位且静止，夹爪张开（共4 件）,0.25,0.25
+Sol 6.1,organize_table,8,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sol 6.1,organize_table,4,0.25,False,transition,1,1,4,False,阶段 1：鼠标/键盘/车库模型/闹钟中任意 1 件摆到位且静止，夹爪张开（共4 件）,0.25,0.25
+Sol 6.1,organize_table,16,0.25,False,transition,1,1,4,False,阶段 1：鼠标/键盘/车库模型/闹钟中任意 1 件摆到位且静止，夹爪张开（共4 件）,0.25,0.25
+Sol 6.1,organize_table,10,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sol 6.1,organize_table,11,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sol 6.1,organize_table,7,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sol 6.1,organize_table,9,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sol 6.1,organize_table,1,0.25,False,transition,1,1,4,False,阶段 1：鼠标/键盘/车库模型/闹钟中任意 1 件摆到位且静止，夹爪张开（共4 件）,0.25,0.25
+Sol 6.1,organize_table,13,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sol 6.1,organize_table,14,0.25,False,transition,1,1,4,False,阶段 1：鼠标/键盘/车库模型/闹钟中任意 1 件摆到位且静止，夹爪张开（共4 件）,0.25,0.25
+Sol 6.1,organize_table,12,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sol 6.1,organize_table,6,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sol 6.1,plug_in_charger,15,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,11,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,6,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,5,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,4,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,8,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,14,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,17,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,9,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,16,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,13,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,12,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,7,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,plug_in_charger,10,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,pour_liquid_into_cup,5,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Sol 6.1,pour_liquid_into_cup,4,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,pour_liquid_into_cup,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,pour_liquid_into_cup,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,pour_liquid_into_cup,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,organize_table,1,0.25,False,transition,1,1,4,False,阶段 1：鼠标/键盘/车库模型/闹钟中任意 1 件摆到位且静止，夹爪张开（共4 件）,0.25,0.25
+Opus 5.5,organize_table,2,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Opus 5.5,organize_table,7,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Opus 5.5,organize_table,10,0.75,False,transition,3,4,4,True,阶段 3：鼠标/键盘/车库模型/闹钟中任意 3 件摆到位且静止，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Opus 5.5,organize_table,11,0.75,False,transition,3,4,4,True,阶段 3：鼠标/键盘/车库模型/闹钟中任意 3 件摆到位且静止，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Opus 5.5,organize_table,5,0.75,False,transition,3,4,4,True,阶段 3：鼠标/键盘/车库模型/闹钟中任意 3 件摆到位且静止，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Opus 5.5,organize_table,3,0.25,False,transition,1,1,4,False,阶段 1：鼠标/键盘/车库模型/闹钟中任意 1 件摆到位且静止，夹爪张开（共4 件）,0.25,0.25
+Opus 5.5,organize_table,14,1.0,True,transition,4,4,4,False,成功,1.0,1.0
+Opus 5.5,organize_table,6,0.75,False,transition,3,4,4,True,阶段 3：鼠标/键盘/车库模型/闹钟中任意 3 件摆到位且静止，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Opus 5.5,organize_table,4,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Opus 5.5,organize_table,8,0.75,False,transition,3,4,4,True,阶段 3：鼠标/键盘/车库模型/闹钟中任意 3 件摆到位且静止，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Opus 5.5,organize_table,12,0.75,False,transition,3,4,4,True,阶段 3：鼠标/键盘/车库模型/闹钟中任意 3 件摆到位且静止，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Opus 5.5,organize_table,13,0.75,False,transition,3,4,4,True,阶段 3：鼠标/键盘/车库模型/闹钟中任意 3 件摆到位且静止，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Opus 5.5,organize_table,9,0.75,False,transition,3,4,4,True,阶段 3：鼠标/键盘/车库模型/闹钟中任意 3 件摆到位且静止，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Opus 5.5,classify_objects_by_language,4,1.0,True,transition,3,3,3,False,成功,1.0,1.0
+Opus 5.5,classify_objects_by_language,2,0.0,False,transition,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,classify_objects_by_language,1,0.4,False,transition,2,3,3,True,阶段 2：任意 2 类物体全部放进对应篮子（无错放、低于篮沿），夹爪张开（共3 类）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.6666666666666666,1.0
+Opus 5.5,classify_objects_by_language,3,0.4,False,transition,2,3,3,True,阶段 2：任意 2 类物体全部放进对应篮子（无错放、低于篮沿），夹爪张开（共3 类）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.6666666666666666,1.0
+Opus 5.5,arrange_largest_number,2,0.3,False,transition,3,4,4,True,阶段 3：任意 3 个数字放到“最大数”排列中各自的垫子上（距离 ≤2 cm、朝向正确），夹爪张开（共布局中 4 或 5 个数字）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Opus 5.5,arrange_largest_number,1,0.05,False,transition,1,1,5,False,阶段 1：任意 1 个数字放到“最大数”排列中各自的垫子上（距离 ≤2 cm、朝向正确），夹爪张开（共布局中 4 或 5 个数字）,0.2,0.25
+Opus 5.5,arrange_largest_number,3,1.0,True,transition,5,5,5,False,成功,1.0,1.0
+Opus 5.5,pack_objects_into_box,10,0.1,False,transition,1,1,4,False,阶段 1：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 1 件放进箱底且朝向正确，夹爪张开（共4 件）,0.25,0.25
+Opus 5.5,pack_objects_into_box,14,0.5,False,transition,3,4,4,True,阶段 3：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 3 件放进箱底且朝向正确，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Opus 5.5,pack_objects_into_box,3,0.25,False,transition,2,2,4,False,阶段 2：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 2 件放进箱底且朝向正确，夹爪张开（共4 件）,0.5,0.5
+Opus 5.5,pack_objects_into_box,2,0.1,False,transition,1,1,4,False,阶段 1：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 1 件放进箱底且朝向正确，夹爪张开（共4 件）,0.25,0.25
+Opus 5.5,pack_objects_into_box,9,0.25,False,transition,2,2,4,False,阶段 2：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 2 件放进箱底且朝向正确，夹爪张开（共4 件）,0.5,0.5
+Opus 5.5,pack_objects_into_box,6,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,pack_objects_into_box,7,0.1,False,transition,1,1,4,False,阶段 1：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 1 件放进箱底且朝向正确，夹爪张开（共4 件）,0.25,0.25
+Opus 5.5,pack_objects_into_box,12,0.25,False,transition,2,2,4,False,阶段 2：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 2 件放进箱底且朝向正确，夹爪张开（共4 件）,0.5,0.5
+Opus 5.5,pack_objects_into_box,11,0.25,False,transition,2,2,4,False,阶段 2：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 2 件放进箱底且朝向正确，夹爪张开（共4 件）,0.5,0.5
+Opus 5.5,pack_objects_into_box,1,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,pack_objects_into_box,13,0.5,False,transition,3,4,4,True,阶段 3：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 3 件放进箱底且朝向正确，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Opus 5.5,pack_objects_into_box,15,1.0,True,transition,4,4,4,False,成功,1.0,1.0
+Opus 5.5,pack_objects_into_box,5,0.1,False,transition,1,1,4,False,阶段 1：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 1 件放进箱底且朝向正确，夹爪张开（共4 件）,0.25,0.25
+Opus 5.5,pack_objects_into_box,8,0.1,False,transition,1,1,4,False,阶段 1：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 1 件放进箱底且朝向正确，夹爪张开（共4 件）,0.25,0.25
+Opus 5.5,pack_objects_into_box,4,0.1,False,transition,1,1,4,False,阶段 1：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 1 件放进箱底且朝向正确，夹爪张开（共4 件）,0.25,0.25
+Opus 5.5,put_bottles_into_dustbin,1,1.0,True,transition,4,4,4,False,成功,1.0,1.0
+Opus 5.5,insert_key,16,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,10,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,11,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,4,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,3,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,12,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,5,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,6,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,2,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,1,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,insert_key,9,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,8,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,14,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,13,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,7,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,17,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,insert_key,15,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Opus 5.5,cover_blocks,5,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Opus 5.5,cover_blocks,3,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Opus 5.5,cover_blocks,4,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Opus 5.5,cover_blocks,6,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Opus 5.5,cover_blocks,1,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Opus 5.5,cover_blocks,10,1.0,True,transition,6,6,6,False,成功,1.0,1.0
+Opus 5.5,cover_blocks,9,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Opus 5.5,cover_blocks,8,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Opus 5.5,cover_blocks,7,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Opus 5.5,cover_blocks,2,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Opus 5.5,match_and_pick_from_conveyor,1,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Opus 5.5,stack_blocks_by_language,2,1.0,True,transition,2,2,2,False,成功,1.0,1.0
+Opus 5.5,stack_blocks_by_language,1,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,push_T,6,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,push_T,5,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,push_T,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,push_T,8,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Opus 5.5,push_T,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,push_T,7,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,push_T,4,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,push_T,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,4,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,12,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,6,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,7,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,16,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,5,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,10,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,13,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,14,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,9,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,8,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,17,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,15,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,11,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,pour_by_language,3,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,pour_by_language,1,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,pour_by_language,4,1.0,True,by_count_trigger,3,3,3,False,成功,1.0,1.0
+Opus 5.5,pour_by_language,2,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,play_Xylophone,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,17,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,7,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,12,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,16,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,4,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,14,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,15,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,5,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,10,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,11,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,13,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,9,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,6,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,play_Xylophone,8,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,deposit_coin,9,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Opus 5.5,deposit_coin,10,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Opus 5.5,deposit_coin,13,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Opus 5.5,deposit_coin,5,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,deposit_coin,12,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Opus 5.5,deposit_coin,14,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Opus 5.5,deposit_coin,6,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,deposit_coin,11,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Opus 5.5,deposit_coin,2,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,deposit_coin,3,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,deposit_coin,8,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Opus 5.5,deposit_coin,1,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,deposit_coin,7,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,deposit_coin,15,1.0,True,transition,2,2,2,False,成功,1.0,1.0
+Opus 5.5,deposit_coin,4,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Opus 5.5,pour_liquid_into_cup,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,pour_liquid_into_cup,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,pour_liquid_into_cup,3,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Opus 5.5,plug_in_charger,5,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,plug_in_charger,10,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Opus 5.5,plug_in_charger,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,plug_in_charger,7,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,plug_in_charger,8,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,plug_in_charger,4,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,plug_in_charger,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,plug_in_charger,6,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,plug_in_charger,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,plug_in_charger,9,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,fill_pen_holder,5,0.1,False,transition,1,1,4,False,阶段 1：笔筒直立，任意 1 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.25,0.25
+Opus 5.5,fill_pen_holder,2,0.1,False,transition,1,1,4,False,阶段 1：笔筒直立，任意 1 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.25,0.25
+Opus 5.5,fill_pen_holder,1,0.1,False,transition,1,1,4,False,阶段 1：笔筒直立，任意 1 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.25,0.25
+Opus 5.5,fill_pen_holder,6,0.25,False,transition,2,2,4,False,阶段 2：笔筒直立，任意 2 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.5,0.5
+Opus 5.5,fill_pen_holder,3,0.1,False,transition,1,1,4,False,阶段 1：笔筒直立，任意 1 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.25,0.25
+Opus 5.5,fill_pen_holder,17,0.25,False,transition,2,2,4,False,阶段 2：笔筒直立，任意 2 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.5,0.5
+Opus 5.5,fill_pen_holder,12,0.25,False,transition,2,2,4,False,阶段 2：笔筒直立，任意 2 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.5,0.5
+Opus 5.5,fill_pen_holder,13,0.25,False,transition,2,2,4,False,阶段 2：笔筒直立，任意 2 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.5,0.5
+Opus 5.5,fill_pen_holder,7,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Opus 5.5,fill_pen_holder,14,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Opus 5.5,fill_pen_holder,10,0.25,False,transition,2,2,4,False,阶段 2：笔筒直立，任意 2 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.5,0.5
+Opus 5.5,fill_pen_holder,15,0.25,False,transition,2,2,4,False,阶段 2：笔筒直立，任意 2 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.5,0.5
+Opus 5.5,fill_pen_holder,16,0.25,False,transition,2,2,4,False,阶段 2：笔筒直立，任意 2 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.5,0.5
+Opus 5.5,fill_pen_holder,4,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,fill_pen_holder,8,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Opus 5.5,fill_pen_holder,11,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Opus 5.5,fill_pen_holder,9,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Opus 5.5,store_tools_in_toolbox,9,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,3,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,13,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,12,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,1,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,5,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,11,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,8,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,15,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,7,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,14,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,4,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,17,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,10,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,16,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,2,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,6,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,organize_table,0,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,classify_objects_by_language,0,0.0,False,transition,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,arrange_largest_number,0,0.0,False,transition,0,0,5,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,pack_objects_into_box,0,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,put_bottles_into_dustbin,0,0.25,False,transition,2,2,4,False,阶段 2：任意 2 个瓶子落到垃圾桶底，夹爪张开（共4 个瓶子）,0.5,0.5
+Opus 5.5,insert_key,0,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,cover_blocks,0,0.3,False,transition,5,6,6,True,阶段 5：掀开：红、绿露出，蓝仍被盖（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.8333333333333334,1.0
+Opus 5.5,match_and_pick_from_conveyor,0,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Opus 5.5,stack_blocks_by_language,0,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,push_T,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,swap_blocks,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,pour_by_language,0,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,play_Xylophone,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,deposit_coin,0,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,pour_liquid_into_cup,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,plug_in_charger,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Opus 5.5,fill_pen_holder,0,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Opus 5.5,store_tools_in_toolbox,0,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,classify_objects_by_language,0,1.0,True,transition,3,3,3,False,成功,1.0,1.0
+Sol 6.1,push_T,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,deposit_coin,0,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,play_Xylophone,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,pack_objects_into_box,0,0.5,False,transition,3,4,4,True,阶段 3：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 3 件放进箱底且朝向正确，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Sol 6.1,insert_key,0,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sol 6.1,fill_pen_holder,0,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,pour_by_language,0,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,store_tools_in_toolbox,0,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sol 6.1,swap_blocks,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,stack_blocks_by_language,0,0.2,False,transition,1,2,2,True,阶段 1：底部两块按指定颜色顺序叠好（底块未被抬起），夹爪张开（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sol 6.1,match_and_pick_from_conveyor,0,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Sol 6.1,put_bottles_into_dustbin,0,0.1,False,transition,1,1,4,False,阶段 1：任意 1 个瓶子落到垃圾桶底，夹爪张开（共4 个瓶子）,0.25,0.25
+Sol 6.1,arrange_largest_number,0,0.3,False,transition,3,4,4,True,阶段 3：任意 3 个数字放到“最大数”排列中各自的垫子上（距离 ≤2 cm、朝向正确），夹爪张开（共布局中 4 或 5 个数字）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Sol 6.1,cover_blocks,0,1.0,True,transition,6,6,6,False,成功,1.0,1.0
+Sol 6.1,organize_table,0,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sol 6.1,plug_in_charger,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sol 6.1,pour_liquid_into_cup,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,organize_table,11,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sonnet 5.5,organize_table,15,0.75,False,transition,3,4,4,True,阶段 3：鼠标/键盘/车库模型/闹钟中任意 3 件摆到位且静止，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Sonnet 5.5,organize_table,4,0.75,False,transition,3,4,4,True,阶段 3：鼠标/键盘/车库模型/闹钟中任意 3 件摆到位且静止，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Sonnet 5.5,organize_table,16,0.75,False,transition,3,4,4,True,阶段 3：鼠标/键盘/车库模型/闹钟中任意 3 件摆到位且静止，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Sonnet 5.5,organize_table,9,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sonnet 5.5,organize_table,17,0.75,False,transition,3,4,4,True,阶段 3：鼠标/键盘/车库模型/闹钟中任意 3 件摆到位且静止，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Sonnet 5.5,organize_table,6,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sonnet 5.5,organize_table,14,0.75,False,transition,3,4,4,True,阶段 3：鼠标/键盘/车库模型/闹钟中任意 3 件摆到位且静止，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Sonnet 5.5,organize_table,8,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sonnet 5.5,organize_table,5,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sonnet 5.5,organize_table,12,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sonnet 5.5,organize_table,3,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sonnet 5.5,organize_table,2,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sonnet 5.5,organize_table,1,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sonnet 5.5,organize_table,10,0.25,False,transition,1,1,4,False,阶段 1：鼠标/键盘/车库模型/闹钟中任意 1 件摆到位且静止，夹爪张开（共4 件）,0.25,0.25
+Sonnet 5.5,organize_table,7,0.5,False,transition,2,2,4,False,阶段 2：鼠标/键盘/车库模型/闹钟中任意 2 件摆到位且静止，夹爪张开（共4 件）,0.5,0.5
+Sonnet 5.5,organize_table,13,0.75,False,transition,3,4,4,True,阶段 3：鼠标/键盘/车库模型/闹钟中任意 3 件摆到位且静止，夹爪张开（共4 件）（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.75,1.0
+Sonnet 5.5,classify_objects_by_language,2,1.0,True,transition,3,3,3,False,成功,1.0,1.0
+Sonnet 5.5,classify_objects_by_language,1,0.0,False,transition,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,arrange_largest_number,2,1.0,True,transition,5,5,5,False,成功,1.0,1.0
+Sonnet 5.5,arrange_largest_number,1,0.05,False,transition,1,1,5,False,阶段 1：任意 1 个数字放到“最大数”排列中各自的垫子上（距离 ≤2 cm、朝向正确），夹爪张开（共布局中 4 或 5 个数字）,0.2,0.25
+Sonnet 5.5,pack_objects_into_box,13,0.1,False,transition,1,1,4,False,阶段 1：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 1 件放进箱底且朝向正确，夹爪张开（共4 件）,0.25,0.25
+Sonnet 5.5,pack_objects_into_box,8,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pack_objects_into_box,4,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pack_objects_into_box,12,0.1,False,transition,1,1,4,False,阶段 1：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 1 件放进箱底且朝向正确，夹爪张开（共4 件）,0.25,0.25
+Sonnet 5.5,pack_objects_into_box,6,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pack_objects_into_box,15,0.1,False,transition,1,1,4,False,阶段 1：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 1 件放进箱底且朝向正确，夹爪张开（共4 件）,0.25,0.25
+Sonnet 5.5,pack_objects_into_box,5,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pack_objects_into_box,11,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pack_objects_into_box,1,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pack_objects_into_box,14,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pack_objects_into_box,2,0.25,False,transition,2,2,4,False,阶段 2：箱子方向对齐，小车/电动牙刷/锤子/鞋中任意 2 件放进箱底且朝向正确，夹爪张开（共4 件）,0.5,0.5
+Sonnet 5.5,pack_objects_into_box,9,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pack_objects_into_box,10,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pack_objects_into_box,7,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pack_objects_into_box,3,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,put_bottles_into_dustbin,1,1.0,True,transition,4,4,4,False,成功,1.0,1.0
+Sonnet 5.5,insert_key,10,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,8,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,16,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,3,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,6,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,2,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,17,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,9,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,15,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,12,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,4,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,14,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,13,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,5,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,insert_key,1,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,11,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,insert_key,7,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,cover_blocks,4,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Sonnet 5.5,cover_blocks,2,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Sonnet 5.5,cover_blocks,9,1.0,True,transition,6,6,6,False,成功,1.0,1.0
+Sonnet 5.5,cover_blocks,7,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Sonnet 5.5,cover_blocks,3,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Sonnet 5.5,cover_blocks,1,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Sonnet 5.5,cover_blocks,8,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Sonnet 5.5,cover_blocks,5,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Sonnet 5.5,cover_blocks,6,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Sonnet 5.5,match_and_pick_from_conveyor,1,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Sonnet 5.5,stack_blocks_by_language,2,1.0,True,transition,2,2,2,False,成功,1.0,1.0
+Sonnet 5.5,stack_blocks_by_language,1,0.2,False,transition,1,2,2,True,阶段 1：底部两块按指定颜色顺序叠好（底块未被抬起），夹爪张开（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,push_T,4,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,push_T,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,push_T,5,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,push_T,6,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,push_T,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,push_T,7,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,push_T,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,push_T,8,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Sonnet 5.5,swap_blocks,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,17,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,10,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,7,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,8,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,11,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,6,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,13,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,16,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,14,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,9,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,12,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,15,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,5,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,4,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,pour_by_language,8,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pour_by_language,1,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pour_by_language,12,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pour_by_language,4,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pour_by_language,10,0.2,False,by_count_trigger,1,1,3,False,阶段 1：只有 0 号碗被倒入 ≥95% 的液体（1、2 号未倒）,0.3333333333333333,0.3333333333333333
+Sonnet 5.5,pour_by_language,9,0.2,False,by_count_trigger,1,1,3,False,阶段 1：只有 0 号碗被倒入 ≥95% 的液体（1、2 号未倒）,0.3333333333333333,0.3333333333333333
+Sonnet 5.5,pour_by_language,5,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pour_by_language,2,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pour_by_language,3,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pour_by_language,11,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pour_by_language,7,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pour_by_language,13,1.0,True,by_count_trigger,3,3,3,False,成功,1.0,1.0
+Sonnet 5.5,pour_by_language,6,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,play_Xylophone,7,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Sonnet 5.5,play_Xylophone,4,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,play_Xylophone,5,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,play_Xylophone,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,play_Xylophone,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,play_Xylophone,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,play_Xylophone,6,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,deposit_coin,12,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,3,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,deposit_coin,8,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,14,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,7,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,15,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,5,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,13,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,2,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,9,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,6,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,10,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,4,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,17,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,11,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,16,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,deposit_coin,1,0.0,False,transition,0,0,2,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,pour_liquid_into_cup,4,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Sonnet 5.5,pour_liquid_into_cup,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,pour_liquid_into_cup,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,pour_liquid_into_cup,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,plug_in_charger,5,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,plug_in_charger,4,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,plug_in_charger,7,1.0,True,binary,1,1,1,False,成功,1.0,1.0
+Sonnet 5.5,plug_in_charger,2,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,plug_in_charger,3,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,plug_in_charger,6,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,plug_in_charger,1,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,fill_pen_holder,9,0.25,False,transition,2,2,4,False,阶段 2：笔筒直立，任意 2 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.5,0.5
+Sonnet 5.5,fill_pen_holder,8,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Sonnet 5.5,fill_pen_holder,12,0.25,False,transition,2,2,4,False,阶段 2：笔筒直立，任意 2 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.5,0.5
+Sonnet 5.5,fill_pen_holder,15,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Sonnet 5.5,fill_pen_holder,2,0.25,False,transition,2,2,4,False,阶段 2：笔筒直立，任意 2 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.5,0.5
+Sonnet 5.5,fill_pen_holder,13,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Sonnet 5.5,fill_pen_holder,4,0.1,False,transition,1,1,4,False,阶段 1：笔筒直立，任意 1 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.25,0.25
+Sonnet 5.5,fill_pen_holder,3,0.1,False,transition,1,1,4,False,阶段 1：笔筒直立，任意 1 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.25,0.25
+Sonnet 5.5,fill_pen_holder,6,0.1,False,transition,1,1,4,False,阶段 1：笔筒直立，任意 1 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.25,0.25
+Sonnet 5.5,fill_pen_holder,5,0.1,False,transition,1,1,4,False,阶段 1：笔筒直立，任意 1 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.25,0.25
+Sonnet 5.5,fill_pen_holder,1,0.1,False,transition,1,1,4,False,阶段 1：笔筒直立，任意 1 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.25,0.25
+Sonnet 5.5,fill_pen_holder,10,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Sonnet 5.5,fill_pen_holder,14,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Sonnet 5.5,fill_pen_holder,7,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Sonnet 5.5,fill_pen_holder,11,0.4,False,transition,3,3,4,False,阶段 3：笔筒直立，任意 3 支笔竖直插入笔筒，夹爪张开（共4 支笔）,0.75,0.75
+Sonnet 5.5,store_tools_in_toolbox,8,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,store_tools_in_toolbox,9,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,store_tools_in_toolbox,2,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,store_tools_in_toolbox,5,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,store_tools_in_toolbox,10,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,store_tools_in_toolbox,1,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,store_tools_in_toolbox,4,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,store_tools_in_toolbox,6,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,store_tools_in_toolbox,7,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,store_tools_in_toolbox,3,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,store_tools_in_toolbox,11,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,organize_table,0,0.25,False,transition,1,1,4,False,阶段 1：鼠标/键盘/车库模型/闹钟中任意 1 件摆到位且静止，夹爪张开（共4 件）,0.25,0.25
+Sonnet 5.5,classify_objects_by_language,0,0.1,False,transition,1,1,3,False,阶段 1：任意 1 类物体全部放进对应篮子（无错放、低于篮沿），夹爪张开（共3 类）,0.3333333333333333,0.3333333333333333
+Sonnet 5.5,arrange_largest_number,0,0.05,False,transition,1,1,5,False,阶段 1：任意 1 个数字放到“最大数”排列中各自的垫子上（距离 ≤2 cm、朝向正确），夹爪张开（共布局中 4 或 5 个数字）,0.2,0.25
+Sonnet 5.5,pack_objects_into_box,0,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,put_bottles_into_dustbin,0,0.25,False,transition,2,2,4,False,阶段 2：任意 2 个瓶子落到垃圾桶底，夹爪张开（共4 个瓶子）,0.5,0.5
+Sonnet 5.5,insert_key,0,0.15,False,transition,1,1,2,False,阶段 1：钥匙被抬起 ≥5 cm,0.5,0.5
+Sonnet 5.5,cover_blocks,0,0.0,False,transition,0,2,6,False,未到达第 1 阶段 或 阶段 1：倒扣杯子盖住左块（中、右未盖） 或 阶段 2：盖住左、中两块（右未盖）,0.0,0.3333333333333333
+Sonnet 5.5,match_and_pick_from_conveyor,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,stack_blocks_by_language,0,1.0,True,transition,2,2,2,False,成功,1.0,1.0
+Sonnet 5.5,push_T,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,swap_blocks,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,pour_by_language,0,0.0,False,by_count_trigger,0,0,3,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,play_Xylophone,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,deposit_coin,0,0.2,False,transition,1,2,2,True,阶段 1：硬币被抬起 ≥8 cm（也可能已完成最后阶段，但原生成功判定没过，如未复位）,0.5,1.0
+Sonnet 5.5,pour_liquid_into_cup,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,plug_in_charger,0,0.0,False,binary,0,0,1,False,未成功（二值任务，无过程分）,0.0,0.0
+Sonnet 5.5,fill_pen_holder,0,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0
+Sonnet 5.5,store_tools_in_toolbox,0,0.0,False,transition,0,0,4,False,未到达第 1 阶段,0.0,0.0

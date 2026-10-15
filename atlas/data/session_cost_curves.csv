@@ -1,0 +1,107 @@
+model,resource,budget,solved,coverage,exact_confirmed,exact_possible,missing_cost_solved
+Astra,recorded_span_hours,0,0,0.0,,,
+Astra,recorded_span_hours,0.5308139269219504,1,0.05555555555555555,,,
+Astra,recorded_span_hours,0.8234223292271297,2,0.1111111111111111,,,
+Astra,recorded_span_hours,0.8943129104375839,3,0.16666666666666666,,,
+Astra,recorded_span_hours,1.0248873914612664,4,0.2222222222222222,,,
+Astra,recorded_span_hours,1.1810199389192793,5,0.2777777777777778,,,
+Astra,recorded_span_hours,1.22610842247804,6,0.3333333333333333,,,
+Astra,recorded_span_hours,1.8248716386821535,7,0.3888888888888889,,,
+Astra,recorded_span_hours,2,7,0.3888888888888889,,,
+Astra,recorded_span_hours,2.0614455952246984,8,0.4444444444444444,,,
+Astra,recorded_span_hours,3.908819501399994,9,0.5,,,
+Astra,recorded_span_hours,4.085536342461904,10,0.5555555555555556,,,
+Astra,recorded_span_hours,5,10,0.5555555555555556,,,
+Astra,recorded_span_hours,6.385223833057616,11,0.6111111111111112,,,
+Astra,recorded_span_hours,8.04109357688162,12,0.6666666666666666,,,
+Astra,recorded_span_hours,10,12,0.6666666666666666,,,
+Astra,recorded_span_hours,13.956069615019691,13,0.7222222222222222,,,
+Astra,recorded_span_hours,15.214087474743526,14,0.7777777777777778,,,
+Astra,recorded_span_hours,20,14,0.7777777777777778,,,
+Astra,recorded_span_hours,40,14,0.7777777777777778,,,
+Astra,recorded_span_hours,44.617453546982986,15,0.8333333333333334,,,
+Astra,recorded_span_hours,80,15,0.8333333333333334,,,
+Astra,reported_output_tokens,100000,11,0.6111111111111112,11,11,0
+Astra,reported_output_tokens,250000,14,0.7777777777777778,14,14,0
+Astra,reported_output_tokens,500000,14,0.7777777777777778,14,15,0
+Astra,reported_output_tokens,1000000,15,0.8333333333333334,14,15,0
+Astra,reported_output_tokens,2000000,15,0.8333333333333334,14,15,0
+Astra,reported_output_tokens,4000000,15,0.8333333333333334,14,15,0
+Sol 6.1,recorded_span_hours,0,0,0.0,,,
+Sol 6.1,recorded_span_hours,0.33166666666666667,1,0.05555555555555555,,,
+Sol 6.1,recorded_span_hours,0.5286111111111111,2,0.1111111111111111,,,
+Sol 6.1,recorded_span_hours,0.925,3,0.16666666666666666,,,
+Sol 6.1,recorded_span_hours,0.9888888888888889,4,0.2222222222222222,,,
+Sol 6.1,recorded_span_hours,1.8330555555555557,5,0.2777777777777778,,,
+Sol 6.1,recorded_span_hours,2,5,0.2777777777777778,,,
+Sol 6.1,recorded_span_hours,2.206111111111111,6,0.3333333333333333,,,
+Sol 6.1,recorded_span_hours,2.397222222222222,7,0.3888888888888889,,,
+Sol 6.1,recorded_span_hours,2.685277777777778,8,0.4444444444444444,,,
+Sol 6.1,recorded_span_hours,3.0941666666666667,9,0.5,,,
+Sol 6.1,recorded_span_hours,5,9,0.5,,,
+Sol 6.1,recorded_span_hours,5.250555555555556,10,0.5555555555555556,,,
+Sol 6.1,recorded_span_hours,10,10,0.5555555555555556,,,
+Sol 6.1,recorded_span_hours,11.359444444444444,11,0.6111111111111112,,,
+Sol 6.1,recorded_span_hours,12.195277777777777,12,0.6666666666666666,,,
+Sol 6.1,recorded_span_hours,20,12,0.6666666666666666,,,
+Sol 6.1,recorded_span_hours,23.294444444444444,12,0.6666666666666666,,,
+Sol 6.1,recorded_span_hours,40,12,0.6666666666666666,,,
+Sol 6.1,recorded_span_hours,80,12,0.6666666666666666,,,
+Sol 6.1,reported_output_tokens,100000,7,0.3888888888888889,7,7,3
+Sol 6.1,reported_output_tokens,250000,9,0.5,9,10,3
+Sol 6.1,reported_output_tokens,500000,9,0.5,9,12,3
+Sol 6.1,reported_output_tokens,1000000,9,0.5,9,12,3
+Sol 6.1,reported_output_tokens,2000000,9,0.5,9,12,3
+Sol 6.1,reported_output_tokens,4000000,9,0.5,9,12,3
+Opus 5.5,recorded_span_hours,0,0,0.0,,,
+Opus 5.5,recorded_span_hours,0.36363888888888884,1,0.05555555555555555,,,
+Opus 5.5,recorded_span_hours,1.3135277777777776,2,0.1111111111111111,,,
+Opus 5.5,recorded_span_hours,1.8274444444444444,3,0.16666666666666666,,,
+Opus 5.5,recorded_span_hours,2,3,0.16666666666666666,,,
+Opus 5.5,recorded_span_hours,2.227472222222222,4,0.2222222222222222,,,
+Opus 5.5,recorded_span_hours,3.8565555555555555,5,0.2777777777777778,,,
+Opus 5.5,recorded_span_hours,3.933861111111111,6,0.3333333333333333,,,
+Opus 5.5,recorded_span_hours,3.9859166666666668,7,0.3888888888888889,,,
+Opus 5.5,recorded_span_hours,5,7,0.3888888888888889,,,
+Opus 5.5,recorded_span_hours,8.685333333333334,8,0.4444444444444444,,,
+Opus 5.5,recorded_span_hours,10,8,0.4444444444444444,,,
+Opus 5.5,recorded_span_hours,10.280888888888889,9,0.5,,,
+Opus 5.5,recorded_span_hours,10.476027777777777,10,0.5555555555555556,,,
+Opus 5.5,recorded_span_hours,16.073333333333334,11,0.6111111111111112,,,
+Opus 5.5,recorded_span_hours,20,11,0.6111111111111112,,,
+Opus 5.5,recorded_span_hours,23.199805555555557,12,0.6666666666666666,,,
+Opus 5.5,recorded_span_hours,32.33994444444445,13,0.7222222222222222,,,
+Opus 5.5,recorded_span_hours,40,13,0.7222222222222222,,,
+Opus 5.5,recorded_span_hours,44.09925,13,0.7222222222222222,,,
+Opus 5.5,recorded_span_hours,80,13,0.7222222222222222,,,
+Opus 5.5,reported_output_tokens,100000,1,0.05555555555555555,,,0
+Opus 5.5,reported_output_tokens,250000,6,0.3333333333333333,,,0
+Opus 5.5,reported_output_tokens,500000,8,0.4444444444444444,,,0
+Opus 5.5,reported_output_tokens,1000000,11,0.6111111111111112,,,0
+Opus 5.5,reported_output_tokens,2000000,13,0.7222222222222222,,,0
+Opus 5.5,reported_output_tokens,4000000,13,0.7222222222222222,,,0
+Sonnet 5.5,recorded_span_hours,0,0,0.0,,,
+Sonnet 5.5,recorded_span_hours,0.58025,1,0.05555555555555555,,,
+Sonnet 5.5,recorded_span_hours,0.7116944444444444,2,0.1111111111111111,,,
+Sonnet 5.5,recorded_span_hours,1.4297777777777778,3,0.16666666666666666,,,
+Sonnet 5.5,recorded_span_hours,2,3,0.16666666666666666,,,
+Sonnet 5.5,recorded_span_hours,2.279,4,0.2222222222222222,,,
+Sonnet 5.5,recorded_span_hours,2.374916666666667,5,0.2777777777777778,,,
+Sonnet 5.5,recorded_span_hours,2.607138888888889,6,0.3333333333333333,,,
+Sonnet 5.5,recorded_span_hours,5,6,0.3333333333333333,,,
+Sonnet 5.5,recorded_span_hours,7.649416666666667,7,0.3888888888888889,,,
+Sonnet 5.5,recorded_span_hours,8.19375,8,0.4444444444444444,,,
+Sonnet 5.5,recorded_span_hours,9.65125,9,0.5,,,
+Sonnet 5.5,recorded_span_hours,10,9,0.5,,,
+Sonnet 5.5,recorded_span_hours,11.622222222222222,10,0.5555555555555556,,,
+Sonnet 5.5,recorded_span_hours,12.82813888888889,11,0.6111111111111112,,,
+Sonnet 5.5,recorded_span_hours,20,11,0.6111111111111112,,,
+Sonnet 5.5,recorded_span_hours,40,11,0.6111111111111112,,,
+Sonnet 5.5,recorded_span_hours,44.02586111111111,11,0.6111111111111112,,,
+Sonnet 5.5,recorded_span_hours,80,11,0.6111111111111112,,,
+Sonnet 5.5,reported_output_tokens,100000,0,0.0,,,0
+Sonnet 5.5,reported_output_tokens,250000,2,0.1111111111111111,,,0
+Sonnet 5.5,reported_output_tokens,500000,3,0.16666666666666666,,,0
+Sonnet 5.5,reported_output_tokens,1000000,6,0.3333333333333333,,,0
+Sonnet 5.5,reported_output_tokens,2000000,10,0.5555555555555556,,,0
+Sonnet 5.5,reported_output_tokens,4000000,11,0.6111111111111112,,,0

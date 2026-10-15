@@ -90,6 +90,9 @@
     .note { font-size: 14px; color: var(--muted); max-width: 64em; }
     details { margin: 24px 0; }
     summary { cursor: pointer; font-family: 'Courier New', monospace; font-size: 13px; color: var(--accent); }
+    a.pill { text-decoration: none; }
+    a.pill:hover { border-color: var(--ink); }
+    .callout a { color: var(--accent); }
     pre { font-family: 'Courier New', monospace; font-size: 13px; background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 18px; overflow-x: auto; color: var(--muted); }
 
     footer { padding: 28px 0 40px; font-family: 'Courier New', monospace; font-size: 12px; color: #666e63; }
@@ -112,10 +115,11 @@
       <a class="brand" href="#">PhysRSI-Eval</a>
       <nav>
         <a href="#results">Results</a>
-        <a href="#questions">Questions</a>
-        <a href="#benchmark">Benchmark</a>
-        <a href="#findings">Findings</a>
-        <a href="#contributions">Contributions</a>
+        <a href="#insight">Insight</a>
+        <a href="#setup">Setup</a>
+        <a href="#source">RSI source</a>
+        <a href="#embodied">Embodied gains</a>
+        <a href="atlas/">Metric Atlas</a>
       </nav>
     </div>
   </header>
@@ -126,22 +130,23 @@
         <p class="eyebrow">PhysRSI-Eval · Paper in preparation</p>
         <h1>Where is Physical RSI capability from?<span>An Observational Scaling Law of Code-as-Policy Agents</span></h1>
         <p class="authors">Anonymous Authors</p>
-        <p class="tldr">Physical recursive self-improvement is capped by the weakest critical ability of the underlying VLM. We measure it under a fixed budget of judged physical attempts, predict it from public VLM capability, and test whether improved policies generalize.</p>
+        <p class="tldr">We propose evaluation criteria for the recursive self-improvement (RSI) of Code-as-Policy agents in robot manipulation, trace where this capability comes from, and find that it is capped by the weakest of perception, spatial reasoning and coding &mdash; while the experience it accumulates transfers across tasks.</p>
         <div class="links">
           <span class="pill"><b>Paper</b>coming soon</span>
           <span class="pill"><b>Code</b>coming soon</span>
-          <span class="pill"><b>Data</b>coming soon</span>
+          <a class="pill" href="atlas/"><b>Metric Atlas</b>full results &rarr;</a>
         </div>
       </div>
     </div>
 
+    <!-- 首屏结果：雷达图 → 跨任务泛化 → 木桶 -->
     <section id="results">
       <div class="wrap">
         <p class="eyebrow">Results at a glance</p>
         <h2>Five-axis profiles of physical RSI, measured and predicted</h2>
         <figure>
           <img src="static/img/paired_overlay.svg" alt="Two radar charts of six agents on five axes: Prior knowledge, Efficiency, Success, Cost and Improvement. Left: actual reference profiles; right: profiles predicted from public VLM benchmark scores." style="max-width:1100px;margin:0 auto">
-          <figcaption><b>Actual and predicted profiles of six agents.</b> Axes clockwise from the top: Prior knowledge (A1, zero-shot performance), Efficiency (A2, gain timing), Success (A3, performance level), Cost (A4, budget savings; higher saves more budget) and Improvement (A5, failure recovery), all on a shared 0&ndash;1 scale. Left: working reference over 18 tasks through K17, with three zero-shot repeats per task at K0. Right: each agent predicted from public VLM benchmark scores by a model trained on the other five agents.</figcaption>
+          <figcaption><b>Actual and predicted profiles of six agents.</b> Axes clockwise from the top: Prior knowledge (A1, zero-shot performance), Efficiency (A2, gain timing), Success (A3, performance level), Cost (A4, budget savings; higher saves more budget) and Improvement (A5, failure recovery), on a shared 0&ndash;1 scale. Left: working reference over 18 tasks through K17, with three zero-shot repeats per task at K0. Right: each agent predicted from public VLM benchmark scores by a model trained on the other five agents.</figcaption>
         </figure>
         <figure>
           <img src="static/img/agent_generalize.jpg" alt="Three task chains with and without a cross-task workspace: with the workspaces of the 17 other tasks, first success moves from K9 to K1 for Sonnet 5.5 on Cover Blocks, from K14 to K7 for Opus 5.5 on Organize Table, and from K15 to K8 for Opus 5.5 on Deposit Coin." loading="lazy">
@@ -154,90 +159,77 @@
       </div>
     </section>
 
-    <section id="motivation">
+    <section id="insight">
       <div class="wrap">
-        <p class="eyebrow">Motivation</p>
-        <h2>Code-as-Policy agents now improve themselves in the physical world</h2>
-        <p>Code-as-Policy agents drive embodied tasks with self-written control code instead of direct action outputs. They have grown from few-shot programs over hand-built primitives into agents that write, execute and revise their own control code from graded outcomes &mdash; yet a self-written fix can work once and fail on the repeat.</p>
-        <div class="callout">
-          <span class="label">Physical RSI</span>
-          <p>A frozen model revises its own code, tools and notes from graded physical outcomes, without weight updates.</p>
-        </div>
-        <p>Existing evaluations cannot tell where this capability comes from. Embodied benchmarks report endpoint success over independent attempts or wall-clock budgets, which conflates search with improvement: at a constant per-attempt success rate of 0.1, 17 attempts already give an <b>83%</b> chance of at least one success. Self-evolution benchmarks that do measure improvement live in digital domains without a physical outcome verifier.</p>
+        <p class="eyebrow">Core insight</p>
+        <h2>Evaluation criteria for Code-as-Policy capability</h2>
+        <p>Code-as-Policy agents drive robots with self-written control code and can revise that code from graded outcomes. We call this loop <b>physical recursive self-improvement</b> (physical RSI): a frozen model revises its own code, tools and notes from graded physical outcomes, without weight updates.</p>
+        <p>No benchmark yet measures the RSI of Code-as-Policy agents on manipulation tasks. Endpoint success over many independent attempts conflates search with improvement: at a per-attempt success rate of 0.1, 17 attempts already give an 83% chance of one success. We therefore score each agent by a five-axis RSI profile under a fixed budget of judged attempts, analyze these metrics experimentally, and trace the main sources of RSI capability.</p>
       </div>
     </section>
 
-    <section id="questions">
+    <section id="setup">
       <div class="wrap">
-        <p class="eyebrow">Three questions</p>
-        <h2>What we ask</h2>
-        <div class="grid3">
-          <div class="card"><span class="tag">Q1 · Capability</span><p>Which capabilities drive physical RSI, and how can they be quantified?</p></div>
-          <div class="card"><span class="tag">Q2 · Prediction</span><p>Can VLM capabilities predict physical RSI &mdash; its relative ranking across agents and its trend over rounds?</p></div>
-          <div class="card"><span class="tag">Q3 · Generalization</span><p>Do improved policies generalize beyond the scenes they were refined on?</p></div>
+        <p class="eyebrow">Experimental setup</p>
+        <h2>Two stages: evaluate, then optimize</h2>
+        <div class="grid2">
+          <div class="card"><span class="tag">Evaluate · K0</span><p>Only the robot interface and MCP tools. No skills, no tool use, no workspace: one in-context episode measures the agent's prior.</p></div>
+          <div class="card"><span class="tag">Optimize · K1&ndash;K17</span><p>Starts from a blank workspace with a limited number of attempts. After each graded attempt the agent freely summarizes its experience into skills, tools, policy and memory, until the first success or K17.</p></div>
         </div>
-      </div>
-    </section>
-
-    <section id="benchmark">
-      <div class="wrap">
-        <p class="eyebrow">The benchmark</p>
-        <h2>PhysRSI-Eval: a fixed budget of judged physical attempts</h2>
-        <p>Each task starts with one zero-shot round (K0). The agent then gets at most 17 self-improvement rounds (K1&ndash;K17), revising a persistent workspace of skills, tools, policy and memory after every graded attempt, and stops at its first success. Every agent faces the same budget.</p>
-        <div class="stats">
-          <div class="stat"><div class="num">18</div><div class="cap">manipulation tasks</div></div>
-          <div class="stat"><div class="num">K0 + 17</div><div class="cap">zero-shot + self-improvement rounds</div></div>
-          <div class="stat"><div class="num">5</div><div class="cap">profile axes</div></div>
-          <div class="stat"><div class="num">8</div><div class="cap">agents evaluated</div></div>
-        </div>
-        <h3>Five-axis profile</h3>
-        <ul class="axes">
-          <li>Prior capability</li><li>RSI speed</li><li>RSI improvement</li><li>Cost</li><li>Failure recovery</li>
-        </ul>
-        <p class="agents">Agents: GPT-6 Astra, GPT-6.1 Sol, GPT-6.0 Sol, GPT-5.6 Sol, Claude Opus 5.5, Claude Sonnet 5.5, Gemini 4 and Gemini 3.1 Pro.</p>
         <figure>
           <img src="static/img/fig1_workflow.png" alt="Shared task input and RoboDojo interface on top; below, the Evaluate stage (K0: observe, reason, act, native grade, no workspace) and the Optimize stage (K1 to K17: persistent workspace of skills, memory, tools and policy, native grade, free revision, commit, until termination)." loading="lazy" style="max-width:960px;margin:0 auto">
           <figcaption><b>Two stages, one interface.</b> (a) Zero-shot round K0: one in-context episode through the shared MCP tools, without a workspace. (b) Self-improvement rounds K1&ndash;K17: each round runs from a persistent workspace, is graded natively, revised without robot actions and committed, until the first success or K17.</figcaption>
         </figure>
+        <div class="stats">
+          <div class="stat"><div class="num">18</div><div class="cap">RoboDojo manipulation tasks</div></div>
+          <div class="stat"><div class="num">K0 + 17</div><div class="cap">zero-shot + self-improvement rounds</div></div>
+          <div class="stat"><div class="num">5</div><div class="cap">RSI metrics</div></div>
+          <div class="stat"><div class="num">8</div><div class="cap">agents evaluated</div></div>
+        </div>
+        <p class="agents">Agents: GPT-6 Astra, GPT-6.1 Sol, GPT-6.0 Sol, GPT-5.6 Sol, Claude Opus 5.5, Claude Sonnet 5.5, Gemini 4 and Gemini 3.1 Pro.</p>
+
+        <h3 style="margin-top:48px">Balanced task sampling</h3>
+        <p>All 18 tasks come from RoboDojo. We sample them uniformly over difficulty &mdash; three tasks in each of six strata &mdash; and across six task types.</p>
         <figure>
           <img src="static/img/difficulty_task_sampling.jpg" alt="Grid of the 18 RoboDojo tasks by difficulty stratum D1 to D6 (three tasks each) and six task categories: language, reasoning and memory, reasoning and long horizon, precision control, math and geometry, open placement." loading="lazy">
-          <figcaption><b>Difficulty-balanced task sampling.</b> The 18 RoboDojo tasks, three per difficulty stratum (D1 initially solvable to D6 no progress), cover six task categories. D1&ndash;D6 are fixed selection strata and do not describe the K1&ndash;K17 outcomes.</figcaption>
+          <figcaption><b>Difficulty-balanced task sampling.</b> Three tasks per difficulty stratum (D1 initially solvable to D6 no progress), covering six task categories. D1&ndash;D6 are fixed selection strata and do not describe the K1&ndash;K17 outcomes.</figcaption>
         </figure>
       </div>
     </section>
 
-    <section id="findings">
+    <section id="source">
       <div class="wrap">
-        <p class="eyebrow">Findings</p>
-        <h2>What we find</h2>
+        <p class="eyebrow">Where does RSI capability come from?</p>
+        <h2>Quantify it, then predict it from benchmark factors</h2>
 
         <div class="finding">
-          <span class="num">Finding 1</span>
-          <h3>Physical Barrel Theory</h3>
-          <p>Strong VLM agents are good in many areas &mdash; coding, planning, forecasting &mdash; yet some of them stay near zero success on embodied tasks across every round.</p>
-          <div class="callout barrel">
-            <span class="label">The shortest stave</span>
-            <p>As a barrel holds water only up to its shortest stave, each dimension of embodied performance (e.g. success rate, cost) hinges on one critical VLM ability. If this ability falls below a minimum requirement, the other VLM abilities can hardly compensate.</p>
-          </div>
-          <div class="figrow">
+          <span class="num">Step 1</span>
+          <h3>Quantifying RSI: score(metrics(model))</h3>
+          <p>Each agent's run is reduced to five metrics, and each metric to a score on a fixed 0&ndash;1 scale:</p>
+          <ul class="axes">
+            <li>A1 Prior knowledge · zero-shot performance</li><li>A2 Efficiency · gain timing</li><li>A3 Success · performance level</li><li>A4 Cost · budget savings</li><li>A5 Improvement · failure recovery</li>
+          </ul>
           <figure>
-            <img src="static/img/killing-zone.jpg" alt="Cumulative success rate over self-improvement rounds K1 to K17 for four GPT models; a shaded kill zone separates the models that improve from GPT-5.6 Sol, which stays near zero." loading="lazy">
-            <figcaption><b>The kill zone.</b> Cumulative success over K1&ndash;K17 on 18 tasks. Agents above the minimum requirement keep improving; GPT-5.6 Sol stays near zero for 16 rounds. Shading marks the between-model gap.</figcaption>
+            <img src="static/img/mean_score_growth.jpg" alt="Observed mean native score from K0 to K17 for four agents with the first 90% gain crossing marked (Astra K5, Sol 6.1 K7, Sonnet 5.5 K13, Opus 5.5 K14), per-round increments, net growth speed and increment uniformity." loading="lazy" style="max-width:900px;margin:0 auto">
+            <figcaption><b>Mean-score change across rounds.</b> Observed task-mean score from K0 to K17; large markers show where each agent first reaches 90% of its own gain (Astra K5, Sol 6.1 K7, Sonnet 5.5 K13, Opus 5.5 K14). Lower panels: per-round increments, net growth speed and how evenly the gain is spread. Four-agent snapshot; Sonnet 5.5 incomplete.</figcaption>
           </figure>
           <figure>
-            <img src="static/img/physrsi_vlm_mapping.jpg" alt="Mapping from VLM benchmark mean (range 24 percentage points) to physical RSI radar mean (range 59.5 percentage points) for four GPT models." loading="lazy">
-            <figcaption><b>From benchmark scores to physical RSI.</b> A 24-point spread in mean VLM benchmark score becomes a 59.5-point spread in physical RSI, consistent with a capability floor (hypothesis; no threshold is fitted).</figcaption>
+            <img src="static/img/overlay_actual.svg" alt="Radar overlay of the actual five-axis profiles of six agents." loading="lazy" style="max-width:720px;margin:0 auto">
+            <figcaption><b>Same-family agents have similar profiles.</b> Actual five-axis profiles of six agents on a shared 0&ndash;1 scale.</figcaption>
           </figure>
-          </div>
         </div>
 
         <div class="finding">
-          <span class="num">Finding 2</span>
-          <h3>Physical RSI is predictable</h3>
-          <p>Rather than exact scores, we predict two coarser quantities. Public VLM benchmark scores predict the relative ranking of agents on PhysRSI-Eval, and physical RSI follows a predictable scaling curve over self-improvement rounds, resembling the scaling laws of LLMs: later rounds can be anticipated from earlier ones.</p>
+          <span class="num">Step 2</span>
+          <h3>Predicting RSI from benchmark factors</h3>
+          <p>We relate public VLM benchmark factors to the RSI metrics, first to find the main source of RSI capability, then to predict specific elements of the improvement curve, such as its inflection point and final score.</p>
+          <div class="callout">
+            <span class="label">Factor &times; metric heatmap</span>
+            <p>The matrix of associations between benchmark factors and RSI metrics, which identifies the main source of RSI capability, will be added here.</p>
+          </div>
           <figure>
             <img src="static/img/physrsi_scaling_law_pred.jpg" alt="Per-model curves fitted on rounds K1 to K13 and forecasts for K14 to K17 compared with held-out actual scores for six models." loading="lazy">
-            <figcaption><b>Forecasting later rounds.</b> Curves fitted on K1&ndash;K13 forecast K14&ndash;K17 for each model; open circles are held-out actual scores.</figcaption>
+            <figcaption><b>The improvement curve is predictable.</b> Curves fitted on K1&ndash;K13 forecast K14&ndash;K17 for each agent; open circles are held-out actual scores. Like LLM scaling laws, the curve exposes its inflection point and saturation level early.</figcaption>
           </figure>
           <h3 style="margin-top:40px">Leave-one-model-out predictions</h3>
           <p>Public VLM benchmark scores also approximate each agent's full profile. Each cell gives the reference value and the prediction from a model trained on the other five agents.</p>
@@ -262,31 +254,52 @@
             </figure>
           </details>
         </div>
+      </div>
+    </section>
+
+    <section id="embodied">
+      <div class="wrap">
+        <p class="eyebrow">What drives Code-as-Policy gains on embodied tasks?</p>
+        <h2>A balanced mix of abilities, and reusable experience</h2>
 
         <div class="finding">
-          <span class="num">Finding 3</span>
-          <h3>Gains reflect improvement; transfer is limited</h3>
-          <p>Wiping the workspace every round collapses late-round success, so the gains are not resampling. Yet part of the gain is scene memorization.</p>
+          <span class="num">Finding 1</span>
+          <h3>Physical Barrel Theory: there is a kill line</h3>
+          <p>Perception, spatial reasoning and coding must come in a workable ratio. Below a minimum level on any of them, an agent cannot complete manipulation tasks, however strong it is elsewhere.</p>
+          <div class="callout barrel">
+            <span class="label">The shortest stave</span>
+            <p>As a barrel holds water only up to its shortest stave, each dimension of embodied performance hinges on one critical VLM ability. If this ability falls below a minimum requirement, the other VLM abilities can hardly compensate (barrel figure under <a href="#results">Results at a glance</a>).</p>
+          </div>
+          <div class="figrow">
+            <figure>
+              <img src="static/img/killing-zone.jpg" alt="Cumulative success rate over self-improvement rounds K1 to K17 for four GPT models; a shaded kill zone separates the models that improve from GPT-5.6 Sol, which stays near zero." loading="lazy">
+              <figcaption><b>The kill zone.</b> Cumulative success over K1&ndash;K17 on 18 tasks. Agents above the minimum requirement keep improving; GPT-5.6 Sol stays near zero for 16 rounds.</figcaption>
+            </figure>
+            <figure>
+              <img src="static/img/physrsi_vlm_mapping.jpg" alt="Mapping from VLM benchmark mean (range 24 percentage points) to physical RSI radar mean (range 59.5 percentage points) for four GPT models." loading="lazy">
+              <figcaption><b>From benchmark scores to physical RSI.</b> A 24-point spread in mean VLM benchmark score becomes a 59.5-point spread in physical RSI, consistent with a capability floor (hypothesis; no threshold is fitted).</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="finding">
+          <span class="num">Finding 2</span>
+          <h3>RSI builds reusable ability</h3>
+          <p>Surprisingly, the experience an LLM agent accumulates generalizes across tasks: a workspace carried over from the 17 other tasks moves the first success on an unseen task from K9 to K1, K14 to K7 and K15 to K8 (cross-task figure under <a href="#results">Results at a glance</a>).</p>
           <div class="compare">
             <div class="card"><span class="tag">No-history control</span><div class="big">42% <small>vs</small> 8%</div><p>late-round success with the full loop vs. a workspace wiped every round</p></div>
             <div class="card"><span class="tag">Layout transfer</span><div class="big">88% <small>vs</small> 45%</div><p>success on the trained layout vs. frozen workspaces on held-out layouts</p></div>
           </div>
-          <p class="lead">Ablation on GPT-6 Astra, six tasks.</p>
-          <p>Across tasks, a workspace carried over from the 17 other tasks moves the first success earlier on unseen tasks, from K9 to K1, K14 to K7 and K15 to K8 in the three cases tested (see the figure under Results at a glance).</p>
+          <p class="lead">The gains are improvement rather than resampling, though part of them is scene-specific. Ablation on GPT-6 Astra, six tasks.</p>
         </div>
       </div>
     </section>
 
-    <section id="contributions">
+    <section id="atlas">
       <div class="wrap">
-        <p class="eyebrow">Contributions</p>
-        <h2>In short</h2>
-        <ol class="contrib">
-          <li><b>Benchmark.</b> PhysRSI-Eval with a five-axis profile of physical RSI under a fixed trial budget.</li>
-          <li><b>Physical Barrel Theory.</b> Evidence across eight agents that the weakest critical ability caps physical RSI.</li>
-          <li><b>Prediction.</b> VLM capability predicts the relative ranking of physical RSI, and physical RSI follows a predictable scaling curve over self-improvement rounds.</li>
-          <li><b>Generalization.</b> Ablation and held-out tests of whether improved policies transfer.</li>
-        </ol>
+        <p class="eyebrow">Full results</p>
+        <h2>Metric Atlas</h2>
+        <p>All metrics, per-model radars, growth curves, ablations, data downloads and their definitions are collected in the <a href="atlas/">Metric Atlas</a> (in Chinese).</p>
         <h3 style="margin-top:36px">Citation</h3>
         <pre>BibTeX will be available when the paper is released.</pre>
       </div>

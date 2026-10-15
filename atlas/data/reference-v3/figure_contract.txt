@@ -1,0 +1,22 @@
+Figure contract — visual revision 3, 16 October 2026
+
+Purpose: compare unchanged physical RSI profiles and benchmark predictions.
+Backend: existing Python/Matplotlib workflow under nature-figure.
+Axis order: A1 Prior knowledge, A2 Efficiency, A3 Success, A4 Cost,
+A5 Improvement, clockwise from the top. Cost retains quota savings.
+Scale: identical linear radius 0–1, no rescaling, smoothing or refitting.
+Design: compact sans-serif typography; very faint alternating polygon bands;
+four grid rings at 0.25, 0.50, 0.75 and 1.00; no numeric annotations.
+Individual comparisons: consistent slate-blue Actual / muted terracotta Predicted;
+solid filled circles versus dashed open diamonds; restrained translucent fills.
+Model overlays: consistent cool / rose family palette and model-specific markers.
+Primary overlay view: Actual and Predicted side by side, with one shared model legend.
+Keep an additional combined twelve-curve overlay and each six-curve overlay.
+Views: six model singles, six-panel comparison, paired overlay, combined overlay,
+actual-only overlay and predicted-only overlay; eleven figures total.
+Exports: editable SVG, TrueType PDF, 600 dpi PNG, eleven-page atlas.
+Data: fixed 18-task reference through K17; three K0 repeats per task; six models.
+Predictions: existing leave-one-model-out estimates; post-hoc method selection.
+Reference includes the user-approved GPT-5.6 Sol fitted pack continuation.
+QA: exact source data; all vertices; axis mapping; labels and boundaries;
+exported editable text / font embedding; raster resolution; rendered visual review.
