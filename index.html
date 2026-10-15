@@ -147,8 +147,8 @@
         <p class="eyebrow">Results at a glance</p>
         <h2>Five-axis profiles of physical RSI, measured and predicted</h2>
         <figure>
-          <img src="static/img/paired_overlay.svg" alt="Two radar charts of six agents on five axes: Prior knowledge, Efficiency, Success, Cost and Improvement. Left: actual reference profiles; right: profiles predicted from public VLM benchmark scores." style="max-width:1100px;margin:0 auto">
-          <figcaption><b>Actual and predicted profiles of six agents.</b> Axes clockwise from the top: Prior knowledge (A1, zero-shot performance), Efficiency (A2, gain timing), Success (A3, performance level), Cost (A4, budget savings; higher saves more budget) and Improvement (A5, failure recovery), on a shared 0&ndash;1 scale. Left: working reference over 18 tasks through K17, with three zero-shot repeats per task at K0. Right: each agent predicted from public VLM benchmark scores by a model trained on the other five agents.</figcaption>
+          <img src="static/img/overlay_actual.svg" alt="Radar overlay of the actual five-axis profiles of six agents." loading="lazy" style="max-width:720px;margin:0 auto">
+          <figcaption><b>Same-family agents have similar profiles.</b> Actual five-axis profiles of six agents on a shared 0&ndash;1 scale.</figcaption>
         </figure>
         <h3 style="margin-top:40px">Per-agent profiles</h3>
         <figure>
@@ -239,8 +239,8 @@
             <figcaption><b>Mean-score change across rounds.</b> Observed task-mean score from K0 to K17; large markers show where each agent first reaches 90% of its own gain (Astra K5, Sol 6.1 K7, Sonnet 5.5 K13, Opus 5.5 K14). Lower panels: per-round increments, net growth speed and how evenly the gain is spread. Four-agent snapshot; Sonnet 5.5 incomplete.</figcaption>
           </figure>
           <figure>
-            <img src="static/img/overlay_actual.svg" alt="Radar overlay of the actual five-axis profiles of six agents." loading="lazy" style="max-width:720px;margin:0 auto">
-            <figcaption><b>Same-family agents have similar profiles.</b> Actual five-axis profiles of six agents on a shared 0&ndash;1 scale.</figcaption>
+            <img src="static/img/paired_overlay.svg" alt="Two radar charts of six agents on five axes: Prior knowledge, Efficiency, Success, Cost and Improvement. Left: actual reference profiles; right: profiles predicted from public VLM benchmark scores." style="max-width:1100px;margin:0 auto">
+            <figcaption><b>Actual and predicted profiles of six agents.</b> Axes clockwise from the top: Prior knowledge (A1, zero-shot performance), Efficiency (A2, gain timing), Success (A3, performance level), Cost (A4, budget savings; higher saves more budget) and Improvement (A5, failure recovery), on a shared 0&ndash;1 scale. Left: working reference over 18 tasks through K17, with three zero-shot repeats per task at K0. Right: each agent predicted from public VLM benchmark scores by a model trained on the other five agents.</figcaption>
           </figure>
         </div>
 
