@@ -81,6 +81,15 @@
     ol.contrib li { font-size: 18px; margin-bottom: 12px; color: #2f3833; }
     ol.contrib li b { font-weight: normal; font-style: italic; color: var(--ink); }
 
+    .table-wrap { overflow-x: auto; margin: 24px 0 8px; }
+    table { border-collapse: collapse; width: 100%; font-size: 15px; background: var(--paper); }
+    th, td { padding: 10px 12px; border-bottom: 1px solid var(--rule); text-align: right; white-space: nowrap; }
+    th:first-child, td:first-child { text-align: left; }
+    thead th { font-family: 'Courier New', monospace; font-size: 12px; font-weight: normal; color: var(--muted); }
+    tbody th { font-weight: normal; }
+    .note { font-size: 14px; color: var(--muted); max-width: 64em; }
+    details { margin: 24px 0; }
+    summary { cursor: pointer; font-family: 'Courier New', monospace; font-size: 13px; color: var(--accent); }
     pre { font-family: 'Courier New', monospace; font-size: 13px; background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 18px; overflow-x: auto; color: var(--muted); }
 
     footer { padding: 28px 0 40px; font-family: 'Courier New', monospace; font-size: 12px; color: #666e63; }
@@ -102,6 +111,7 @@
     <div class="wrap">
       <a class="brand" href="#">PhysRSI-Eval</a>
       <nav>
+        <a href="#results">Results</a>
         <a href="#questions">Questions</a>
         <a href="#benchmark">Benchmark</a>
         <a href="#findings">Findings</a>
@@ -124,6 +134,25 @@
         </div>
       </div>
     </div>
+
+    <section id="results">
+      <div class="wrap">
+        <p class="eyebrow">Results at a glance</p>
+        <h2>Five-axis profiles of physical RSI, measured and predicted</h2>
+        <figure>
+          <img src="static/img/paired_overlay.svg" alt="Two radar charts of six agents on five axes: Prior knowledge, Efficiency, Success, Cost and Improvement. Left: actual reference profiles; right: profiles predicted from public VLM benchmark scores." style="max-width:1100px;margin:0 auto">
+          <figcaption><b>Actual and predicted profiles of six agents.</b> Axes clockwise from the top: Prior knowledge (A1, zero-shot performance), Efficiency (A2, gain timing), Success (A3, performance level), Cost (A4, budget savings; higher saves more budget) and Improvement (A5, failure recovery), all on a shared 0&ndash;1 scale. Left: working reference over 18 tasks through K17, with three zero-shot repeats per task at K0. Right: each agent predicted from public VLM benchmark scores by a model trained on the other five agents.</figcaption>
+        </figure>
+        <figure>
+          <img src="static/img/agent_generalize.jpg" alt="Three task chains with and without a cross-task workspace: with the workspaces of the 17 other tasks, first success moves from K9 to K1 for Sonnet 5.5 on Cover Blocks, from K14 to K7 for Opus 5.5 on Organize Table, and from K15 to K8 for Opus 5.5 on Deposit Coin." loading="lazy">
+          <figcaption><b>Self-improved agents generalize to unseen tasks.</b> Starting from the workspaces built on the 17 other tasks, the first success arrives earlier: K9&rarr;K1 (Sonnet 5.5, Cover Blocks), K14&rarr;K7 (Opus 5.5, Organize Table) and K15&rarr;K8 (Opus 5.5, Deposit Coin). First runs only; three distinct tasks.</figcaption>
+        </figure>
+        <figure>
+          <img src="static/img/physical_barrel.jpg" alt="Five barrels, one per RSI dimension, with staves for spatial reasoning, harness use, perception and coding; the shortest stave is spatial reasoning for A1, A2 and A4 and perception for A3 and A5." loading="lazy">
+          <figcaption><b>The barrel hypothesis.</b> One barrel per RSI dimension, with one stave per capability factor (spatial, harness, perception, coding); a larger association weight means a shorter stave. Spatial reasoning limits zero-shot performance, gain timing and budget savings; perception limits performance level and failure recovery. Weights are normalized associations, not fitted causal effects; the water illustrates the hypothesis, not measured scores.</figcaption>
+        </figure>
+      </div>
+    </section>
 
     <section id="motivation">
       <div class="wrap">
@@ -210,6 +239,28 @@
             <img src="static/img/physrsi_scaling_law_pred.jpg" alt="Per-model curves fitted on rounds K1 to K13 and forecasts for K14 to K17 compared with held-out actual scores for six models." loading="lazy">
             <figcaption><b>Forecasting later rounds.</b> Curves fitted on K1&ndash;K13 forecast K14&ndash;K17 for each model; open circles are held-out actual scores.</figcaption>
           </figure>
+          <h3 style="margin-top:40px">Leave-one-model-out predictions</h3>
+          <p>Public VLM benchmark scores also approximate each agent's full profile. Each cell gives the reference value and the prediction from a model trained on the other five agents.</p>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Agent</th><th>A1 Prior knowledge</th><th>A2 Efficiency</th><th>A3 Success</th><th>A4 Cost</th><th>A5 Improvement</th></tr></thead>
+            <tbody>
+              <tr><th>GPT-6 Astra</th><td>0.368 / 0.290</td><td>0.859 / 0.842</td><td>0.851 / 0.781</td><td>0.843 / 0.810</td><td>0.750 / 0.651</td></tr>
+              <tr><th>GPT-6.1 Sol</th><td>0.284 / 0.275</td><td>0.822 / 0.804</td><td>0.703 / 0.737</td><td>0.808 / 0.736</td><td>0.571 / 0.664</td></tr>
+              <tr><th>GPT-6 Sol</th><td>0.031 / 0.149</td><td>0.466 / 0.522</td><td>0.472 / 0.561</td><td>0.372 / 0.576</td><td>0.389 / 0.468</td></tr>
+              <tr><th>GPT-5.6 Sol</th><td>0.012 / 0.000</td><td>0.225&dagger; / 0.176</td><td>0.104&dagger; / 0.000</td><td>0.301&dagger; / 0.344</td><td>0.056&dagger; / 0.000</td></tr>
+              <tr><th>Claude Opus 5.5</th><td>0.177 / 0.182</td><td>0.609 / 0.613</td><td>0.744 / 0.665</td><td>0.579 / 0.648</td><td>0.688 / 0.541</td></tr>
+              <tr><th>Claude Sonnet 5.5</th><td>0.124 / 0.041</td><td>0.695 / 0.518</td><td>0.701 / 0.685</td><td>0.698 / 0.373</td><td>0.563 / 0.625</td></tr>
+            </tbody>
+            <tfoot><tr><th>MAE</th><td>0.051</td><td>0.054</td><td>0.065</td><td>0.124</td><td>0.089</td></tr></tfoot>
+          </table></div>
+          <p class="note">Reference / predicted. &dagger;&nbsp;Includes a fitted continuation for one unfinished GPT-5.6 Sol task (K7&ndash;K17). The predictor for each axis was chosen among 98 configurations using these same leave-one-model-out errors, so the MAE is not an unbiased estimate on new agents. No uncertainty intervals are reported.</p>
+          <details>
+            <summary>Per-agent radars</summary>
+            <figure>
+              <img src="static/img/six_model_panels.svg" alt="Six radar panels, one per agent, each overlaying the actual reference profile (solid) and the predicted profile (dashed)." loading="lazy">
+              <figcaption><b>Per-agent comparison.</b> Solid: working reference; dashed: prediction.</figcaption>
+            </figure>
+          </details>
         </div>
 
         <div class="finding">
@@ -220,7 +271,8 @@
             <div class="card"><span class="tag">No-history control</span><div class="big">42% <small>vs</small> 8%</div><p>late-round success with the full loop vs. a workspace wiped every round</p></div>
             <div class="card"><span class="tag">Layout transfer</span><div class="big">88% <small>vs</small> 45%</div><p>success on the trained layout vs. frozen workspaces on held-out layouts</p></div>
           </div>
-          <p class="lead">Ablation on GPT-6 Astra, six tasks. Cross-task generalization results are coming soon.</p>
+          <p class="lead">Ablation on GPT-6 Astra, six tasks.</p>
+          <p>Across tasks, a workspace carried over from the 17 other tasks moves the first success earlier on unseen tasks, from K9 to K1, K14 to K7 and K15 to K8 in the three cases tested (see the figure under Results at a glance).</p>
         </div>
       </div>
     </section>
