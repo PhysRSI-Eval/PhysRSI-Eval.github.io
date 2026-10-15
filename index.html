@@ -15,7 +15,7 @@
     html { scroll-behavior: smooth; }
     body { margin: 0; background: var(--bg); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; line-height: 1.65; }
     a { color: inherit; }
-    .wrap { max-width: 980px; margin: 0 auto; padding: 0 6vw; }
+    .wrap { max-width: 1320px; margin: 0 auto; padding: 0 6vw; }
     .mono { font-family: 'Courier New', monospace; }
 
     header.top { position: sticky; top: 0; z-index: 10; background: rgba(245,243,237,.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--rule); }
@@ -30,7 +30,7 @@
     h1 { font-size: clamp(34px, 5vw, 64px); line-height: 1.15; font-weight: normal; letter-spacing: -.035em; margin: 24px 0 28px; }
     h1 span { display: block; margin-top: 18px; font-size: .62em; line-height: 1.3; font-style: italic; color: var(--accent); }
     .authors { font-family: 'Courier New', monospace; font-size: 13px; color: var(--muted); margin: 0 0 28px; }
-    .tldr { font-size: clamp(18px, 2.1vw, 23px); line-height: 1.55; color: var(--ink); max-width: 36em; margin: 0 0 32px; }
+    .tldr { font-size: clamp(18px, 2.1vw, 23px); line-height: 1.55; color: var(--ink); max-width: 44em; margin: 0 0 32px; }
     .links { display: flex; gap: 12px; flex-wrap: wrap; }
     .pill { font-family: 'Courier New', monospace; font-size: 13px; padding: 8px 16px; border: 1px solid var(--rule); border-radius: 999px; color: var(--muted); background: var(--paper); }
     .pill b { color: var(--ink); font-weight: bold; margin-right: 6px; }
@@ -38,10 +38,10 @@
     section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
     h2 { font-weight: normal; font-size: clamp(26px, 3.2vw, 38px); letter-spacing: -.02em; line-height: 1.25; margin: 10px 0 24px; }
     h3 { font-weight: normal; font-size: 22px; margin: 0 0 10px; letter-spacing: -.01em; }
-    p { margin: 0 0 18px; font-size: 18px; color: #2f3833; max-width: 40em; }
+    p { margin: 0 0 18px; font-size: 18px; color: #2f3833; max-width: 48em; }
     .lead { color: var(--muted); }
 
-    .callout { border-left: 3px solid var(--accent); background: var(--paper); padding: 18px 22px; margin: 28px 0; max-width: 42em; }
+    .callout { border-left: 3px solid var(--accent); background: var(--paper); padding: 18px 22px; margin: 28px 0; max-width: 56em; }
     .callout p { margin: 0; font-size: 17px; }
     .callout .label { display: block; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
 
@@ -62,7 +62,9 @@
 
     figure { margin: 32px 0 8px; }
     figure img { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--rule); border-radius: 4px; }
-    figcaption { font-size: 15px; color: var(--muted); margin-top: 12px; line-height: 1.55; max-width: 46em; }
+    figcaption { font-size: 15px; color: var(--muted); margin-top: 12px; line-height: 1.55; max-width: 64em; }
+    .figrow { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; align-items: start; }
+    .figrow figure { margin-top: 32px; }
     figcaption b { color: var(--ink); font-weight: normal; font-style: italic; }
 
     .finding { padding-top: 40px; }
@@ -71,11 +73,11 @@
     .barrel { border-left-color: var(--warm); background: var(--warm-bg); }
     .barrel .label { color: var(--warm); }
 
-    .compare { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 24px 0; max-width: 42em; }
+    .compare { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 24px 0; max-width: 56em; }
     .compare .card .big { font-size: 34px; letter-spacing: -.03em; line-height: 1.1; }
     .compare .card .big small { font-size: 16px; color: var(--muted); letter-spacing: 0; }
 
-    ol.contrib { padding-left: 1.2em; max-width: 40em; }
+    ol.contrib { padding-left: 1.2em; max-width: 52em; }
     ol.contrib li { font-size: 18px; margin-bottom: 12px; color: #2f3833; }
     ol.contrib li b { font-weight: normal; font-style: italic; color: var(--ink); }
 
@@ -89,7 +91,7 @@
       nav { display: none; }
       .hero { padding: 64px 0 48px; }
       section { padding: 52px 0; }
-      .grid3, .grid2, .compare { grid-template-columns: 1fr; }
+      .grid3, .grid2, .compare, .figrow { grid-template-columns: 1fr; }
       .stats { grid-template-columns: repeat(2, 1fr); }
       p, ol.contrib li { font-size: 17px; }
     }
@@ -159,13 +161,17 @@
           <div class="stat"><div class="num">5</div><div class="cap">profile axes</div></div>
           <div class="stat"><div class="num">8</div><div class="cap">agents evaluated</div></div>
         </div>
-        <h3>Five-axis profile</h3>
+        <figure>
+          <img src="static/img/difficulty_task_sampling.jpg" alt="Grid of the 18 RoboDojo tasks by difficulty stratum D1 to D6 (three tasks each) and six task categories: language, reasoning and memory, reasoning and long horizon, precision control, math and geometry, open placement." loading="lazy">
+          <figcaption><b>Difficulty-balanced task sampling.</b> The 18 RoboDojo tasks, three per difficulty stratum (D1 initially solvable to D6 no progress), cover six task categories. D1&ndash;D6 are fixed selection strata and do not describe the K1&ndash;K17 outcomes.</figcaption>
+        </figure>
+        <h3 style="margin-top:40px">Five-axis profile</h3>
         <ul class="axes">
           <li>Prior capability</li><li>RSI speed</li><li>RSI improvement</li><li>Cost</li><li>Failure recovery</li>
         </ul>
         <p class="agents">Agents: GPT-6 Astra, GPT-6.1 Sol, GPT-6.0 Sol, GPT-5.6 Sol, Claude Opus 5.5, Claude Sonnet 5.5, Gemini 4 and Gemini 3.1 Pro.</p>
         <figure>
-          <img src="static/img/fig1_workflow.png" alt="Shared task input and RoboDojo interface on top; below, the Evaluate stage (K0: observe, reason, act, native grade, no workspace) and the Optimize stage (K1 to K17: persistent workspace of skills, memory, tools and policy, native grade, free revision, commit, until termination)." loading="lazy" style="max-width:820px;margin:0 auto">
+          <img src="static/img/fig1_workflow.png" alt="Shared task input and RoboDojo interface on top; below, the Evaluate stage (K0: observe, reason, act, native grade, no workspace) and the Optimize stage (K1 to K17: persistent workspace of skills, memory, tools and policy, native grade, free revision, commit, until termination)." loading="lazy" style="max-width:960px;margin:0 auto">
           <figcaption><b>Two stages, one interface.</b> (a) Zero-shot round K0: one in-context episode through the shared MCP tools, without a workspace. (b) Self-improvement rounds K1&ndash;K17: each round runs from a persistent workspace, is graded natively, revised without robot actions and committed, until the first success or K17.</figcaption>
         </figure>
       </div>
@@ -184,6 +190,7 @@
             <span class="label">The shortest stave</span>
             <p>As a barrel holds water only up to its shortest stave, each dimension of embodied performance (e.g. success rate, cost) hinges on one critical VLM ability. If this ability falls below a minimum requirement, the other VLM abilities can hardly compensate.</p>
           </div>
+          <div class="figrow">
           <figure>
             <img src="static/img/killing-zone.jpg" alt="Cumulative success rate over self-improvement rounds K1 to K17 for four GPT models; a shaded kill zone separates the models that improve from GPT-5.6 Sol, which stays near zero." loading="lazy">
             <figcaption><b>The kill zone.</b> Cumulative success over K1&ndash;K17 on 18 tasks. Agents above the minimum requirement keep improving; GPT-5.6 Sol stays near zero for 16 rounds. Shading marks the between-model gap.</figcaption>
@@ -192,6 +199,7 @@
             <img src="static/img/physrsi_vlm_mapping.jpg" alt="Mapping from VLM benchmark mean (range 24 percentage points) to physical RSI radar mean (range 59.5 percentage points) for four GPT models." loading="lazy">
             <figcaption><b>From benchmark scores to physical RSI.</b> A 24-point spread in mean VLM benchmark score becomes a 59.5-point spread in physical RSI, consistent with a capability floor (hypothesis; no threshold is fitted).</figcaption>
           </figure>
+          </div>
         </div>
 
         <div class="finding">
