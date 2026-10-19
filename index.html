@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Where is Physical RSI capability from? An Observational Scaling Law of Code-as-Policy Agents. PhysRSI-Eval measures, diagnoses and predicts physical recursive self-improvement of Code-as-Policy agents.">
+  <meta name="description" content="Where is Physical RSI capability from? An Observational Scaling Law of LLM-as-policy. PhysRSI-eval quantifies physical recursive self-improvement on 18 manipulation tasks with a five-axis metric, studies its capability sources and observational scaling, and tests whether the gains generalize.">
   <meta name="color-scheme" content="light">
   <title>Where is Physical RSI capability from? — PhysRSI-Eval</title>
   <style>
@@ -68,6 +68,7 @@
     table.defs td, table.defs th { white-space: normal; text-align: left; }
     .figrow { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; align-items: start; }
     .figrow figure { margin-top: 32px; }
+    .radarpair { display: grid; grid-template-columns: 35fr 60fr; gap: 24px; align-items: center; }
     figcaption b { color: var(--ink); font-weight: normal; font-style: italic; }
 
     .finding { padding-top: 40px; }
@@ -106,7 +107,7 @@
       nav { display: none; }
       .hero { padding: 64px 0 48px; }
       section { padding: 52px 0; }
-      .grid3, .grid2, .compare, .figrow, .radargrid { grid-template-columns: 1fr; }
+      .grid3, .grid2, .compare, .figrow, .radargrid, .radarpair { grid-template-columns: 1fr; }
       .stats { grid-template-columns: repeat(2, 1fr); }
       p, ol.contrib li { font-size: 17px; }
     }
@@ -117,11 +118,11 @@
     <div class="wrap">
       <a class="brand" href="#">PhysRSI-Eval</a>
       <nav>
-        <a href="#results">Results</a>
-        <a href="#insight">Insight</a>
-        <a href="#setup">Setup</a>
-        <a href="#source">RSI source</a>
-        <a href="#embodied">Embodied gains</a>
+        <a href="#benchmark">Benchmark</a>
+        <a href="#q1">Q1 Capability sources</a>
+        <a href="#q2">Q2 Quantification &amp; scaling</a>
+        <a href="#q3">Q3 Generalization</a>
+        <a href="#cite">Citation</a>
       </nav>
     </div>
   </header>
@@ -130,185 +131,192 @@
     <div class="hero">
       <div class="wrap">
         <p class="eyebrow">PhysRSI-Eval · Paper in preparation</p>
-        <h1>Where is Physical RSI capability from?<span>An Observational Scaling Law of Code-as-Policy Agents</span></h1>
+        <h1>Where is Physical RSI capability from?<span>An Observational Scaling Law of LLM-as-policy</span></h1>
         <p class="authors">Anonymous Authors</p>
-        <p class="tldr">We propose evaluation criteria for the recursive self-improvement (RSI) of Code-as-Policy agents in robot manipulation, trace where this capability comes from, and find that it is capped by the weakest of perception, spatial reasoning and coding &mdash; while the experience it accumulates transfers across tasks.</p>
+        <p class="tldr">We systematically investigate the mechanisms, scaling behavior and generalization of physical recursive self-improvement (RSI). PhysRSI-eval quantifies it through a five-axis metric &mdash; <i>First-Attempt Performance, Efficiency, Success, Budget</i> and <i>Improvement</i> from failure &mdash; with different VLMs evaluated on 18 manipulation tasks under a fixed interaction budget.</p>
         <div class="links">
           <span class="pill"><b>Paper</b>coming soon</span>
           <span class="pill"><b>Code</b>coming soon</span>
-          <a class="pill" href="static/data/rsi_reference_and_prediction.csv" download><b>Data</b>results CSV &darr;</a>
         </div>
       </div>
     </div>
 
-    <!-- 首屏结果：雷达图 → 跨任务泛化 → 木桶 -->
-    <section id="results">
+    <!-- 首屏：论文 teaser（Fig. 1）与摘要，提纲按论文 Q1 → Q2 → Q3 -->
+    <section id="overview">
       <div class="wrap">
-        <p class="eyebrow">Results at a glance</p>
-        <h2>Five-axis profiles of physical RSI, measured and predicted</h2>
+        <p class="eyebrow">PhysRSI-eval at a glance</p>
+        <h2>Three questions about physical RSI</h2>
         <figure>
-          <img src="static/img/overlay_actual.svg" alt="Radar overlay of the actual five-axis profiles of six agents." loading="lazy" style="max-width:720px;margin:0 auto">
-          <figcaption><b>Same-family agents have similar profiles.</b> Actual five-axis profiles of six agents on a shared 0&ndash;1 scale. Axes clockwise from the top: Prior knowledge (A1, zero-shot performance), Efficiency (A2, gain timing), Success (A3, performance level), Cost (A4, budget savings; higher saves more budget) and Improvement (A5, failure recovery). Working reference over 18 tasks through K17, with three zero-shot repeats per task at K0.</figcaption>
+          <img src="static/img/teaser.jpg" alt="Overview with three rows. Q1: two barrels with staves for harness, coding, spatial and perception; a spatial bottleneck for First-Attempt Performance, Efficiency and Budget, and a perception bottleneck for Success and Improvement. Q2: public benchmarks predict the turning point and rank of each system's best-score curve, next to a five-axis radar. Q3: reusable operations transfer from stacking blocks to covering blocks with a cup, and from key insertion to plugging a charger." loading="lazy">
+          <figcaption><b>PhysRSI-eval at a glance.</b> (Q1)&nbsp;Capability sources and the Physical Barrel Hypothesis. (Q2)&nbsp;Five-axis quantification and observational scaling of performance, gain timing and model rankings. <i>T</i><sub>50</sub> is the half-gain round, the first round at which the best mean score reaches half of its K1&ndash;K17 gain. (Q3)&nbsp;Overfitting and generalization across tasks and scenes.</figcaption>
         </figure>
-        <h3 style="margin-top:40px">Per-agent profiles</h3>
-        <figure>
-          <div class="radargrid">
-            <a href="static/img/radar_models/gpt6_astra.png"><img src="static/img/radar_models/gpt6_astra.png" alt="GPT-6 Astra: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
-            <a href="static/img/radar_models/gpt61_sol.png"><img src="static/img/radar_models/gpt61_sol.png" alt="GPT-6.1 Sol: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
-            <a href="static/img/radar_models/gpt6_sol.png"><img src="static/img/radar_models/gpt6_sol.png" alt="GPT-6 Sol: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
-            <a href="static/img/radar_models/gpt56_sol.png"><img src="static/img/radar_models/gpt56_sol.png" alt="GPT-5.6 Sol: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
-            <a href="static/img/radar_models/opus55.png"><img src="static/img/radar_models/opus55.png" alt="Claude Opus 5.5: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
-            <a href="static/img/radar_models/sonnet55.png"><img src="static/img/radar_models/sonnet55.png" alt="Claude Sonnet 5.5: actual and benchmark-predicted A1–A5 radar with axis values, per-axis deltas and the method selected for each axis." loading="lazy"></a>
-          </div>
-          <figcaption><b>Actual and benchmark-predicted A1&ndash;A5 for each agent.</b> Blue: actual; orange: predicted with the target agent held out. Each card lists the axis values, the prediction error and the method selected per axis. Click a card to enlarge.</figcaption>
-        </figure>
-        <figure>
-          <img src="static/img/physical_barrel.jpg" alt="Five barrels, one per RSI dimension, with staves for spatial reasoning, harness use, perception and coding; the shortest stave is spatial reasoning for A1, A2 and A4 and perception for A3 and A5." loading="lazy">
-          <figcaption><b>The barrel hypothesis.</b> One barrel per RSI dimension, with one stave per capability factor (spatial, harness, perception, coding); a larger association weight means a shorter stave. Spatial reasoning limits zero-shot performance, gain timing and budget savings; perception limits performance level and failure recovery. Weights are normalized associations, not fitted causal effects; the water illustrates the hypothesis, not measured scores.</figcaption>
-        </figure>
-        <figure>
-          <img src="static/img/agent_generalize.jpg" alt="Three task chains with and without a cross-task workspace: with the workspaces of the 17 other tasks, first success moves from K9 to K1 for Sonnet 5.5 on Cover Blocks, from K14 to K7 for Opus 5.5 on Organize Table, and from K15 to K8 for Opus 5.5 on Deposit Coin." loading="lazy">
-          <figcaption><b>Self-improved agents generalize to unseen tasks.</b> Starting from the workspaces built on the 17 other tasks, the first success arrives earlier: K9&rarr;K1 (Sonnet 5.5, Cover Blocks), K14&rarr;K7 (Opus 5.5, Organize Table) and K15&rarr;K8 (Opus 5.5, Deposit Coin). First runs only; three distinct tasks.</figcaption>
-        </figure>
+        <div class="grid3">
+          <div class="card"><span class="tag">Q1 · Capability sources</span><p>The analysis of experimental results motivates the <i>Physical Barrel Hypothesis</i>: different capabilities may constrain different parts of improvement.</p></div>
+          <div class="card"><span class="tag">Q2 · Quantification &amp; scaling</span><p>Systems with similar public benchmark averages can still differ widely on the five axes. We predict the relative performance of VLM agents from their public capabilities, and forecast later progress from early physical feedback.</p></div>
+          <div class="card"><span class="tag">Q3 · Overfitting or generalization</span><p>Removing history reduces late-round success, frozen workspaces remain useful on unseen layouts, and three cross-task cases achieve success earlier. Scene-specific adaptation and reusable experience can coexist.</p></div>
+        </div>
       </div>
     </section>
 
-    <section id="insight">
+    <section id="benchmark">
       <div class="wrap">
-        <p class="eyebrow">Core insight</p>
-        <h2>Evaluation criteria for Code-as-Policy capability</h2>
-        <p>Code-as-Policy agents drive robots with self-written control code and can revise that code from graded outcomes. We call this loop <b>physical recursive self-improvement</b> (physical RSI): a frozen model revises its own code, tools and notes from graded physical outcomes, without weight updates.</p>
-        <p>No benchmark yet measures the RSI of Code-as-Policy agents on manipulation tasks. Endpoint success over many independent attempts conflates search with improvement: at a per-attempt success rate of 0.1, 17 attempts already give an 83% chance of one success. We therefore score each agent by a five-axis RSI profile under a fixed budget of judged attempts, analyze these metrics experimentally, and trace the main sources of RSI capability.</p>
-      </div>
-    </section>
-
-    <section id="setup">
-      <div class="wrap">
-        <p class="eyebrow">Experimental setup</p>
-        <h2>Two stages: evaluate, then optimize</h2>
+        <p class="eyebrow">Benchmark design</p>
+        <h2>PhysRSI-eval: a controlled loop of physical attempts</h2>
+        <p>PhysRSI-eval makes the three questions measurable by recording both physical attempts and the workspace carried between them. Model weights stay fixed, while skills, tools, policy code and memory can change in a persistent workspace. Each revision is tested through a judged physical attempt, which connects workspace changes to an observed outcome and a physical cost.</p>
         <div class="grid2">
-          <div class="card"><span class="tag">Evaluate · K0</span><p>Only the robot interface and MCP tools. No skills, no tool use, no workspace: one in-context episode measures the agent's prior.</p></div>
-          <div class="card"><span class="tag">Optimize · K1&ndash;K17</span><p>Starts from a blank workspace with a limited number of attempts. After each graded attempt the agent freely summarizes its experience into skills, tools, policy and memory, until the first success or K17.</p></div>
+          <div class="card"><span class="tag">Evaluate · K0</span><p>Measures the starting point without a persistent workspace. Each task runs three times through the shared robot tools, and its scores are averaged.</p></div>
+          <div class="card"><span class="tag">Optimize · K1&ndash;K17</span><p>The agent starts from a Harness workspace that is empty except for the host's read-only tools. Each round executes one physical attempt and returns the native score, success flag and failure reason; the agent then revises its workspace with robot actions disabled and commits it. At most <i>H</i>&nbsp;=&nbsp;17 rounds, stopping at the first native success.</p></div>
         </div>
         <figure>
-          <img src="static/img/fig1_workflow.png" alt="Shared task input and RoboDojo interface on top; below, the Evaluate stage (K0: observe, reason, act, native grade, no workspace) and the Optimize stage (K1 to K17: persistent workspace of skills, memory, tools and policy, native grade, free revision, commit, until termination)." loading="lazy" style="max-width:960px;margin:0 auto">
-          <figcaption><b>Two stages, one interface.</b> (a) Zero-shot round K0: one in-context episode through the shared MCP tools, without a workspace. (b) Self-improvement rounds K1&ndash;K17: each round runs from a persistent workspace, is graded natively, revised without robot actions and committed, until the first success or K17.</figcaption>
+          <img src="static/img/workflow.jpg" alt="Shared task input and robot interface on top (observations, physical actions, memory and files, history); left, the Evaluate stage K0 with one in-context observe, reason, act episode and no workspace; right, the Optimize stage K1 to KH with a persistent workspace of skills, tools, policy and memory, native grading, revision with robot actions closed, and commit." loading="lazy" style="max-width:960px;margin:0 auto">
+          <figcaption><b>Two stages, one interface.</b> Top: the task input and robot interface shared by both stages (observations, physical actions, memory and files, history). Left, <i>Evaluate</i> (first-attempt round K0): one in-context episode of observe&ndash;reason&ndash;act through the shared tools, with no workspace; history and notes stay inside the episode. Right, <i>Optimize</i> (self-improvement rounds K1&ndash;K<i>H</i>): each round runs from a persistent workspace of skills, tools, policy and memory, is graded natively, revised with robot actions closed, and committed as the start of the next round, until the first native success or the round limit.</figcaption>
         </figure>
         <div class="stats">
-          <div class="stat"><div class="num">18</div><div class="cap">RoboDojo manipulation tasks</div></div>
-          <div class="stat"><div class="num">K0 + 17</div><div class="cap">zero-shot + self-improvement rounds</div></div>
-          <div class="stat"><div class="num">5</div><div class="cap">RSI metrics</div></div>
-          <div class="stat"><div class="num">8</div><div class="cap">agents evaluated</div></div>
-        </div>
-        <p class="agents">Agents: GPT-6 Astra, GPT-6.1 Sol, GPT-6.0 Sol, GPT-5.6 Sol, Claude Opus 5.5, Claude Sonnet 5.5, Gemini 4 and Gemini 3.1 Pro. Full five-axis profiles are available for the first six; Gemini 4 is a partial run.</p>
-        <div class="callout">
-          <span class="label">Gemini 4 · partial snapshot</span>
-          <p>7 tasks observed through K10: 2 of 7 solved (Arrange the largest number at K3, Cover blocks at K2); mean score 0.07 at K0 and 0.40 at K10. Not comparable with the 18-task, K17 profiles above.</p>
+          <div class="stat"><div class="num">18</div><div class="cap">RoboDojo dual-arm manipulation tasks</div></div>
+          <div class="stat"><div class="num">K0 + 17</div><div class="cap">first-attempt + self-improvement rounds</div></div>
+          <div class="stat"><div class="num">5</div><div class="cap">axes of physical RSI</div></div>
+          <div class="stat"><div class="num">6 + 1</div><div class="cap">systems (+ Gemini 4 on ten tasks)</div></div>
         </div>
 
-        <h3 style="margin-top:48px">Balanced task sampling</h3>
-        <p>All 18 tasks come from RoboDojo. We sample them uniformly over difficulty &mdash; three tasks in each of six strata &mdash; and across six task types.</p>
+        <h3 style="margin-top:48px">Tasks across difficulty levels</h3>
+        <p>The 18 RoboDojo tasks cover language-conditioned arrangement, stacking, container placement, insertion, pouring, pushing and dynamic picking. They span RoboDojo's five official task categories (Precision, Long-Horizon, Memory, Open and Generalization) and sample three tasks from each of six difficulty strata, assigned from the official RoboDojo success rates: from D1 (60&ndash;68.7%) to D6 (0&ndash;0.4%). Each task retains its native score in [0,&nbsp;1], success criterion and step limit.</p>
         <figure>
-          <img src="static/img/difficulty_task_sampling.jpg" alt="Grid of the 18 RoboDojo tasks by difficulty stratum D1 to D6 (three tasks each) and six task categories: language, reasoning and memory, reasoning and long horizon, precision control, math and geometry, open placement." loading="lazy">
-          <figcaption><b>Difficulty-balanced task sampling.</b> Three tasks per difficulty stratum (D1 initially solvable to D6 no progress), covering six task categories. D1&ndash;D6 are fixed selection strata and do not describe the K1&ndash;K17 outcomes.</figcaption>
+          <img src="static/img/task_table.jpg" alt="The 18 RoboDojo tasks arranged by difficulty stratum D1 to D6, three tasks each, covering RoboDojo's five official task categories." loading="lazy">
+          <figcaption><b>Difficulty-balanced task sampling.</b> Three tasks per difficulty stratum, from D1 (highest official RoboDojo success rate) to D6 (lowest), covering RoboDojo's five official task categories. Strata are assigned by ranking the tasks on the official RoboDojo success rate and are fixed before the main evaluation; they do not describe the subsequent refinement outcomes.</figcaption>
         </figure>
+        <p class="agents">Systems: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol, GPT-5.6 Sol, Claude Opus 5.5 and Claude Sonnet 5.5, each a model with its runtime configuration. Gemini 4 is reported in a separate partial run covering ten tasks through K20, with six solved; it is excluded from the benchmark-based association and prediction analyses.</p>
+
+        <h3 style="margin-top:48px">A five-axis profile of improvement</h3>
+        <p>An endpoint score alone cannot quantify physical RSI. The five-axis profile separates the starting point from gain timing, attained score, physical budget savings and recovery from failure.</p>
+        <div class="table-wrap"><table class="defs">
+          <thead><tr><th>Axis</th><th>Question</th><th>Definition</th></tr></thead>
+          <tbody>
+            <tr><th>A1 First-Attempt Performance</th><td>How well does the agent perform on its first attempt?</td><td>Mean K0 score, averaged over three runs per task and then across tasks, including partial progress.</td></tr>
+            <tr><th>A2 Efficiency</th><td>How early do gains appear?</td><td>Mean gain over K1&ndash;K(<i>H</i>&minus;1) relative to the terminal net gain over K0; earlier sustained gains give higher values.</td></tr>
+            <tr><th>A3 Success</th><td>What score does the agent attain?</td><td>Mean score over the high window, from &tau;<sub>90</sub> (first round reaching 90% of the peak gain) to K<i>H</i>, with partial credit.</td></tr>
+            <tr><th>A4 Budget</th><td>How much physical budget is saved?</td><td>On solved tasks, one minus the charged physical steps through first success as a fraction of the budget; higher saves more.</td></tr>
+            <tr><th>A5 Improvement</th><td>Which early failures are overcome?</td><td>Fraction of K1-failed tasks subsequently solved within the budget.</td></tr>
+          </tbody>
+        </table></div>
       </div>
     </section>
 
-    <section id="source">
+    <section id="q1">
       <div class="wrap">
-        <p class="eyebrow">Where does RSI capability come from?</p>
-        <h2>Quantify it, then predict it from benchmark factors</h2>
+        <p class="eyebrow">Q1</p>
+        <h2>Where is Physical RSI capability from?</h2>
+        <p>What allows physical feedback to become a useful policy revision? Acting, interpreting an outcome and implementing a change may draw on different capabilities. We use the five-axis profile to ask whether the capabilities associated with a strong first attempt also track effective improvement.</p>
 
         <div class="finding">
-          <span class="num">Step 1</span>
-          <h3>Quantifying RSI: score(metrics(model))</h3>
-          <p>Each agent's run is reduced to five metrics, and each metric to a score on a fixed 0&ndash;1 scale:</p>
-          <div class="table-wrap"><table class="defs">
-            <thead><tr><th>Metric</th><th>What it measures</th></tr></thead>
-            <tbody>
-              <tr><th>A1 Prior knowledge</th><td>Mean native score in the zero-shot round K0, counting partial progress on failed tasks.</td></tr>
-              <tr><th>A2 Efficiency</th><td>How early the final gain over K0 is realized: 1 if all of it arrives at K1 and is kept, 0 if it arrives only at K17.</td></tr>
-              <tr><th>A3 Success</th><td>Mean score from the round where the agent first reaches 90% of its own gain through K17.</td></tr>
-              <tr><th>A4 Cost</th><td>Budget saved on solved tasks: one minus the physical attempt quota used up to the first success, out of 17.</td></tr>
-              <tr><th>A5 Improvement</th><td>Failure recovery: the share of tasks failed at K1 that are solved by K17.</td></tr>
-            </tbody>
-          </table></div>
-          <figure>
-            <img src="static/img/mean_score_growth.jpg" alt="Observed mean native score from K0 to K17 for four agents with the first 90% gain crossing marked (Astra K5, Sol 6.1 K7, Sonnet 5.5 K13, Opus 5.5 K14), per-round increments, net growth speed and increment uniformity." loading="lazy" style="max-width:900px;margin:0 auto">
-            <figcaption><b>Mean-score change across rounds.</b> Observed task-mean score from K0 to K17; large markers show where each agent first reaches 90% of its own gain (Astra K5, Sol 6.1 K7, Sonnet 5.5 K13, Opus 5.5 K14). Lower panels: per-round increments, net growth speed and how evenly the gain is spread. Four-agent snapshot; Sonnet 5.5 incomplete.</figcaption>
-          </figure>
-          <figure>
-            <img src="static/img/paired_overlay.svg" alt="Two radar charts of six agents on five axes: Prior knowledge, Efficiency, Success, Cost and Improvement. Left: actual reference profiles; right: profiles predicted from public VLM benchmark scores." style="max-width:1100px;margin:0 auto">
-            <figcaption><b>Actual and predicted profiles of six agents.</b> Axes clockwise from the top: Prior knowledge (A1, zero-shot performance), Efficiency (A2, gain timing), Success (A3, performance level), Cost (A4, budget savings; higher saves more budget) and Improvement (A5, failure recovery), on a shared 0&ndash;1 scale. Left: working reference over 18 tasks through K17, with three zero-shot repeats per task at K0. Right: each agent predicted from public VLM benchmark scores by a model trained on the other five agents.</figcaption>
-          </figure>
+          <h3>Which capabilities track physical RSI?</h3>
+          <p>Strong coding scores alone do not ensure physical improvement. GPT-5.6 Sol exceeds GPT-6 Astra on LiveBench code generation and completion, yet solves one of the 18 tasks, whereas Astra solves 15. We group 17 public benchmark scores into Spatial, Harness, Perception and Coding, then compare their ranks with A1&ndash;A5 across six systems on all 18 tasks.</p>
+          <p>Spatial reasoning has the strongest observed association with A1 (&rho;&nbsp;=&nbsp;0.94) and A2/A4 (&rho;&nbsp;=&nbsp;0.83). Perception has the strongest association with A3 and A5 (&rho;&nbsp;=&nbsp;0.94). Coding has the weakest association with every axis (&rho;&nbsp;&le;&nbsp;0.37).</p>
         </div>
 
         <div class="finding">
-          <span class="num">Step 2</span>
-          <h3>Predicting RSI from benchmark factors</h3>
-          <p>We relate public VLM benchmark factors to the RSI metrics, first to find the main source of RSI capability, then to predict specific elements of the improvement curve, such as its inflection point and final score.</p>
-<figure>
-            <img src="static/img/vlm_fitting.jpg" alt="Left: Spearman correlations between four benchmark factors (spatial, harness, perception, coding) and the five RSI metrics across six models. Right: cumulative success curves of four GPT models with shaded 70 to 90 percent growth windows and the resulting rank order." loading="lazy" style="max-width:1100px;margin:0 auto">
-            <figcaption><b>From benchmark factors to RSI metrics and ranks.</b> (a)&nbsp;Spearman correlation between four benchmark factors and the five RSI metrics (six models, 17 common tasks): spatial reasoning correlates most with A1, A2 and A4 and perception with A3 and A5, whereas coding correlates least with every metric (&rho; &le; 0.54). Exploratory; minimum BH-adjusted q = 0.194. (b)&nbsp;Observed cumulative success of four GPT models with the window in which each grows from 70% to 90% of its gain; the windows give a timing proxy whose rank order is the prediction target.</figcaption>
-          </figure>
-          <figure>
-            <img src="static/img/physrsi_scaling_law_pred.jpg" alt="Per-model curves fitted on rounds K1 to K13 and forecasts for K14 to K17 compared with held-out actual scores for six models." loading="lazy">
-            <figcaption><b>The improvement curve is predictable.</b> Curves fitted on K1&ndash;K13 forecast K14&ndash;K17 for each agent; open circles are held-out actual scores. Like LLM scaling laws, the curve exposes its inflection point and saturation level early.</figcaption>
-          </figure>
-          <h3 style="margin-top:40px">Leave-one-model-out predictions</h3>
-          <p>Public VLM benchmark scores also approximate each agent's full profile. Each cell gives the reference value and the prediction from a model trained on the other five agents.</p>
-          <div class="table-wrap"><table>
-            <thead><tr><th>Agent</th><th>A1 Prior knowledge</th><th>A2 Efficiency</th><th>A3 Success</th><th>A4 Cost</th><th>A5 Improvement</th></tr></thead>
-            <tbody>
-              <tr><th>GPT-6 Astra</th><td>0.368 / 0.290</td><td>0.859 / 0.842</td><td>0.851 / 0.781</td><td>0.843 / 0.810</td><td>0.750 / 0.651</td></tr>
-              <tr><th>GPT-6.1 Sol</th><td>0.284 / 0.275</td><td>0.822 / 0.804</td><td>0.703 / 0.737</td><td>0.808 / 0.736</td><td>0.571 / 0.664</td></tr>
-              <tr><th>GPT-6 Sol</th><td>0.031 / 0.149</td><td>0.466 / 0.522</td><td>0.472 / 0.561</td><td>0.372 / 0.576</td><td>0.389 / 0.468</td></tr>
-              <tr><th>GPT-5.6 Sol</th><td>0.012 / 0.000</td><td>0.225&dagger; / 0.176</td><td>0.104&dagger; / 0.000</td><td>0.301&dagger; / 0.344</td><td>0.056&dagger; / 0.000</td></tr>
-              <tr><th>Claude Opus 5.5</th><td>0.177 / 0.182</td><td>0.609 / 0.613</td><td>0.744 / 0.665</td><td>0.579 / 0.648</td><td>0.688 / 0.541</td></tr>
-              <tr><th>Claude Sonnet 5.5</th><td>0.124 / 0.041</td><td>0.695 / 0.518</td><td>0.701 / 0.685</td><td>0.698 / 0.373</td><td>0.563 / 0.625</td></tr>
-            </tbody>
-            <tfoot><tr><th>MAE</th><td>0.051</td><td>0.054</td><td>0.065</td><td>0.124</td><td>0.089</td></tr></tfoot>
-          </table></div>
-          <p class="note">Reference / predicted. &dagger;&nbsp;Includes a fitted continuation for one unfinished GPT-5.6 Sol task (K7&ndash;K17). The predictor for each axis was chosen among 98 configurations using these same leave-one-model-out errors, so the MAE is not an unbiased estimate on new agents. No uncertainty intervals are reported.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="embodied">
-      <div class="wrap">
-        <p class="eyebrow">What drives Code-as-Policy gains on embodied tasks?</p>
-        <h2>A balanced mix of abilities, and reusable experience</h2>
-
-        <div class="finding">
-          <span class="num">Finding 1</span>
-          <h3>Physical Barrel Theory: there is a kill line</h3>
-          <p>Perception, spatial reasoning and coding must come in a workable ratio. Below a minimum level on any of them, an agent cannot complete manipulation tasks, however strong it is elsewhere.</p>
+          <h3>The Physical Barrel Hypothesis</h3>
           <div class="callout barrel">
-            <span class="label">The shortest stave</span>
-            <p>As a barrel holds water only up to its shortest stave, each dimension of embodied performance hinges on one critical VLM ability. If this ability falls below a minimum requirement, the other VLM abilities can hardly compensate (barrel figure under <a href="#results">Results at a glance</a>).</p>
+            <span class="label">Physical Barrel Hypothesis</span>
+            <p>Different aspects of improvement may have different capability bottlenecks. Spatial reasoning may matter most for starting well, while perception may matter more for interpreting failures and recovering from them. Under this hypothesis, strong coding cannot always compensate for a weakness elsewhere. Its weak associations do not imply that coding is unnecessary; all systems use code here.</p>
           </div>
-          <div class="figrow">
-            <figure>
-              <img src="static/img/killing-zone.jpg" alt="Cumulative success rate over self-improvement rounds K1 to K17 for four GPT models; a shaded kill zone separates the models that improve from GPT-5.6 Sol, which stays near zero." loading="lazy">
-              <figcaption><b>The kill zone.</b> Cumulative success over K1&ndash;K17 on 18 tasks. Agents above the minimum requirement keep improving; GPT-5.6 Sol stays near zero for 16 rounds.</figcaption>
-            </figure>
-            <figure>
-              <img src="static/img/physrsi_vlm_mapping.jpg" alt="Mapping from VLM benchmark mean (range 24 percentage points) to physical RSI radar mean (range 59.5 percentage points) for four GPT models." loading="lazy">
-              <figcaption><b>From benchmark scores to physical RSI.</b> A 24-point spread in mean VLM benchmark score becomes a 59.5-point spread in physical RSI, consistent with a capability floor (hypothesis; no threshold is fitted).</figcaption>
-            </figure>
+          <figure>
+            <img src="static/img/barrel_matrix.jpg" alt="Left: rank-association matrix between four capability groups (spatial, harness, perception, coding) and the five RSI axes across six systems. Right: one barrel per RSI axis with a stave per capability group." loading="lazy">
+            <figcaption><b>Capability associations and the barrel hypothesis.</b> The matrix reports exploratory rank associations across six systems on the 18 tasks. Each barrel represents one RSI axis, with a stave per capability group. Stave heights illustrate a proposed bottleneck interpretation of the associations.</figcaption>
+          </figure>
+          <p class="lead">These associations identify candidate bottlenecks that targeted capability interventions can test directly.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="q2">
+      <div class="wrap">
+        <p class="eyebrow">Q2</p>
+        <h2>How can we quantify Physical RSI and its scaling law?</h2>
+        <p>How much can an agent improve, when do its main gains occur, and how much interaction does it need? We first quantify differences among agents, then study how these outcomes scale with model capabilities and physical interaction budget.</p>
+
+        <div class="finding">
+          <h3>High scores, fast gains and low cost can diverge</h3>
+          <p>Opus has a higher Success score than GPT-6.1 Sol (0.744 versus 0.703), but lower Efficiency (0.609 versus 0.822). On each system's solved tasks, Opus saves less of the budget (0.579 versus 0.808), and the gap persists on the ten tasks both systems solve. Higher attained scores can come with later gains and greater physical costs.</p>
+          <p>Across the six systems, task-mean scores rise from 0.01&ndash;0.37 at K0 to 0.10&ndash;0.84 by the end of evaluation. They solve 15, 12, 7, 1, 13 and 11 of 18 tasks, respectively: Astra, GPT-6.1 Sol, GPT-6 Sol, GPT-5.6 Sol, Opus and Sonnet. Astra leads on all five axes. The profile exposes these trade-offs without a single ranking.</p>
+          <div class="table-wrap"><table>
+            <thead><tr><th>System</th><th>Tasks</th><th>A1</th><th>A2</th><th>A3</th><th>A4</th><th>A5</th></tr></thead>
+            <tbody>
+              <tr><th>GPT-6 Astra</th><td>18</td><td>0.3676</td><td>0.8594</td><td>0.8509</td><td>0.8429</td><td>0.7500</td></tr>
+              <tr><th>GPT-6.1 Sol</th><td>18</td><td>0.2843</td><td>0.8224</td><td>0.7028</td><td>0.8081</td><td>0.5714</td></tr>
+              <tr><th>GPT-6 Sol</th><td>18</td><td>0.0306</td><td>0.4658</td><td>0.4722</td><td>0.3718</td><td>0.3889</td></tr>
+              <tr><th>GPT-5.6 Sol</th><td>18</td><td>0.0120</td><td>0.2247</td><td>0.1037</td><td>0.3013</td><td>0.0556</td></tr>
+              <tr><th>Claude Opus 5.5</th><td>18</td><td>0.1769</td><td>0.6091</td><td>0.7444</td><td>0.5794</td><td>0.6875</td></tr>
+              <tr><th>Claude Sonnet 5.5</th><td>18</td><td>0.1241</td><td>0.6946</td><td>0.7006</td><td>0.6984</td><td>0.5625</td></tr>
+              <tr><th>Gemini 4*</th><td>10</td><td>0.0500</td><td>0.7831</td><td>0.6350</td><td>0.6241</td><td>0.6000</td></tr>
+            </tbody>
+          </table></div>
+          <p class="note"><b>Five-axis profiles.</b> K0 scores are averaged over three runs per task. A1&ndash;A5 denote First-Attempt Performance, Efficiency, Success, Budget and Improvement. *Gemini 4 is evaluated on ten tasks with one K0 run per task.</p>
+          <figure>
+            <div class="radarpair">
+              <img src="static/img/radar_overlay_7models.svg" alt="Seven five-axis profiles overlaid on one radar chart." loading="lazy">
+              <img src="static/img/radar_panels_7models.svg" alt="One five-axis radar panel per system: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol, GPT-5.6 Sol, Opus 5.5, Sonnet 5.5 and Gemini 4." loading="lazy">
+            </div>
+            <figcaption><b>Five-axis profiles.</b> Left: seven overlaid profiles. Right: one panel per system. Axes clockwise from the top are First-Attempt Performance (A1), Budget (A4), Success (A3), Efficiency (A2) and Improvement (A5), on a shared 0&ndash;1 scale. The six reference systems use all 18 tasks; *Gemini 4 uses its ten evaluated tasks.</figcaption>
+          </figure>
+          <p style="margin-top:32px">How much do public benchmark averages reveal about these differences? Across the four GPT systems, mean scores over 17 public benchmarks span 54.1&ndash;78.1, while the equally weighted physical profile mean spans 13.9&ndash;73.4. The ranges are 24 and 59.5 points on different scales. GPT-5.6 Sol stays near zero cumulative success for 16 rounds: more attempts do not close every capability gap within this budget. Useful improvement may require a minimum level of a needed capability, even when other capabilities are strong.</p>
+          <figure>
+            <img src="static/img/figure4_success_benchmark_area.svg" alt="Left: cumulative success over refinement rounds for the GPT systems, with a shaded gap between GPT-6.1 Sol and GPT-6 Sol. Right: mean public benchmark score versus the mean of the five physical RSI axes." loading="lazy">
+            <figcaption><b>Public capability and physical RSI separate differently.</b> Left: cumulative success during refinement on 18 tasks; the shaded region marks the gap between GPT-6.1 Sol and GPT-6 Sol. Right: mean public score over 17 selected benchmarks versus 100&times;(A1+A2+A3+A4+A5)/5. The physical summary is an arithmetic mean, not radar area.</figcaption>
+          </figure>
+        </div>
+
+        <div class="finding">
+          <h3>Observational scaling across model capabilities</h3>
+          <p>Can public capability scores anticipate physical improvement before the full evaluation is run? Ranking systems by the equal-weight average of their four capability profiles reproduces the observed order of the best score reached by K17. For gain timing, we define the half-gain round <i>T</i><sub>50</sub>; for every pair of systems, a kernel regressor fitted on the capability profiles of the remaining systems predicts which of the two reaches <i>T</i><sub>50</sub> first, and all pairwise orderings are recovered.</p>
+          <figure>
+            <img src="static/img/half_gain_round_prediction.svg" alt="Left: four capability profiles of each system from 17 public benchmarks. Right: best mean score by round for six systems, with circles at the half-gain round and predicted / observed rank labels." loading="lazy">
+            <figcaption><b>Predicting the timing of gains from public capability profiles.</b> Left: four capability profiles of each system, computed from 17 public benchmarks as normalized ranks among the six systems. Right: best mean score on the 18 tasks. Circles mark <i>T</i><sub>50</sub>, the first round at which the best mean score reaches half of its K1&ndash;K17 gain. Labels give predicted / observed ranks: <i>T</i><sub>50</sub> beside the circles and best score reached by K17 on the right. Each pair of systems is predicted from the other four.</figcaption>
+          </figure>
+        </div>
+
+        <div class="finding">
+          <h3>What can early physical feedback predict?</h3>
+          <p>A related model may share the shape of its improvement curve. We fit a Weibull growth template to Astra's K1&ndash;K17 mean score and calibrate its start, plateau and relative speed on GPT-6.1 Sol's first rounds only. With K1&ndash;K5 observed, the transferred curve forecasts the remaining rounds through K17 with mean absolute error 0.019, compared with 0.112 for holding the last observed score.</p>
+          <figure>
+            <img src="static/img/astra_shape_transfer.svg" alt="Left: Astra's mean score with a fitted Weibull template. Right: GPT-6.1 Sol's observed K1 to K5 scores, the forecast through K17 with a 90% bootstrap band, and the hidden actual rounds." loading="lazy">
+            <figcaption><b>Forecasting GPT-6.1 Sol from Astra's improvement shape.</b> Left: Astra's mean score and the Weibull template fitted to it. Right: GPT-6.1 Sol with K1&ndash;K5 available. The template is calibrated on these rounds and forecasts the hidden rounds through K17; shading shows the 90% paired-task bootstrap band. All 18 tasks are used.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="q3">
+      <div class="wrap">
+        <p class="eyebrow">Q3</p>
+        <h2>Does Physical RSI reflect overfitting or generalization?</h2>
+        <p>With fixed model weights, generalization concerns the code, tools and notes the agent retains. We first test whether retained experience helps beyond repeated attempts. We then evaluate frozen workspaces on unseen layouts and transfer them to new tasks.</p>
+        <figure>
+          <img src="static/img/cross_task_transfer.jpg" alt="Three task chains with and without a transferred workspace: first success moves from K9 to K1 for Sonnet 5.5 on Cover Blocks, from K14 to K7 for Opus 5.5 on Organize Table, and from K15 to K8 for Opus 5.5 on Deposit Coin." loading="lazy">
+          <figcaption><b>Cross-task workspace transfer.</b> Top: original self-improvement trajectories for tasks first solved at K6 or later. Bottom: trajectories initialized from a workspace pooled from all other tasks, excluding the target task. First success advances from K9 to K1 for Sonnet 5.5 on Cover Blocks, from K14 to K7 for Opus 5.5 on Organize Table, and from K15 to K8 for Opus 5.5 on Deposit Coin. Red crosses indicate unsuccessful attempts, dark checks mark first success, and pale checks carry success forward without additional evaluation.</figcaption>
+        </figure>
+
+        <div class="finding">
+          <h3>Does retained experience help beyond repeated attempts?</h3>
+          <p>The Astra ablation varies which information from earlier rounds reaches the agent: the workspace, grader feedback, images and action records. It covers six tasks with two chains each; layouts change every round over K1&ndash;K6. Withholding grader feedback causes the largest drop, to 5/36 (13.9%); keeping only the workspace and grader feedback yields 17/36 (47.2%).</p>
+          <div class="compare">
+            <div class="card"><span class="tag">Full loop vs. no history</span><div class="big">41.7% <small>vs</small> 8.3%</div><p>late-round success over K4&ndash;K6 (15/36 vs. 3/36)</p></div>
+            <div class="card"><span class="tag">Frozen workspaces, unseen layouts</span><div class="big">25/60 <small>(41.7%)</small></div><p>workspace files alone, with no further revision or outcome feedback</p></div>
           </div>
         </div>
 
         <div class="finding">
-          <span class="num">Finding 2</span>
-          <h3>RSI builds reusable ability</h3>
-          <p>Surprisingly, the experience an LLM agent accumulates generalizes across tasks: a workspace carried over from the 17 other tasks moves the first success on an unseen task from K9 to K1, K14 to K7 and K15 to K8 (cross-task figure under <a href="#results">Results at a glance</a>).</p>
-          <div class="compare">
-            <div class="card"><span class="tag">No-history control</span><div class="big">42% <small>vs</small> 8%</div><p>late-round success with the full loop vs. a workspace wiped every round</p></div>
-            <div class="card"><span class="tag">Layout transfer</span><div class="big">88% <small>vs</small> 45%</div><p>success on the trained layout vs. frozen workspaces on held-out layouts</p></div>
-          </div>
-          <p class="lead">The gains are improvement rather than resampling, though part of them is scene-specific. Ablation on GPT-6 Astra, six tasks.</p>
+          <h3>What survives when revision stops?</h3>
+          <p>We freeze Astra workspaces after K6 and test each on five unseen layouts. Across 12 sources, workspace files alone succeed in 25/60 tests (41.7%); adding prior raw records gives 23/60 (38.3%). Fixed-layout source workspaces reach 27/60 (45.0%) on held-out layouts, compared with the reported 14/16 (88%) on their own layout. Scene-specific gains and transferable experience can coexist.</p>
+        </div>
+
+        <div class="finding">
+          <h3>Can experience help on a different task?</h3>
+          <p>Traces from five models suggest two forms of reusable experience: executable routines and textual operating knowledge. Sonnet 5.5 and Opus 5.5 increasingly encode control in self-written tools, which generate over 96% of their actions in later rounds. Among the three models with substantial tool libraries, Opus exhibits broader reuse and lower concentration: its lineage reuse rate is 0.347, compared with 0.167 for Sonnet and 0.086 for GPT-6 Sol.</p>
+          <figure>
+            <img src="static/img/tools_reuse.svg" alt="Three panels for GPT-6.1 Sol, GPT-6 Sol, Sonnet 5.5 and Opus 5.5: total tool counts split into perception and geometry tools versus action tools; reusable rate of tool lineages; and reuse breadth." loading="lazy">
+            <figcaption><b>Tool libraries and reuse across models.</b> (a)&nbsp;Total tool counts and the proportions of perception and geometry tools versus action tools. (b)&nbsp;Fraction of tool lineages reused in subsequent rounds, among those with later rounds available. Reuse includes direct use, modification and derivation of existing tools. (c)&nbsp;Reuse breadth, defined as one minus the share of subsequent calls accounted for by the top 10% of reused lineages. Astra is omitted because it creates very few tools, used only for verification. GPT-6.1 Sol's estimates reflect a small library of seven tools.</figcaption>
+          </figure>
+          <p style="margin-top:32px">Astra and GPT-6.1 Sol follow a different pattern: about 99% of their actions remain directly generated by the model, but their reasoning time decreases across rounds as memory, skills and policy notes are reused. During cross-task transfer, agents also consult memory and skills from semantically similar tasks. Semantic similarity helps identify candidate experience; failure evidence guides whether to reuse, adapt or discard it.</p>
         </div>
       </div>
     </section>
