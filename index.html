@@ -10,22 +10,40 @@
     :root {
       --bg: #f5f3ed; --paper: #fbfaf6; --ink: #222c28; --muted: #60665e; --accent: #60705c;
       --dot: #5a7552; --rule: #c9cec4; --warm: #a0674b; --warm-bg: #f2e3d8;
+      --head: 56px;            /* 顶栏高度，页面对齐时要避开 */
+      --figh: calc(100vh - 300px); /* 每页图片的默认最大高度，由各页按内容多少覆盖 */
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { margin: 0; background: var(--bg); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; line-height: 1.6; }
     a { color: inherit; }
-    .wrap { max-width: 1320px; margin: 0 auto; padding: 0 6vw; }
-    .mono { font-family: 'Courier New', monospace; }
+    .wrap { max-width: 1320px; margin: 0 auto; padding: 0 6vw; width: 100%; }
 
-    header.top { position: sticky; top: 0; z-index: 10; background: rgba(245,243,237,.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--rule); }
-    header.top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-top: 14px; padding-bottom: 14px; font-family: 'Courier New', monospace; font-size: 14px; }
+    header.top { position: sticky; top: 0; z-index: 10; height: var(--head); background: rgba(245,243,237,.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--rule); }
+    header.top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 24px; height: 100%; font-family: 'Courier New', monospace; font-size: 14px; }
     .brand { font-size: 20px; font-weight: bold; letter-spacing: -.6px; text-decoration: none; }
     nav { display: flex; gap: 20px; flex-wrap: wrap; }
     nav a { text-decoration: none; color: var(--muted); }
     nav a:hover { color: var(--ink); }
 
-    .hero { padding: 88px 0 56px; border-bottom: 1px solid var(--rule); }
+    /* 每个 .page 是一屏：滚轮一次对齐到下一屏，内容垂直居中；
+       图片/动画作为可收缩的 flex 项，占用标题与图注之外的剩余高度（object-fit 保持比例） */
+    .page { height: calc(100vh - var(--head)); display: flex; flex-direction: column; justify-content: center; padding: 28px 0 24px; border-bottom: 1px solid var(--rule); scroll-snap-align: start; scroll-snap-stop: always; }
+    .page > .wrap { display: flex; flex-direction: column; justify-content: center; min-height: 0; max-height: 100%; }
+    .page figure { display: flex; flex-direction: column; min-height: 0; margin: 16px 0 0; }
+    .page figure img { min-height: 0; width: 100%; height: auto; object-fit: contain; background: transparent; border: 0; border-radius: 0; }
+    .page .anim { display: flex; flex-direction: column; min-height: 0; }
+    .page .anim svg { min-height: 0; width: 100%; height: auto; }
+    /* 无固有尺寸的 SVG 图不能用百分比高度（会退化成 300×150），按视口高度限制宽度即可 */
+    .page .radarpair { width: 100%; max-width: min(1100px, 150vh); }
+    /* 左文右图的两栏页：右栏图占整行高度并随页高缩放 */
+    .split { display: grid; grid-template-columns: 1fr 1.5fr; gap: 32px; align-items: center; min-height: 0; grid-template-rows: minmax(0, 1fr); }
+    .split figure { margin: 0; min-height: 0; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+    .split figure img { min-height: 0; flex: 0 1 auto; }
+    .split .col { display: grid; gap: 14px; align-content: center; }
+    .split .col .card, .split .col .callout, .split .col .stats, .split .col .axes { margin: 0; }
+    .stats.two { grid-template-columns: repeat(2, 1fr); }
+
     .eyebrow { color: var(--accent); font-family: 'Courier New', monospace; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; margin: 0; }
     h1 { font-size: clamp(38px, 5.4vw, 70px); line-height: 1.12; font-weight: normal; letter-spacing: -.035em; margin: 24px 0 28px; }
     h1 span { display: block; margin-top: 18px; font-size: .6em; line-height: 1.3; font-style: italic; color: var(--accent); }
@@ -39,47 +57,45 @@
     a.pill { text-decoration: none; }
     a.pill:hover { border-color: var(--ink); color: var(--ink); }
 
-    section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
-    h2 { font-weight: normal; font-size: clamp(32px, 3.8vw, 46px); letter-spacing: -.02em; line-height: 1.2; margin: 10px 0 24px; }
+    /* 首页：叠加雷达动画作为半透明背景，置于文字之后 */
+    .hero { position: relative; overflow: hidden; }
+    .hero .wrap { position: relative; z-index: 1; }
+    #hero-bg { position: absolute; right: 3vw; top: 50%; transform: translateY(-50%); width: min(72vh, 640px); aspect-ratio: 1; opacity: .3; pointer-events: none; z-index: 0; }
+    #hero-bg svg { width: 100%; height: 100%; display: block; font-family: Georgia, 'Times New Roman', serif; }
+
+    h2 { font-weight: normal; font-size: clamp(32px, 3.8vw, 46px); letter-spacing: -.02em; line-height: 1.2; margin: 10px 0 20px; }
     h3 { font-weight: normal; font-size: 26px; margin: 0 0 12px; letter-spacing: -.01em; }
     p { margin: 0 0 18px; font-size: 22px; color: #2f3833; max-width: 46em; }
     .lead { color: var(--muted); }
 
-    .callout { border-left: 3px solid var(--accent); background: var(--paper); padding: 20px 24px; margin: 28px 0; max-width: 56em; }
+    .callout { border-left: 3px solid var(--accent); background: var(--paper); padding: 18px 24px; margin: 24px 0 0; max-width: 56em; }
     .callout p { margin: 0; font-size: 21px; }
     .callout .label { display: block; font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
     .barrel { border-left-color: var(--warm); background: var(--warm-bg); }
     .barrel .label { color: var(--warm); }
 
-    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
-    .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 28px; }
-    .card { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 22px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 8px; }
+    .card { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 18px 22px; }
     .card .tag { font-family: 'Courier New', monospace; font-size: 14px; color: var(--accent); letter-spacing: 1px; }
-    .card p { font-size: 20px; margin: 8px 0 0; }
+    .card p { font-size: 20px; margin: 6px 0 0; }
     .card .big { font-size: 38px; letter-spacing: -.03em; line-height: 1.1; margin-top: 6px; }
-    .card .big small { font-size: 18px; color: var(--muted); letter-spacing: 0; }
 
-    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 32px 0; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 20px 0 24px; }
     .stat { border-top: 2px solid var(--ink); padding-top: 12px; }
     .stat .num { font-size: clamp(34px, 4.4vw, 50px); line-height: 1; letter-spacing: -.03em; }
     .stat .cap { font-family: 'Courier New', monospace; font-size: 14px; color: var(--muted); margin-top: 8px; }
 
-    .axes { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 8px; padding: 0; list-style: none; }
+    .axes { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 8px; padding: 0; list-style: none; }
     .axes li { font-family: 'Courier New', monospace; font-size: 15px; padding: 8px 14px; border-radius: 4px; background: #e6eae0; color: var(--ink); }
     .axes li b { font-weight: bold; margin-right: 6px; }
 
-    figure { margin: 32px 0 8px; }
+    figure { margin: 20px 0 0; }
     figure img { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--rule); border-radius: 4px; }
-    figcaption { font-size: 18px; color: var(--muted); margin-top: 12px; line-height: 1.55; max-width: 64em; }
+    figcaption { font-size: 18px; color: var(--muted); margin: 12px auto 0; line-height: 1.5; max-width: 64em; }
     figcaption b { color: var(--ink); font-weight: normal; font-style: italic; }
-    .radarpair { display: grid; grid-template-columns: 35fr 60fr; gap: 24px; align-items: center; }
-    .hero-anims { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-    .hero-anims figure { margin-top: 16px; }
+    .radarpair { display: grid; grid-template-columns: 35fr 60fr; gap: 24px; align-items: center; max-width: 1100px; margin: 0 auto; }
 
-    .finding { padding-top: 40px; }
-    .finding + .finding { border-top: 1px dashed var(--rule); margin-top: 48px; }
-
-    .table-wrap { overflow-x: auto; margin: 24px 0 8px; }
+    .table-wrap { overflow: auto; margin: 16px 0 8px; max-height: calc(100vh - 360px); }
     table { border-collapse: collapse; width: 100%; font-size: 18px; background: var(--paper); }
     th, td { padding: 11px 14px; border-bottom: 1px solid var(--rule); text-align: right; white-space: nowrap; }
     th:first-child, td:first-child { text-align: left; }
@@ -87,39 +103,48 @@
     tbody th { font-weight: normal; }
     tr.sum th, tr.sum td { font-weight: bold; background: #eef0e9; }
     .note { font-size: 17px; color: var(--muted); max-width: 64em; }
-    pre { font-family: 'Courier New', monospace; font-size: 15px; background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 18px; overflow-x: auto; color: var(--muted); }
+    pre { font-family: 'Courier New', monospace; font-size: 15px; background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 18px; white-space: pre-wrap; word-break: break-word; color: var(--muted); }
 
-    /* 动画图：白底卡片 + 顶栏（标题 / 重播按钮） */
-    .anim { background: #fff; border: 1px solid var(--rule); border-radius: 4px; padding: 14px 16px 10px; position: relative; }
-    .animbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 6px; }
+    /* 动画图：白底卡片 + 顶栏（标题 / 重播按钮）；SVG 按页高缩放并居中 */
+    .anim { background: #fff; border: 1px solid var(--rule); border-radius: 4px; padding: 12px 16px 8px; position: relative; }
+    .animbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 4px; }
     .animbar .t { font-family: 'Courier New', monospace; font-size: 14px; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; }
     .animbar button { font-family: 'Courier New', monospace; font-size: 14px; padding: 6px 14px; border: 1px solid var(--rule); border-radius: 999px; background: var(--paper); color: var(--ink); cursor: pointer; }
     .animbar button:hover { border-color: var(--ink); }
     .anim svg { display: block; width: 100%; height: auto; font-family: Georgia, 'Times New Roman', serif; }
     .anim .tip { position: absolute; pointer-events: none; background: rgba(34,44,40,.94); color: #fff; font-family: 'Courier New', monospace; font-size: 14px; line-height: 1.5; padding: 8px 12px; border-radius: 6px; white-space: nowrap; display: none; z-index: 2; }
     .anim .tip b { font-weight: normal; color: #d9e0d2; }
-    .legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 8px 0 4px; padding: 0; list-style: none; font-size: 17px; color: var(--ink); }
+    .legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 20px; margin: 6px 0 2px; padding: 0; list-style: none; font-size: 17px; color: var(--ink); }
     .legend li { display: flex; align-items: center; gap: 8px; cursor: default; }
     .legend i { display: inline-block; width: 22px; height: 0; border-top: 3px solid currentColor; }
     .legend .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; border: 2px solid currentColor; background: #fff; }
 
-    footer { padding: 28px 0 40px; font-family: 'Courier New', monospace; font-size: 14px; color: #666e63; }
+    footer { padding: 28px 0 0; font-family: 'Courier New', monospace; font-size: 14px; color: #666e63; }
     footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 
+    /* 桌面且足够高的视口才启用整页对齐；窄屏/矮屏退回普通滚动 */
+    @media (min-width: 900px) and (min-height: 620px) {
+      html { scroll-snap-type: y mandatory; scroll-padding-top: var(--head); }
+    }
+    @media (max-width: 899px), (max-height: 619px) {
+      .page { height: auto; min-height: auto; padding: 52px 0; }
+      .page > .wrap { max-height: none; }
+      .split { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .split figure { height: auto; margin-top: 16px; }
+      .table-wrap { max-height: none; }
+    }
     @media (max-width: 760px) {
       .wrap { padding: 0 16px; }
       nav { display: none; }
-      .hero { padding: 56px 0 44px; }
-      section { padding: 52px 0; }
-      .grid3, .grid2, .radarpair, .hero-anims { grid-template-columns: 1fr; }
+      .grid3, .radarpair { grid-template-columns: 1fr; }
       .stats { grid-template-columns: repeat(2, 1fr); }
       p { font-size: 20px; }
       .authors { font-size: 18px; }
       figcaption { font-size: 17px; }
+      #hero-bg { right: auto; left: 50%; transform: translate(-50%, -50%); width: 90vw; opacity: .16; }
       /* 窄屏下动画图保持可读尺寸，卡片内横向滚动 */
       .anim { overflow-x: auto; }
-      #radar-anim svg { min-width: 560px; }
-      #climb-anim svg { min-width: 560px; }
+      .anim svg { min-width: 640px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
@@ -138,7 +163,8 @@
   </header>
 
   <main>
-    <div class="hero">
+    <section class="page hero" id="top">
+      <div id="hero-bg" aria-hidden="true"></div>
       <div class="wrap">
         <p class="eyebrow">PhysRSI-Eval · arXiv 2610.26848</p>
         <h1>Where is Physical RSI capability from?<span>An Observational Scaling Law of LLM-as-policy</span></h1>
@@ -150,197 +176,242 @@
           <a class="pill" href="https://github.com/PhysRSI-Eval/PhysRSI-Eval-code"><b>Code</b>GitHub</a>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- 总览：论文 Fig. 1 + benchmark 要素（工作流、任务表、五轴） -->
-    <section id="overview">
+    <!-- At a glance：两个动画各占一屏（上下排列）；数据来自本地已核验结果包 reference18 -->
+    <section class="page" id="glance-climb">
       <div class="wrap">
-        <p class="eyebrow">At a glance</p>
-        <!-- 开头两个动画并排：左 Figure 7 折线爬升，右五轴雷达（7 面板 → overlay）；数据来自本地已核验结果包 reference18 -->
-        <div class="hero-anims">
-          <figure>
-            <div class="anim" id="climb-anim">
-              <div class="animbar"><span class="t">Best mean score by round · K1 &rarr; K17</span><button type="button" data-replay>Replay</button></div>
-              <div class="tip"></div>
-            </div>
-            <figcaption><b>The climb, round by round.</b> Solid lines: best mean score reached by round <i>k</i>; faint dashed lines: the mean score of that round. Circles mark <i>T</i><sub>50</sub>, the half-gain round. Six systems on 18 tasks; hover for the values at each round.</figcaption>
-          </figure>
-          <figure>
-            <div class="anim" id="radar-anim">
-              <div class="animbar"><span class="t">Five-axis profiles · seven panels, then the overlay</span><button type="button" data-replay>Replay</button></div>
-              <div class="tip"></div>
-            </div>
-            <figcaption><b>Five-axis profiles.</b> Below: one panel per system, drawn in turn. Above: the same seven profiles overlaid. Axes clockwise from the top are First-Attempt Performance (A1), Budget (A4), Success (A3), Efficiency (A2) and Improvement (A5), on a shared 0&ndash;1 scale. Hover a profile or a legend entry to isolate it. *Gemini 4 uses its ten evaluated tasks.</figcaption>
-          </figure>
-        </div>
+        <p class="eyebrow">At a glance · 1 / 2</p>
+        <figure>
+          <div class="anim" id="climb-anim">
+            <div class="animbar"><span class="t">Best mean score by round · K1 &rarr; K17</span><button type="button" data-replay>Replay</button></div>
+            <div class="tip"></div>
+          </div>
+          <figcaption><b>The climb, round by round.</b> Solid lines: best mean score reached by round <i>k</i>; faint dashed lines: the mean score of that round. Circles mark <i>T</i><sub>50</sub>, the half-gain round. Six systems on 18 tasks; hover for the values at each round.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="page" id="glance-radar">
+      <div class="wrap">
+        <p class="eyebrow">At a glance · 2 / 2</p>
+        <figure>
+          <div class="anim" id="radar-anim">
+            <div class="animbar"><span class="t">Five-axis profiles · seven panels, then the overlay</span><button type="button" data-replay>Replay</button></div>
+            <div class="tip"></div>
+          </div>
+          <figcaption><b>Five-axis profiles.</b> Right: one panel per system, drawn in turn. Left: the same seven profiles overlaid. Axes clockwise from the top are First-Attempt Performance (A1), Budget (A4), Success (A3), Efficiency (A2) and Improvement (A5), on a shared 0&ndash;1 scale. Hover a profile or a legend entry to isolate it. *Gemini 4 uses its ten evaluated tasks.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="page" id="teaser">
+      <div class="wrap">
+        <p class="eyebrow">Overview</p>
         <figure>
           <img src="static/img/teaser.jpg" alt="Overview with three rows. Q1: two barrels with staves for harness, coding, spatial and perception; a spatial bottleneck for First-Attempt Performance, Efficiency and Budget, and a perception bottleneck for Success and Improvement. Q2: public benchmarks predict the turning point and rank of each system's best-score curve, next to a five-axis radar. Q3: reusable operations transfer from stacking blocks to covering blocks with a cup, and from key insertion to plugging a charger.">
           <figcaption><b>PhysRSI-eval at a glance.</b> (Q1)&nbsp;Capability sources and the Physical Barrel Hypothesis. (Q2)&nbsp;Five-axis quantification and observational scaling of performance, gain timing and model rankings. <i>T</i><sub>50</sub> is the half-gain round, the first round at which the best mean score reaches half of its K1&ndash;K17 gain. (Q3)&nbsp;Overfitting and generalization across tasks and scenes.</figcaption>
         </figure>
-
-        <h3 style="margin-top:56px">Benchmark: a controlled loop of physical attempts</h3>
-        <div class="stats">
-          <div class="stat"><div class="num">18</div><div class="cap">RoboDojo manipulation tasks</div></div>
-          <div class="stat"><div class="num">K0 + 17</div><div class="cap">first attempt + self-improvement rounds</div></div>
-          <div class="stat"><div class="num">5</div><div class="cap">axes of physical RSI</div></div>
-          <div class="stat"><div class="num">6 + 1</div><div class="cap">systems (+ Gemini 4 on ten tasks)</div></div>
-        </div>
-        <ul class="axes">
-          <li><b>A1</b>First-Attempt Performance</li>
-          <li><b>A2</b>Efficiency</li>
-          <li><b>A3</b>Success</li>
-          <li><b>A4</b>Budget</li>
-          <li><b>A5</b>Improvement</li>
-        </ul>
-        <figure>
-          <img src="static/img/workflow.jpg" alt="Shared task input and robot interface on top; left, the Evaluate stage K0 with one in-context observe, reason, act episode and no workspace; right, the Optimize stage K1 to KH with a persistent workspace of skills, tools, policy and memory, native grading, revision with robot actions closed, and commit." loading="lazy" style="max-width:960px;margin:0 auto">
-          <figcaption><b>Two stages, one interface.</b> Left, <i>Evaluate</i> (K0): one in-context episode through the shared tools, with no workspace. Right, <i>Optimize</i> (K1&ndash;K<i>H</i>): each round runs from a persistent workspace of skills, tools, policy and memory, is graded natively, revised with robot actions closed, and committed, until the first native success or the round limit.</figcaption>
-        </figure>
-        <figure>
-          <img src="static/img/task_table.jpg" alt="The 18 RoboDojo tasks arranged by difficulty stratum D1 to D6, three tasks each, covering RoboDojo's five official task categories." loading="lazy">
-          <figcaption><b>Difficulty-balanced task sampling.</b> Three tasks per difficulty stratum, from D1 (highest official RoboDojo success rate) to D6 (lowest), covering RoboDojo's five official task categories.</figcaption>
-        </figure>
-        <p class="agents" style="font-size:19px;color:var(--muted);margin-top:16px">Systems: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol, GPT-5.6 Sol, Claude Opus 5.5, Claude Sonnet 5.5; Gemini 4 in a separate ten-task run.</p>
       </div>
     </section>
 
-    <section id="q1">
+    <section class="page" id="benchmark">
+      <div class="wrap">
+        <p class="eyebrow">Benchmark</p>
+        <h3>A controlled loop of physical attempts</h3>
+        <div class="split">
+          <div class="col">
+            <div class="stats two">
+              <div class="stat"><div class="num">18</div><div class="cap">RoboDojo manipulation tasks</div></div>
+              <div class="stat"><div class="num">K0 + 17</div><div class="cap">first attempt + self-improvement rounds</div></div>
+              <div class="stat"><div class="num">5</div><div class="cap">axes of physical RSI</div></div>
+              <div class="stat"><div class="num">6 + 1</div><div class="cap">systems (+ Gemini 4 on ten tasks)</div></div>
+            </div>
+            <ul class="axes">
+              <li><b>A1</b>First-Attempt Performance</li>
+              <li><b>A2</b>Efficiency</li>
+              <li><b>A3</b>Success</li>
+              <li><b>A4</b>Budget</li>
+              <li><b>A5</b>Improvement</li>
+            </ul>
+          </div>
+          <figure>
+            <img src="static/img/workflow.jpg" alt="Shared task input and robot interface on top; left, the Evaluate stage K0 with one in-context observe, reason, act episode and no workspace; right, the Optimize stage K1 to KH with a persistent workspace of skills, tools, policy and memory, native grading, revision with robot actions closed, and commit." loading="lazy">
+            <figcaption><b>Two stages, one interface.</b> Left, <i>Evaluate</i> (K0): one in-context episode, no workspace. Right, <i>Optimize</i> (K1&ndash;K<i>H</i>): each round runs from a persistent workspace of skills, tools, policy and memory, is graded natively, revised with robot actions closed, and committed, until the first native success or the round limit.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="tasks">
+      <div class="wrap">
+        <p class="eyebrow">Benchmark</p>
+        <h3>Tasks across difficulty levels</h3>
+        <figure>
+          <img src="static/img/task_table.jpg" alt="The 18 RoboDojo tasks arranged by difficulty stratum D1 to D6, three tasks each, covering RoboDojo's five official task categories." loading="lazy">
+          <figcaption><b>Difficulty-balanced task sampling.</b> Three tasks per difficulty stratum, from D1 (highest official RoboDojo success rate) to D6 (lowest), covering RoboDojo's five official task categories. Systems: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol, GPT-5.6 Sol, Claude Opus 5.5, Claude Sonnet 5.5; Gemini 4 in a separate ten-task run.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="page" id="q1">
       <div class="wrap">
         <p class="eyebrow">Q1</p>
         <h2>Where is Physical RSI capability from?</h2>
-        <p class="lead">Rank associations between four public capability groups and the five axes, six systems on 18 tasks.</p>
         <div class="grid3">
           <div class="card"><span class="tag">Spatial</span><div class="big">&rho; = 0.94</div><p>with A1; 0.83 with A2 and A4</p></div>
           <div class="card"><span class="tag">Perception</span><div class="big">&rho; = 0.94</div><p>with A3 and A5</p></div>
           <div class="card"><span class="tag">Coding</span><div class="big">&rho; &le; 0.37</div><p>weakest association with every axis</p></div>
         </div>
-        <figure>
-          <img src="static/img/barrel_matrix.jpg" alt="Left: rank-association matrix between four capability groups (spatial, harness, perception, coding) and the five RSI axes across six systems. Right: one barrel per RSI axis with a stave per capability group." loading="lazy">
-          <figcaption><b>Capability associations and the barrel hypothesis.</b> The matrix reports exploratory rank associations across six systems on the 18 tasks. Each barrel represents one RSI axis, with a stave per capability group. Stave heights illustrate a proposed bottleneck interpretation of the associations.</figcaption>
-        </figure>
-        <div class="callout barrel">
-          <span class="label">Physical Barrel Hypothesis</span>
-          <p>Different aspects of improvement may have different capability bottlenecks: spatial reasoning for starting well, perception for interpreting failures and recovering from them. Strong coding cannot always compensate for a weakness elsewhere.</p>
+        <div class="split" style="margin-top:20px">
+          <div class="col">
+            <div class="callout barrel">
+              <span class="label">Physical Barrel Hypothesis</span>
+              <p>Different aspects of improvement may have different capability bottlenecks: spatial reasoning for starting well, perception for recovering from failure. Strong coding cannot always compensate for a weakness elsewhere.</p>
+            </div>
+          </div>
+          <figure>
+            <img src="static/img/barrel_matrix.jpg" alt="Left: rank-association matrix between four capability groups (spatial, harness, perception, coding) and the five RSI axes across six systems. Right: one barrel per RSI axis with a stave per capability group." loading="lazy">
+            <figcaption><b>Capability associations and the barrel hypothesis.</b> Exploratory rank associations across six systems on the 18 tasks. Each barrel represents one RSI axis, with a stave per capability group; stave heights illustrate a proposed bottleneck interpretation.</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
-    <section id="q2">
+    <section class="page" id="q2">
       <div class="wrap">
         <p class="eyebrow">Q2</p>
         <h2>How can we quantify Physical RSI and its scaling law?</h2>
-
-        <div class="finding" style="padding-top:8px">
-          <h3>Five-axis profiles</h3>
-          <p class="lead">Higher attained scores can come with later gains and greater physical costs: Opus 5.5 beats GPT-6.1 Sol on Success (0.744 vs 0.703) but trails on Efficiency (0.609 vs 0.822) and Budget (0.579 vs 0.808).</p>
-          <div class="table-wrap"><table>
-            <thead><tr><th>System</th><th>Tasks</th><th>A1 First-Attempt</th><th>A2 Efficiency</th><th>A3 Success</th><th>A4 Budget</th><th>A5 Improvement</th></tr></thead>
-            <tbody>
-              <tr><th>GPT-6 Astra</th><td>18</td><td>0.3676</td><td>0.8594</td><td>0.8509</td><td>0.8429</td><td>0.7500</td></tr>
-              <tr><th>GPT-6.1 Sol</th><td>18</td><td>0.2843</td><td>0.8224</td><td>0.7028</td><td>0.8081</td><td>0.5714</td></tr>
-              <tr><th>GPT-6 Sol</th><td>18</td><td>0.0306</td><td>0.4658</td><td>0.4722</td><td>0.3718</td><td>0.3889</td></tr>
-              <tr><th>GPT-5.6 Sol</th><td>18</td><td>0.0120</td><td>0.2247</td><td>0.1037</td><td>0.3013</td><td>0.0556</td></tr>
-              <tr><th>Claude Opus 5.5</th><td>18</td><td>0.1769</td><td>0.6091</td><td>0.7444</td><td>0.5794</td><td>0.6875</td></tr>
-              <tr><th>Claude Sonnet 5.5</th><td>18</td><td>0.1241</td><td>0.6946</td><td>0.7006</td><td>0.6984</td><td>0.5625</td></tr>
-              <tr><th>Gemini 4*</th><td>10</td><td>0.0500</td><td>0.7831</td><td>0.6350</td><td>0.6241</td><td>0.6000</td></tr>
-            </tbody>
-          </table></div>
-          <p class="note"><b>Five-axis profiles.</b> K0 scores are averaged over three runs per task. *Gemini 4 is evaluated on ten tasks with one K0 run per task.</p>
-
-          <figure>
-            <div class="radarpair">
-              <img src="static/img/radar_overlay_7models.svg" alt="Seven five-axis profiles overlaid on one radar chart." loading="lazy">
-              <img src="static/img/radar_panels_7models.svg" alt="One five-axis radar panel per system: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol, GPT-5.6 Sol, Opus 5.5, Sonnet 5.5 and Gemini 4." loading="lazy">
-            </div>
-            <figcaption><b>Five-axis profiles, as drawn in the paper.</b> Left: seven overlaid profiles. Right: one panel per system.</figcaption>
-          </figure>
-        </div>
-
-        <div class="finding">
-          <h3>Public capability and physical RSI separate differently</h3>
-          <p class="lead">Across the four GPT systems, mean public benchmark scores span 24 points; the physical profile mean spans 59.5 points. GPT-5.6 Sol stays near zero cumulative success for 16 rounds.</p>
-          <figure>
-            <img src="static/img/figure4_success_benchmark_area.svg" alt="Left: cumulative success over refinement rounds for the GPT systems, with a shaded gap between GPT-6.1 Sol and GPT-6 Sol. Right: mean public benchmark score versus the mean of the five physical RSI axes." loading="lazy">
-            <figcaption><b>Public capability and physical RSI separate differently.</b> Left: cumulative success during refinement on 18 tasks; the shaded region marks the gap between GPT-6.1 Sol and GPT-6 Sol. Right: mean public score over 17 selected benchmarks versus 100&times;(A1+A2+A3+A4+A5)/5.</figcaption>
-          </figure>
-        </div>
-
-        <div class="finding">
-          <h3>Observational scaling: how far, and how early?</h3>
-          <p class="lead">Best mean score reached by each round on the 18 tasks. Circles mark <i>T</i><sub>50</sub>, the half-gain round. Public capability profiles reproduce the observed order of both the best score by K17 and <i>T</i><sub>50</sub>.</p>
-          <figure>
-            <img src="static/img/half_gain_round_prediction.svg" alt="Left: four capability profiles of each system from 17 public benchmarks. Right: best mean score by round for six systems, with circles at the half-gain round and predicted / observed rank labels." loading="lazy">
-            <figcaption><b>Predicting the timing of gains from public capability profiles.</b> Left: four capability profiles of each system, computed from 17 public benchmarks as normalized ranks among the six systems. Right: best mean score on the 18 tasks. Labels give predicted / observed ranks: <i>T</i><sub>50</sub> beside the circles and best score reached by K17 on the right. Each pair of systems is predicted from the other four.</figcaption>
-          </figure>
-        </div>
-
-        <div class="finding">
-          <h3>What can early physical feedback predict?</h3>
-          <p class="lead">A Weibull template fitted to Astra, calibrated on GPT-6.1 Sol's K1&ndash;K5, forecasts K6&ndash;K17 with mean absolute error 0.019, versus 0.112 for holding the last observed score.</p>
-          <figure>
-            <img src="static/img/astra_shape_transfer.svg" alt="Left: Astra's mean score with a fitted Weibull template. Right: GPT-6.1 Sol's observed K1 to K5 scores, the forecast through K17 with a 90% bootstrap band, and the hidden actual rounds." loading="lazy">
-            <figcaption><b>Forecasting GPT-6.1 Sol from Astra's improvement shape.</b> Left: Astra's mean score and the Weibull template fitted to it. Right: GPT-6.1 Sol with K1&ndash;K5 available; the template forecasts the hidden rounds through K17, with the 90% paired-task bootstrap band shaded.</figcaption>
-          </figure>
-        </div>
+        <p class="lead">Higher attained scores can come with later gains and greater physical costs: Opus 5.5 beats GPT-6.1 Sol on Success (0.744 vs 0.703) but trails on Efficiency (0.609 vs 0.822) and Budget (0.579 vs 0.808).</p>
+        <div class="table-wrap"><table>
+          <thead><tr><th>System</th><th>Tasks</th><th>A1 First-Attempt</th><th>A2 Efficiency</th><th>A3 Success</th><th>A4 Budget</th><th>A5 Improvement</th></tr></thead>
+          <tbody>
+            <tr><th>GPT-6 Astra</th><td>18</td><td>0.3676</td><td>0.8594</td><td>0.8509</td><td>0.8429</td><td>0.7500</td></tr>
+            <tr><th>GPT-6.1 Sol</th><td>18</td><td>0.2843</td><td>0.8224</td><td>0.7028</td><td>0.8081</td><td>0.5714</td></tr>
+            <tr><th>GPT-6 Sol</th><td>18</td><td>0.0306</td><td>0.4658</td><td>0.4722</td><td>0.3718</td><td>0.3889</td></tr>
+            <tr><th>GPT-5.6 Sol</th><td>18</td><td>0.0120</td><td>0.2247</td><td>0.1037</td><td>0.3013</td><td>0.0556</td></tr>
+            <tr><th>Claude Opus 5.5</th><td>18</td><td>0.1769</td><td>0.6091</td><td>0.7444</td><td>0.5794</td><td>0.6875</td></tr>
+            <tr><th>Claude Sonnet 5.5</th><td>18</td><td>0.1241</td><td>0.6946</td><td>0.7006</td><td>0.6984</td><td>0.5625</td></tr>
+            <tr><th>Gemini 4*</th><td>10</td><td>0.0500</td><td>0.7831</td><td>0.6350</td><td>0.6241</td><td>0.6000</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note"><b>Five-axis profiles.</b> K0 scores are averaged over three runs per task. *Gemini 4 is evaluated on ten tasks with one K0 run per task.</p>
       </div>
     </section>
 
-    <section id="q3">
+    <section class="page" id="q2-radar">
+      <div class="wrap">
+        <p class="eyebrow">Q2 · Five-axis profiles</p>
+        <figure>
+          <div class="radarpair">
+            <img src="static/img/radar_overlay_7models.svg" alt="Seven five-axis profiles overlaid on one radar chart." loading="lazy">
+            <img src="static/img/radar_panels_7models.svg" alt="One five-axis radar panel per system: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol, GPT-5.6 Sol, Opus 5.5, Sonnet 5.5 and Gemini 4." loading="lazy">
+          </div>
+          <figcaption><b>Five-axis profiles, as drawn in the paper.</b> Left: seven overlaid profiles. Right: one panel per system. Axes clockwise from the top are First-Attempt Performance (A1), Budget (A4), Success (A3), Efficiency (A2) and Improvement (A5).</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="page" id="q2-killzone">
+      <div class="wrap">
+        <p class="eyebrow">Q2 · Public capability vs. physical RSI</p>
+        <h3>Public capability and physical RSI separate differently</h3>
+        <p class="lead">Across the four GPT systems, mean public benchmark scores span 24 points; the physical profile mean spans 59.5 points. GPT-5.6 Sol stays near zero cumulative success for 16 rounds.</p>
+        <figure>
+          <img src="static/img/figure4_success_benchmark_area.svg" alt="Left: cumulative success over refinement rounds for the GPT systems, with a shaded gap between GPT-6.1 Sol and GPT-6 Sol. Right: mean public benchmark score versus the mean of the five physical RSI axes." loading="lazy">
+          <figcaption><b>Public capability and physical RSI separate differently.</b> Left: cumulative success during refinement on 18 tasks; the shaded region marks the gap between GPT-6.1 Sol and GPT-6 Sol. Right: mean public score over 17 selected benchmarks versus 100&times;(A1+A2+A3+A4+A5)/5.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="page" id="q2-k50">
+      <div class="wrap">
+        <p class="eyebrow">Q2 · Observational scaling</p>
+        <h3>How far, and how early?</h3>
+        <p class="lead">Public capability profiles reproduce the observed order of both the best score by K17 and <i>T</i><sub>50</sub>, the half-gain round.</p>
+        <figure>
+          <img src="static/img/half_gain_round_prediction.svg" alt="Left: four capability profiles of each system from 17 public benchmarks. Right: best mean score by round for six systems, with circles at the half-gain round and predicted / observed rank labels." loading="lazy">
+          <figcaption><b>Predicting the timing of gains from public capability profiles.</b> Left: four capability profiles of each system, computed from 17 public benchmarks as normalized ranks among the six systems. Right: best mean score on the 18 tasks. Labels give predicted / observed ranks; each pair of systems is predicted from the other four.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="page" id="q2-forecast">
+      <div class="wrap">
+        <p class="eyebrow">Q2 · Early physical feedback</p>
+        <h3>What can early physical feedback predict?</h3>
+        <p class="lead">A Weibull template fitted to Astra, calibrated on GPT-6.1 Sol's K1&ndash;K5, forecasts K6&ndash;K17 with mean absolute error 0.019, versus 0.112 for holding the last observed score.</p>
+        <figure>
+          <img src="static/img/astra_shape_transfer.svg" alt="Left: Astra's mean score with a fitted Weibull template. Right: GPT-6.1 Sol's observed K1 to K5 scores, the forecast through K17 with a 90% bootstrap band, and the hidden actual rounds." loading="lazy">
+          <figcaption><b>Forecasting GPT-6.1 Sol from Astra's improvement shape.</b> Left: Astra's mean score and the Weibull template fitted to it. Right: GPT-6.1 Sol with K1&ndash;K5 available; the template forecasts the hidden rounds through K17, with the 90% paired-task bootstrap band shaded.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="page" id="q3">
       <div class="wrap">
         <p class="eyebrow">Q3</p>
         <h2>Does Physical RSI reflect overfitting or generalization?</h2>
-        <p class="lead">Remove history, freeze workspaces on unseen layouts, and transfer them across tasks.</p>
         <figure>
           <img src="static/img/cross_task_transfer.jpg" alt="Three task chains with and without a transferred workspace: first success moves from K9 to K1 for Sonnet 5.5 on Cover Blocks, from K14 to K7 for Opus 5.5 on Organize Table, and from K15 to K8 for Opus 5.5 on Deposit Coin." loading="lazy">
           <figcaption><b>Cross-task workspace transfer.</b> Top: original trajectories for tasks first solved at K6 or later. Bottom: trajectories initialized from a workspace pooled from all other tasks. First success advances from K9 to K1 (Sonnet 5.5, Cover Blocks), K14 to K7 (Opus 5.5, Organize Table) and K15 to K8 (Opus 5.5, Deposit Coin).</figcaption>
         </figure>
-
-        <div class="finding">
-          <h3>Does retained experience help beyond repeated attempts?</h3>
-          <p class="lead">Astra ablation on six tasks, two chains each, layouts changing every round. Late-round success: 41.7% with the full loop, 8.3% without history.</p>
-          <div class="table-wrap"><table>
-            <thead><tr><th>Round</th><th>Full loop</th><th>Fixed layout</th><th>No earlier images</th><th>No grader feedback</th><th>Workspace + grader only</th><th>No history</th></tr></thead>
-            <tbody>
-              <tr><th>K1</th><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
-              <tr><th>K2</th><td>2</td><td>3</td><td>1</td><td>2</td><td>1</td><td>2</td></tr>
-              <tr><th>K3</th><td>6</td><td>6</td><td>3</td><td>2</td><td>2</td><td>1</td></tr>
-              <tr><th>K4</th><td>6</td><td>8</td><td>4</td><td>2</td><td>7</td><td>0</td></tr>
-              <tr><th>K5</th><td>5</td><td>7</td><td>3</td><td>2</td><td>3</td><td>0</td></tr>
-              <tr><th>K6</th><td>4</td><td>7</td><td>5</td><td>1</td><td>7</td><td>3</td></tr>
-              <tr class="sum"><th>K4&ndash;K6</th><td>15/36</td><td>22/36</td><td>12/36</td><td>5/36</td><td>17/36</td><td>3/36</td></tr>
-            </tbody>
-          </table></div>
-          <p class="note"><b>Per-round online success in the Astra ablation.</b> Successes out of 12 chains per condition and round; K1&ndash;K6 run in full.</p>
-        </div>
-
-        <div class="finding">
-          <h3>What survives when revision stops?</h3>
-          <p class="lead">Astra workspaces frozen after K6 and run on five unseen layouts, with no revision or feedback.</p>
-          <div class="table-wrap"><table>
-            <thead><tr><th>Condition</th><th>Sources</th><th>Successes / n</th><th>Rate</th></tr></thead>
-            <tbody>
-              <tr><th>Full-loop workspaces; workspace files only</th><td>12</td><td>25/60</td><td>41.7%</td></tr>
-              <tr><th>Full-loop workspaces; test agent may read prior raw records</th><td>12</td><td>23/60</td><td>38.3%</td></tr>
-              <tr><th>Fixed-layout workspaces on new layouts</th><td>12</td><td>27/60</td><td>45.0%</td></tr>
-              <tr><th>No-image workspaces (incomplete)</th><td>9 (6)</td><td>13/35</td><td>37.1%</td></tr>
-              <tr><th>No-grader workspaces (incomplete)</th><td>6 (1)</td><td>5/21</td><td>23.8%</td></tr>
-            </tbody>
-          </table></div>
-          <p class="note"><b>Frozen held-out test of Astra K6 workspaces.</b> 12 sources &times; 5 held-out layouts for the complete conditions; fixed-layout sources reach 45.0% on held-out layouts versus 88% (14/16) on their own layout.</p>
-        </div>
-
-        <div class="finding">
-          <h3>Can experience help on a different task?</h3>
-          <p class="lead">Sonnet 5.5 and Opus 5.5 encode control in self-written tools that generate over 96% of later-round actions; Opus reuses the broadest toolbox (lineage reuse 0.347 vs 0.167 for Sonnet and 0.086 for GPT-6 Sol).</p>
-          <figure>
-            <img src="static/img/tools_reuse.svg" alt="Three panels for GPT-6.1 Sol, GPT-6 Sol, Sonnet 5.5 and Opus 5.5: total tool counts split into perception and geometry tools versus action tools; reusable rate of tool lineages; and reuse breadth." loading="lazy">
-            <figcaption><b>Tool libraries and reuse across models.</b> (a)&nbsp;Total tool counts and the proportions of perception and geometry tools versus action tools. (b)&nbsp;Fraction of tool lineages reused in subsequent rounds. (c)&nbsp;Reuse breadth: one minus the share of subsequent calls accounted for by the top 10% of reused lineages. Astra is omitted because it creates very few tools; GPT-6.1 Sol's estimates reflect a library of seven tools.</figcaption>
-          </figure>
-        </div>
       </div>
     </section>
 
-    <section id="cite">
+    <section class="page" id="q3-ablation">
+      <div class="wrap">
+        <p class="eyebrow">Q3 · Ablation</p>
+        <h3>Does retained experience help beyond repeated attempts?</h3>
+        <p class="lead">Astra ablation on six tasks, two chains each, layouts changing every round. Late-round success: 41.7% with the full loop, 8.3% without history.</p>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Round</th><th>Full loop</th><th>Fixed layout</th><th>No earlier images</th><th>No grader feedback</th><th>Workspace + grader only</th><th>No history</th></tr></thead>
+          <tbody>
+            <tr><th>K1</th><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+            <tr><th>K2</th><td>2</td><td>3</td><td>1</td><td>2</td><td>1</td><td>2</td></tr>
+            <tr><th>K3</th><td>6</td><td>6</td><td>3</td><td>2</td><td>2</td><td>1</td></tr>
+            <tr><th>K4</th><td>6</td><td>8</td><td>4</td><td>2</td><td>7</td><td>0</td></tr>
+            <tr><th>K5</th><td>5</td><td>7</td><td>3</td><td>2</td><td>3</td><td>0</td></tr>
+            <tr><th>K6</th><td>4</td><td>7</td><td>5</td><td>1</td><td>7</td><td>3</td></tr>
+            <tr class="sum"><th>K4&ndash;K6</th><td>15/36</td><td>22/36</td><td>12/36</td><td>5/36</td><td>17/36</td><td>3/36</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note"><b>Per-round online success in the Astra ablation.</b> Successes out of 12 chains per condition and round; K1&ndash;K6 run in full.</p>
+      </div>
+    </section>
+
+    <section class="page" id="q3-frozen">
+      <div class="wrap">
+        <p class="eyebrow">Q3 · Frozen workspaces</p>
+        <h3>What survives when revision stops?</h3>
+        <p class="lead">Astra workspaces frozen after K6 and run on five unseen layouts, with no revision or feedback.</p>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Condition</th><th>Sources</th><th>Successes / n</th><th>Rate</th></tr></thead>
+          <tbody>
+            <tr><th>Full-loop workspaces; workspace files only</th><td>12</td><td>25/60</td><td>41.7%</td></tr>
+            <tr><th>Full-loop workspaces; test agent may read prior raw records</th><td>12</td><td>23/60</td><td>38.3%</td></tr>
+            <tr><th>Fixed-layout workspaces on new layouts</th><td>12</td><td>27/60</td><td>45.0%</td></tr>
+            <tr><th>No-image workspaces (incomplete)</th><td>9 (6)</td><td>13/35</td><td>37.1%</td></tr>
+            <tr><th>No-grader workspaces (incomplete)</th><td>6 (1)</td><td>5/21</td><td>23.8%</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note"><b>Frozen held-out test of Astra K6 workspaces.</b> 12 sources &times; 5 held-out layouts for the complete conditions; fixed-layout sources reach 45.0% on held-out layouts versus 88% (14/16) on their own layout.</p>
+      </div>
+    </section>
+
+    <section class="page" id="q3-tools">
+      <div class="wrap">
+        <p class="eyebrow">Q3 · Tool reuse</p>
+        <h3>Can experience help on a different task?</h3>
+        <p class="lead">Sonnet 5.5 and Opus 5.5 encode control in self-written tools that generate over 96% of later-round actions; Opus reuses the broadest toolbox (lineage reuse 0.347 vs 0.167 for Sonnet and 0.086 for GPT-6 Sol).</p>
+        <figure>
+          <img src="static/img/tools_reuse.svg" alt="Three panels for GPT-6.1 Sol, GPT-6 Sol, Sonnet 5.5 and Opus 5.5: total tool counts split into perception and geometry tools versus action tools; reusable rate of tool lineages; and reuse breadth." loading="lazy">
+          <figcaption><b>Tool libraries and reuse across models.</b> (a)&nbsp;Total tool counts and the proportions of perception and geometry tools versus action tools. (b)&nbsp;Fraction of tool lineages reused in subsequent rounds. (c)&nbsp;Reuse breadth: one minus the share of subsequent calls accounted for by the top 10% of reused lineages. Astra is omitted because it creates very few tools; GPT-6.1 Sol's estimates reflect a library of seven tools.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="page" id="cite" style="border-bottom:0">
       <div class="wrap">
         <p class="eyebrow">Citation</p>
         <pre>@misc{li2026physicalrsicapabilityfrom,
@@ -352,13 +423,16 @@
   primaryClass={cs.RO},
   url={https://arxiv.org/abs/2610.26848}
 }</pre>
+        <div class="links">
+          <a class="pill" href="https://arxiv.org/abs/2610.26848"><b>Paper</b>arXiv 2610.26848</a>
+          <a class="pill" href="https://github.com/PhysRSI-Eval/PhysRSI-Eval-code"><b>Code</b>GitHub</a>
+        </div>
       </div>
+      <footer>
+        <div class="wrap"><span>PhysRSI-Eval · Galbot Team</span><span>Stay curious. Stay tuned.</span></div>
+      </footer>
     </section>
   </main>
-
-  <footer>
-    <div class="wrap"><span>PhysRSI-Eval · Galbot Team</span><span>Stay curious. Stay tuned.</span></div>
-  </footer>
 
 <script>
 (function () {
@@ -388,6 +462,14 @@
     sonnet: [0.1241, 0.1667, 0.3528, 0.3194, 0.4000, 0.3778, 0.3861, 0.5139, 0.5694, 0.6278, 0.6222, 0.6250, 0.6222, 0.7000, 0.6944, 0.7000, 0.7083, 0.7000]
   };
 
+  // 雷达几何：轴顺序与论文一致，从顶部顺时针 A1, A4, A3, A2, A5
+  var AXES = [{ i: 0, s: 'A1', n: 'First-Attempt Performance' }, { i: 3, s: 'A4', n: 'Budget' }, { i: 2, s: 'A3', n: 'Success' }, { i: 1, s: 'A2', n: 'Efficiency' }, { i: 4, s: 'A5', n: 'Improvement' }];
+  var ang = function (j) { return -Math.PI / 2 + j * 2 * Math.PI / 5; };
+  var pt = function (cx, cy, r, j, v) { return [cx + r * v * Math.cos(ang(j)), cy + r * v * Math.sin(ang(j))]; };
+  var poly = function (cx, cy, r, vals) { return AXES.map(function (a, j) { return pt(cx, cy, r, j, vals[a.i]); }); };
+  var pts = function (p) { return p.map(function (q) { return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' '); };
+  function lerpPts(a, b, t) { return a.map(function (p, i) { return [p[0] + (b[i][0] - p[0]) * t, p[1] + (b[i][1] - p[1]) * t]; }); }
+
   function el(tag, attrs, parent) {
     var n = document.createElementNS(NS, tag);
     for (var k in attrs) n.setAttribute(k, attrs[k]);
@@ -401,6 +483,21 @@
   }
   function ease(t) { return t < 0 ? 0 : t > 1 ? 1 : 1 - Math.pow(1 - t, 3); }
   function fmt(v) { return (v * 100).toFixed(1) + '%'; }
+
+  // 同心五边形网格 + 辐条 + 轴标签；short 为真时用轴号，否则用全名
+  function radarFrame(svg, c, short, opts) {
+    opts = opts || {};
+    [0.25, 0.5, 0.75, 1].forEach(function (v) {
+      el('polygon', { points: pts(poly(c.cx, c.cy, c.r, [v, v, v, v, v])), fill: v === 1 ? (opts.face || '#fbfbf9') : 'none', stroke: opts.grid || GRID, 'stroke-width': opts.gridWidth || 1 }, svg);
+    });
+    AXES.forEach(function (a, j) {
+      var p = pt(c.cx, c.cy, c.r, j, 1);
+      el('line', { x1: c.cx, y1: c.cy, x2: p[0], y2: p[1], stroke: opts.grid || GRID, 'stroke-width': opts.gridWidth || 1 }, svg);
+      var q = pt(c.cx, c.cy, c.r + (opts.labelGap || (short ? 10 : 28)), j, 1);
+      var anchor = Math.abs(Math.cos(ang(j))) < 0.2 ? 'middle' : (Math.cos(ang(j)) > 0 ? 'start' : 'end');
+      text(svg, q[0], q[1] + (opts.fontSize || (short ? 13 : 18)) / 3, short ? a.s : a.n, { 'text-anchor': anchor, 'font-size': opts.fontSize || (short ? 13 : 18), fill: opts.labelFill || (short ? MUTED : INK) });
+    });
+  }
 
   // 统一的动画调度：每个动画是一个 (t) => void 的绘制函数，Replay 时从头跑一遍
   function runner(duration, draw, done) {
@@ -416,12 +513,12 @@
       stop: function () { if (raf) cancelAnimationFrame(raf); }
     };
   }
-  // 滚入视口时自动播放一次；之后由 Replay 按钮控制
+  // 每次滚入视口都重新播放一次（整页对齐后像翻页一样）；Replay 按钮随时可重播
   function autoplay(node, play) {
     if (!('IntersectionObserver' in window)) { play(); return; }
     var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { io.disconnect(); play(); } });
-    }, { threshold: 0.35 });
+      es.forEach(function (e) { if (e.isIntersecting) play(); });
+    }, { threshold: 0.5 });
     io.observe(node);
   }
   function tooltip(box, tip, x, y, html) {
@@ -434,12 +531,44 @@
     tip.style.left = (left + box.scrollLeft) + 'px'; tip.style.top = top + 'px';
   }
 
+  /* ---------------- 首页背景：叠加雷达循环动画 ---------------- */
+  (function heroBg() {
+    var host = document.getElementById('hero-bg'); if (!host) return;
+    var W = 800, c = { cx: 400, cy: 410, r: 300 };
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + W, 'aria-hidden': 'true' }, host);
+    radarFrame(svg, c, false, { face: 'none', grid: '#a9b4bd', gridWidth: 1.5, labelGap: 40, fontSize: 24, labelFill: '#6b7883' });
+    var items = SYS.map(function (s) {
+      var target = poly(c.cx, c.cy, c.r, s.a), center = target.map(function () { return [c.cx, c.cy]; });
+      var g = el('g', { opacity: 0 }, svg);
+      var p = el('polygon', { points: pts(center), fill: s.color, 'fill-opacity': 0.14, stroke: s.color, 'stroke-width': 3.5, 'stroke-linejoin': 'round' }, g);
+      var dots = target.map(function (q) { return el('circle', { cx: q[0], cy: q[1], r: 7, fill: '#fff', stroke: s.color, 'stroke-width': 3 }, g); });
+      return { target: target, center: center, g: g, p: p, dots: dots };
+    });
+    // 一个循环：第 i 个多边形在 [0.8 i, 0.8 i + 0.9] 秒内从中心长出，停留到 8.8 秒，随后 1 秒内整体淡出
+    var CYCLE = 9.8;
+    function draw(sec) {
+      var fade = sec > 8.8 ? 1 - (sec - 8.8) / 1 : 1;
+      items.forEach(function (it, i) {
+        var g = ease((sec - 0.8 * i) / 0.9);
+        it.p.setAttribute('points', pts(lerpPts(it.center, it.target, g)));
+        it.g.setAttribute('opacity', (g > 0 ? 1 : 0) * Math.max(0, fade));
+        it.dots.forEach(function (d) { d.setAttribute('opacity', g >= 1 ? 1 : 0); });
+      });
+    }
+    if (REDUCED) { draw(8); return; }
+    var start = null;
+    (function loop(now) {
+      if (start === null) start = now;
+      draw(((now - start) / 1000) % CYCLE);
+      requestAnimationFrame(loop);
+    })(performance.now());
+  })();
+
   /* ---------------- Figure 7：折线爬升动画 ---------------- */
   (function climb() {
     var box = document.getElementById('climb-anim'); if (!box) return;
     var tip = box.querySelector('.tip');
-    // 与右侧雷达卡片并排，取较窄、较高的画布；右侧留出终点标签的宽度
-    var W = 720, HGT = 640, L = 56, R = 172, T = 36, B = 50;
+    var W = 960, HGT = 500, L = 64, R = 190, T = 36, B = 54;
     var H = 17, X0 = L, X1 = W - R, Y0 = T, Y1 = HGT - B;
     var xs = function (k) { return X0 + (X1 - X0) * (k - 1) / (H - 1); };
     var ys = function (v) { return Y1 - (Y1 - Y0) * v; };
@@ -466,7 +595,7 @@
     });
     text(svg, (X0 + X1) / 2, HGT - 10, 'Iteration, K', { 'text-anchor': 'middle', 'font-size': 16, fill: MUTED });
     text(svg, 14, T - 12, 'Mean best score (%)', { 'font-size': 16, fill: MUTED });
-    var counter = text(svg, X1 - 6, Y0 + 30, '', { 'text-anchor': 'end', 'font-size': 30, fill: '#c3cad0', 'font-family': "'Courier New', monospace" });
+    var counter = text(svg, X1 - 6, Y0 + 30, '', { 'text-anchor': 'end', 'font-size': 34, fill: '#c3cad0', 'font-family': "'Courier New', monospace" });
 
     // 图例（HTML）：动画进行中终点标签尚未出现，图例保证各线身份可辨
     var legend = document.createElement('ul'); legend.className = 'legend';
@@ -494,18 +623,18 @@
       s.best.forEach(function (v, i) {
         el('circle', { cx: xs(i + 1), cy: ys(v), r: 4.5, fill: '#fff', stroke: s.color, 'stroke-width': 2 }, grp);
       });
-      // T50：空心大圆 + 轮次标注
+      // T50：空心大圆
       el('circle', { cx: xs(s.t50), cy: ys(s.best[s.t50 - 1]), r: 10, fill: 'none', stroke: s.color, 'stroke-width': 2.5 }, grp);
       s.grp = grp;
     });
 
     // 右侧终点标签：按终值排序后做简单的防重叠推开
     var lab = six.map(function (s) { return { s: s, y: ys(s.best[H - 1]) }; }).sort(function (a, b) { return a.y - b.y; });
-    for (var i = 1; i < lab.length; i++) if (lab[i].y - lab[i - 1].y < 38) lab[i].y = lab[i - 1].y + 38;
+    for (var i = 1; i < lab.length; i++) if (lab[i].y - lab[i - 1].y < 40) lab[i].y = lab[i - 1].y + 40;
     lab.forEach(function (o) {
       el('line', { x1: X1 + 4, x2: X1 + 14, y1: ys(o.s.best[H - 1]), y2: o.y, stroke: o.s.color, 'stroke-width': 1.5 }, gLabels);
-      text(gLabels, X1 + 20, o.y - 4, o.s.name, { 'font-size': 16, fill: INK });
-      text(gLabels, X1 + 20, o.y + 14, fmt(o.s.best[H - 1]) + ' · T50 = K' + o.s.t50, { 'font-size': 13, fill: MUTED, 'font-family': "'Courier New', monospace" });
+      text(gLabels, X1 + 20, o.y - 4, o.s.name, { 'font-size': 17, fill: INK });
+      text(gLabels, X1 + 20, o.y + 15, fmt(o.s.best[H - 1]) + ' · T50 = K' + o.s.t50, { 'font-size': 14, fill: MUTED, 'font-family': "'Courier New', monospace" });
     });
 
     var anim = runner(7000, function (t) {
@@ -538,38 +667,15 @@
   (function radar() {
     var box = document.getElementById('radar-anim'); if (!box) return;
     var tip = box.querySelector('.tip');
-    var W = 720, HGT = 780;
-    // 轴顺序与论文一致：从顶部顺时针 A1, A4, A3, A2, A5
-    var AXES = [{ i: 0, s: 'A1', n: 'First-Attempt Performance' }, { i: 3, s: 'A4', n: 'Budget' }, { i: 2, s: 'A3', n: 'Success' }, { i: 1, s: 'A2', n: 'Efficiency' }, { i: 4, s: 'A5', n: 'Improvement' }];
-    var ang = function (j) { return -Math.PI / 2 + j * 2 * Math.PI / 5; };
-    var pt = function (cx, cy, r, j, v) { return [cx + r * v * Math.cos(ang(j)), cy + r * v * Math.sin(ang(j))]; };
-    var poly = function (cx, cy, r, vals) { return AXES.map(function (a, j) { return pt(cx, cy, r, j, vals[a.i]); }); };
-    var pts = function (p) { return p.map(function (q) { return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' '); };
-
-    // 竖向布局：overlay 在上（标签需留出 "Improvement" / "Budget" 的宽度），7 个小面板 4+3 排在下方，第二行居中
-    var big = { cx: 360, cy: 225, r: 165 };
-    var cells = SYS.map(function (s, i) {
-      return i < 4 ? { cx: 100 + i * 173, cy: 520, r: 58 } : { cx: 186.5 + (i - 4) * 173, cy: 700, r: 58 };
-    });
+    var W = 1400, HGT = 600;
+    // overlay 居左（标签需留出 "Improvement" / "Budget" 的宽度），7 个小面板 4+3 排在右侧
+    var big = { cx: 335, cy: 300, r: 170 };
+    var cells = SYS.map(function (s, i) { return { cx: 700 + (i % 4) * 200, cy: i < 4 ? 165 : 445, r: 70 }; });
 
     var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + HGT, role: 'img', 'aria-label': 'Five-axis radar profiles of seven systems' }, box);
-
-    function frame(c, short) {
-      // 同心五边形网格 + 辐条；标签在小面板用轴号，在 overlay 用全名
-      [0.25, 0.5, 0.75, 1].forEach(function (v) {
-        el('polygon', { points: pts(poly(c.cx, c.cy, c.r, [v, v, v, v, v])), fill: v === 1 ? '#fbfbf9' : 'none', stroke: GRID, 'stroke-width': 1 }, svg);
-      });
-      AXES.forEach(function (a, j) {
-        var p = pt(c.cx, c.cy, c.r, j, 1);
-        el('line', { x1: c.cx, y1: c.cy, x2: p[0], y2: p[1], stroke: GRID, 'stroke-width': 1 }, svg);
-        var q = pt(c.cx, c.cy, c.r + (short ? 10 : 28), j, 1);
-        var anchor = Math.abs(Math.cos(ang(j))) < 0.2 ? 'middle' : (Math.cos(ang(j)) > 0 ? 'start' : 'end');
-        text(svg, q[0], q[1] + (short ? 5 : 6), short ? a.s : a.n, { 'text-anchor': anchor, 'font-size': short ? 13 : 18, fill: short ? MUTED : INK });
-      });
-    }
-    frame(big, false);
+    radarFrame(svg, big, false);
     cells.forEach(function (c, i) {
-      frame(c, true);
+      radarFrame(svg, c, true);
       text(svg, c.cx, c.cy - c.r - 32, SYS[i].name, { 'text-anchor': 'middle', 'font-size': 20, fill: INK });
     });
 
@@ -615,14 +721,13 @@
 
     // 时间线（秒）：面板 i 在 [0.45 i, 0.45 i + 0.6] 内从中心长出；随后多边形 i 在 [S + 0.3 i, S + 0.3 i + 0.8] 内飞向 overlay
     var STAGE = 0.45 * 7 + 0.4, TOTAL = STAGE + 0.3 * 7 + 0.8;
-    function lerpPts(a, b, t) { return a.map(function (p, i) { return [p[0] + (b[i][0] - p[0]) * t, p[1] + (b[i][1] - p[1]) * t]; }); }
     var anim = runner(TOTAL * 1000, function (t) {
       var sec = t * TOTAL;
       items.forEach(function (it, i) {
         var g = ease((sec - 0.45 * i) / 0.6);
         var center = it.small.map(function () { return [it.c.cx, it.c.cy]; });
         it.pS.setAttribute('points', pts(lerpPts(center, it.small, g)));
-        it.dS.forEach(function (d, j) { d.setAttribute('opacity', g >= 1 ? 1 : 0); });
+        it.dS.forEach(function (d) { d.setAttribute('opacity', g >= 1 ? 1 : 0); });
         var f = ease((sec - STAGE - 0.3 * i) / 0.8);
         var flying = f > 0 && f < 1;
         it.pF.setAttribute('opacity', flying ? 1 : 0);
