@@ -71,6 +71,8 @@
     figcaption { font-size: 18px; color: var(--muted); margin-top: 12px; line-height: 1.55; max-width: 64em; }
     figcaption b { color: var(--ink); font-weight: normal; font-style: italic; }
     .radarpair { display: grid; grid-template-columns: 35fr 60fr; gap: 24px; align-items: center; }
+    .hero-anims { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .hero-anims figure { margin-top: 16px; }
 
     .finding { padding-top: 40px; }
     .finding + .finding { border-top: 1px dashed var(--rule); margin-top: 48px; }
@@ -107,15 +109,15 @@
       nav { display: none; }
       .hero { padding: 56px 0 44px; }
       section { padding: 52px 0; }
-      .grid3, .grid2, .radarpair { grid-template-columns: 1fr; }
+      .grid3, .grid2, .radarpair, .hero-anims { grid-template-columns: 1fr; }
       .stats { grid-template-columns: repeat(2, 1fr); }
       p { font-size: 20px; }
       .authors { font-size: 18px; }
       figcaption { font-size: 17px; }
       /* 窄屏下动画图保持可读尺寸，卡片内横向滚动 */
       .anim { overflow-x: auto; }
-      #radar-anim svg { min-width: 900px; }
-      #climb-anim svg { min-width: 700px; }
+      #radar-anim svg { min-width: 560px; }
+      #climb-anim svg { min-width: 560px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
@@ -152,7 +154,24 @@
     <section id="overview">
       <div class="wrap">
         <p class="eyebrow">At a glance</p>
-        <figure style="margin-top:16px">
+        <!-- 开头两个动画并排：左 Figure 7 折线爬升，右五轴雷达（7 面板 → overlay）；数据来自本地已核验结果包 reference18 -->
+        <div class="hero-anims">
+          <figure>
+            <div class="anim" id="climb-anim">
+              <div class="animbar"><span class="t">Best mean score by round · K1 &rarr; K17</span><button type="button" data-replay>Replay</button></div>
+              <div class="tip"></div>
+            </div>
+            <figcaption><b>The climb, round by round.</b> Solid lines: best mean score reached by round <i>k</i>; faint dashed lines: the mean score of that round. Circles mark <i>T</i><sub>50</sub>, the half-gain round. Six systems on 18 tasks; hover for the values at each round.</figcaption>
+          </figure>
+          <figure>
+            <div class="anim" id="radar-anim">
+              <div class="animbar"><span class="t">Five-axis profiles · seven panels, then the overlay</span><button type="button" data-replay>Replay</button></div>
+              <div class="tip"></div>
+            </div>
+            <figcaption><b>Five-axis profiles.</b> Below: one panel per system, drawn in turn. Above: the same seven profiles overlaid. Axes clockwise from the top are First-Attempt Performance (A1), Budget (A4), Success (A3), Efficiency (A2) and Improvement (A5), on a shared 0&ndash;1 scale. Hover a profile or a legend entry to isolate it. *Gemini 4 uses its ten evaluated tasks.</figcaption>
+          </figure>
+        </div>
+        <figure>
           <img src="static/img/teaser.jpg" alt="Overview with three rows. Q1: two barrels with staves for harness, coding, spatial and perception; a spatial bottleneck for First-Attempt Performance, Efficiency and Budget, and a perception bottleneck for Success and Improvement. Q2: public benchmarks predict the turning point and rank of each system's best-score curve, next to a five-axis radar. Q3: reusable operations transfer from stacking blocks to covering blocks with a cup, and from key insertion to plugging a charger.">
           <figcaption><b>PhysRSI-eval at a glance.</b> (Q1)&nbsp;Capability sources and the Physical Barrel Hypothesis. (Q2)&nbsp;Five-axis quantification and observational scaling of performance, gain timing and model rankings. <i>T</i><sub>50</sub> is the half-gain round, the first round at which the best mean score reaches half of its K1&ndash;K17 gain. (Q3)&nbsp;Overfitting and generalization across tasks and scenes.</figcaption>
         </figure>
@@ -226,14 +245,6 @@
           </table></div>
           <p class="note"><b>Five-axis profiles.</b> K0 scores are averaged over three runs per task. *Gemini 4 is evaluated on ten tasks with one K0 run per task.</p>
 
-          <!-- 雷达图动画：先逐个画出 7 个单模型雷达，再把多边形飞入左侧 overlay -->
-          <figure>
-            <div class="anim" id="radar-anim">
-              <div class="animbar"><span class="t">Five-axis profiles · seven panels, then the overlay</span><button type="button" data-replay>Replay</button></div>
-              <div class="tip"></div>
-            </div>
-            <figcaption><b>Five-axis profiles.</b> Right: one panel per system, drawn in turn. Left: the same seven profiles overlaid. Axes clockwise from the top are First-Attempt Performance (A1), Budget (A4), Success (A3), Efficiency (A2) and Improvement (A5), on a shared 0&ndash;1 scale. Hover a profile or a legend entry to isolate it. *Gemini 4 uses its ten evaluated tasks.</figcaption>
-          </figure>
           <figure>
             <div class="radarpair">
               <img src="static/img/radar_overlay_7models.svg" alt="Seven five-axis profiles overlaid on one radar chart." loading="lazy">
@@ -255,14 +266,6 @@
         <div class="finding">
           <h3>Observational scaling: how far, and how early?</h3>
           <p class="lead">Best mean score reached by each round on the 18 tasks. Circles mark <i>T</i><sub>50</sub>, the half-gain round. Public capability profiles reproduce the observed order of both the best score by K17 and <i>T</i><sub>50</sub>.</p>
-          <!-- Figure 7 折线动画：各模型 best mean score 随 K 轮次爬升；数据来自本地已核验结果包 reference18 -->
-          <figure>
-            <div class="anim" id="climb-anim">
-              <div class="animbar"><span class="t">Best mean score by round · K1 &rarr; K17</span><button type="button" data-replay>Replay</button></div>
-              <div class="tip"></div>
-            </div>
-            <figcaption><b>The climb, round by round.</b> Solid lines: best mean score reached by round <i>k</i>; faint dashed lines: the mean score of that round. Circles mark <i>T</i><sub>50</sub>. Values are recomputed from the per-round reference data of the six 18-task systems. Hover for the values at each round.</figcaption>
-          </figure>
           <figure>
             <img src="static/img/half_gain_round_prediction.svg" alt="Left: four capability profiles of each system from 17 public benchmarks. Right: best mean score by round for six systems, with circles at the half-gain round and predicted / observed rank labels." loading="lazy">
             <figcaption><b>Predicting the timing of gains from public capability profiles.</b> Left: four capability profiles of each system, computed from 17 public benchmarks as normalized ranks among the six systems. Right: best mean score on the 18 tasks. Labels give predicted / observed ranks: <i>T</i><sub>50</sub> beside the circles and best score reached by K17 on the right. Each pair of systems is predicted from the other four.</figcaption>
@@ -425,7 +428,8 @@
   (function climb() {
     var box = document.getElementById('climb-anim'); if (!box) return;
     var tip = box.querySelector('.tip');
-    var W = 960, HGT = 500, L = 64, R = 190, T = 36, B = 54;
+    // 与右侧雷达卡片并排，取较窄、较高的画布；右侧留出终点标签的宽度
+    var W = 720, HGT = 640, L = 56, R = 172, T = 36, B = 50;
     var H = 17, X0 = L, X1 = W - R, Y0 = T, Y1 = HGT - B;
     var xs = function (k) { return X0 + (X1 - X0) * (k - 1) / (H - 1); };
     var ys = function (v) { return Y1 - (Y1 - Y0) * v; };
@@ -452,7 +456,16 @@
     });
     text(svg, (X0 + X1) / 2, HGT - 10, 'Iteration, K', { 'text-anchor': 'middle', 'font-size': 16, fill: MUTED });
     text(svg, 14, T - 12, 'Mean best score (%)', { 'font-size': 16, fill: MUTED });
-    var counter = text(svg, X1 - 6, Y0 + 30, '', { 'text-anchor': 'end', 'font-size': 34, fill: '#c3cad0', 'font-family': "'Courier New', monospace" });
+    var counter = text(svg, X1 - 6, Y0 + 30, '', { 'text-anchor': 'end', 'font-size': 30, fill: '#c3cad0', 'font-family': "'Courier New', monospace" });
+
+    // 图例（HTML）：动画进行中终点标签尚未出现，图例保证各线身份可辨
+    var legend = document.createElement('ul'); legend.className = 'legend';
+    six.forEach(function (s) {
+      var li = document.createElement('li'); li.style.color = s.color;
+      li.innerHTML = '<i></i><span style="color:' + INK + '">' + s.name + '</span>';
+      legend.appendChild(li);
+    });
+    box.appendChild(legend);
 
     // 用 clipPath 的矩形宽度推进来实现“逐轮生长”：线、点、T50 圈都在裁剪组内
     var defs = el('defs', {}, svg);
@@ -478,11 +491,11 @@
 
     // 右侧终点标签：按终值排序后做简单的防重叠推开
     var lab = six.map(function (s) { return { s: s, y: ys(s.best[H - 1]) }; }).sort(function (a, b) { return a.y - b.y; });
-    for (var i = 1; i < lab.length; i++) if (lab[i].y - lab[i - 1].y < 40) lab[i].y = lab[i - 1].y + 40;
+    for (var i = 1; i < lab.length; i++) if (lab[i].y - lab[i - 1].y < 38) lab[i].y = lab[i - 1].y + 38;
     lab.forEach(function (o) {
       el('line', { x1: X1 + 4, x2: X1 + 14, y1: ys(o.s.best[H - 1]), y2: o.y, stroke: o.s.color, 'stroke-width': 1.5 }, gLabels);
-      text(gLabels, X1 + 20, o.y - 4, o.s.name, { 'font-size': 17, fill: INK });
-      text(gLabels, X1 + 20, o.y + 15, fmt(o.s.best[H - 1]) + ' · T50 = K' + o.s.t50, { 'font-size': 14, fill: MUTED, 'font-family': "'Courier New', monospace" });
+      text(gLabels, X1 + 20, o.y - 4, o.s.name, { 'font-size': 16, fill: INK });
+      text(gLabels, X1 + 20, o.y + 14, fmt(o.s.best[H - 1]) + ' · T50 = K' + o.s.t50, { 'font-size': 13, fill: MUTED, 'font-family': "'Courier New', monospace" });
     });
 
     var anim = runner(7000, function (t) {
@@ -515,7 +528,7 @@
   (function radar() {
     var box = document.getElementById('radar-anim'); if (!box) return;
     var tip = box.querySelector('.tip');
-    var W = 1400, HGT = 600;
+    var W = 720, HGT = 780;
     // 轴顺序与论文一致：从顶部顺时针 A1, A4, A3, A2, A5
     var AXES = [{ i: 0, s: 'A1', n: 'First-Attempt Performance' }, { i: 3, s: 'A4', n: 'Budget' }, { i: 2, s: 'A3', n: 'Success' }, { i: 1, s: 'A2', n: 'Efficiency' }, { i: 4, s: 'A5', n: 'Improvement' }];
     var ang = function (j) { return -Math.PI / 2 + j * 2 * Math.PI / 5; };
@@ -523,9 +536,11 @@
     var poly = function (cx, cy, r, vals) { return AXES.map(function (a, j) { return pt(cx, cy, r, j, vals[a.i]); }); };
     var pts = function (p) { return p.map(function (q) { return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' '); };
 
-    // overlay 居左（标签需留出 "Improvement" / "Budget" 的宽度），7 个小面板 4+3 排在右侧
-    var big = { cx: 335, cy: 300, r: 170 };
-    var cells = SYS.map(function (s, i) { return { cx: 700 + (i % 4) * 200, cy: i < 4 ? 165 : 445, r: 70 }; });
+    // 竖向布局：overlay 在上（标签需留出 "Improvement" / "Budget" 的宽度），7 个小面板 4+3 排在下方，第二行居中
+    var big = { cx: 360, cy: 225, r: 165 };
+    var cells = SYS.map(function (s, i) {
+      return i < 4 ? { cx: 100 + i * 173, cy: 520, r: 58 } : { cx: 186.5 + (i - 4) * 173, cy: 700, r: 58 };
+    });
 
     var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + HGT, role: 'img', 'aria-label': 'Five-axis radar profiles of seven systems' }, box);
 
@@ -537,7 +552,7 @@
       AXES.forEach(function (a, j) {
         var p = pt(c.cx, c.cy, c.r, j, 1);
         el('line', { x1: c.cx, y1: c.cy, x2: p[0], y2: p[1], stroke: GRID, 'stroke-width': 1 }, svg);
-        var q = pt(c.cx, c.cy, c.r + (short ? 12 : 28), j, 1);
+        var q = pt(c.cx, c.cy, c.r + (short ? 10 : 28), j, 1);
         var anchor = Math.abs(Math.cos(ang(j))) < 0.2 ? 'middle' : (Math.cos(ang(j)) > 0 ? 'start' : 'end');
         text(svg, q[0], q[1] + (short ? 5 : 6), short ? a.s : a.n, { 'text-anchor': anchor, 'font-size': short ? 13 : 18, fill: short ? MUTED : INK });
       });
