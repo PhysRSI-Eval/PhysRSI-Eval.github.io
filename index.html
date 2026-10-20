@@ -239,7 +239,7 @@
         <div class="grid3">
           <div class="card"><span class="tag">Spatial</span><div class="big">&rho; = 0.94</div><p>with A1; 0.83 with A2 and A4</p></div>
           <div class="card"><span class="tag">Perception</span><div class="big">&rho; = 0.89</div><p>with A5; 0.71 with A3</p></div>
-          <div class="card"><span class="tag">Coding</span><div class="big">&rho; &le; 0.14</div><p>weakest association with A1, A2 and A4</p></div>
+          <div class="card"><span class="tag">Coding</span><div class="big">&rho; &le; 0.14</div><p>with A1, A2 and A4; for A3 and A5, harness use is weakest (0.38, 0.46)</p></div>
         </div>
         <div class="split" style="margin-top:20px">
           <div class="col">
@@ -384,6 +384,28 @@
           </tbody>
         </table></div>
         <p class="note"><b>Per-round online success in the Astra ablation.</b> Successes out of 12 chains per condition and round; K1&ndash;K6 run in full.</p>
+      </div>
+    </section>
+
+    <section class="page" id="q3-fixed">
+      <div class="wrap">
+        <p class="qlabel"><b>Q3:</b> Does Physical RSI reflect overfitting or generalization?</p>
+        <h3>Workspace or grader feedback: a fixed-layout ablation</h3>
+        <p class="lead">Fixed layout with first-success stop. The workspace alone advances first success from K4.0 to K2.4 (8/12 vs. 7/12 chains solved by K6); adding grader feedback raises the solved chains to 10/12.</p>
+<div class="table-wrap"><table>
+          <thead><tr><th>Round</th><th>No history</th><th>Workspace only</th><th>Workspace + grader</th><th>Full loop</th></tr></thead>
+          <tbody>
+            <tr><th>K1</th><td>0</td><td>3</td><td>0</td><td>1</td></tr>
+            <tr><th>K2</th><td>0</td><td>6</td><td>4</td><td>4</td></tr>
+            <tr><th>K3</th><td>2</td><td>6</td><td>5</td><td>6</td></tr>
+            <tr><th>K4</th><td>5</td><td>6</td><td>8</td><td>9</td></tr>
+            <tr><th>K5</th><td>7</td><td>8</td><td>10</td><td>10</td></tr>
+            <tr><th>K6</th><td>7</td><td>8</td><td>10</td><td>10</td></tr>
+            <tr class="sum"><th>Solved by K6</th><td>7/12</td><td>8/12</td><td>10/12</td><td>10/12</td></tr>
+            <tr><th>Mean first-success K</th><td>4.0</td><td>2.4</td><td>3.3</td><td>3.0</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note"><b>Fixed-layout ablation.</b> Six tasks &times; two chains, layout 1 or 7 in every round, first-success stop, at most K6; cumulative chains solved out of 12. Paired first success, workspace only vs. no history: 7 earlier, 0 later (<i>p</i> = 0.016).</p>
       </div>
     </section>
 
