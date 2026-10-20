@@ -189,7 +189,7 @@
         <p class="eyebrow">Overview</p>
         <figure>
           <img src="static/img/teaser.jpg" alt="Overview with three rows. Q1: two barrels with staves for harness, coding, spatial and perception; a spatial bottleneck for First-Attempt Performance, Efficiency and Budget, and a perception bottleneck for Success and Improvement. Q2: public benchmarks predict the turning point and rank of each system's best-score curve, next to a five-axis radar. Q3: reusable operations transfer from stacking blocks to covering blocks with a cup, and from key insertion to plugging a charger.">
-          <figcaption><b>PhysRSI-eval at a glance.</b> (Q1)&nbsp;Capability sources and the Physical Barrel Hypothesis. (Q2)&nbsp;Five-axis quantification and observational scaling of performance, gain timing and model rankings. <i>T</i><sub>50</sub> is the half-gain round, the first round at which the best mean score reaches half of its K1&ndash;K17 gain. (Q3)&nbsp;Overfitting and generalization across tasks and scenes.</figcaption>
+          <figcaption><b>PhysRSI-eval overview.</b> (Q1)&nbsp;Capability sources and the Physical Barrel Hypothesis. (Q2)&nbsp;Five-axis quantification and observational scaling of performance, gain timing and model rankings. A1&ndash;A5 measure the first-attempt score, how early gains appear, the best score attained, the physical budget saved before first success, and the fraction of first-round failures later solved. <i>T</i><sub>50</sub> is the half-gain round, the first round at which the best mean score reaches half of its K1&ndash;K17 gain. (Q3)&nbsp;Overfitting and generalization across tasks and scenes.</figcaption>
         </figure>
       </div>
     </section>
@@ -336,7 +336,7 @@
       <div class="wrap">
         <p class="qlabel"><b>Q2:</b> How can we quantify Physical RSI and its scaling law?</p>
         <h3>Predicting the order from public capability profiles</h3>
-        <p class="lead">Public capability profiles reproduce the observed order of both the best score by K17 and <i>T</i><sub>50</sub>, the half-gain round.</p>
+        <p class="lead">Classical scaling laws relate performance to model size and training compute, which closed-source models do not disclose. Observational scaling instead uses public benchmark scores, aggregated into spatial reasoning, perception, coding and harness-use factors, as an observable substitute. Public capability profiles reproduce the observed order of both the best score by K17 and <i>T</i><sub>50</sub>, the half-gain round.</p>
         <figure>
           <img src="static/img/half_gain_round_prediction.svg" alt="Left: four capability profiles of each system from 17 public benchmarks. Right: best mean score by round for six systems, with circles at the half-gain round and predicted / observed rank labels." loading="lazy">
           <figcaption><b>Predicting the timing of gains from public capability profiles.</b> Left: four capability profiles of each system, computed from 17 public benchmarks as normalized ranks among the six systems. Right: best mean score on the 18 tasks. Labels give predicted / observed ranks; each pair of systems is predicted from the other four.</figcaption>
