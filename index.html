@@ -45,6 +45,12 @@
     .stats.two { grid-template-columns: repeat(2, 1fr); }
 
     .eyebrow { color: var(--accent); font-family: 'Courier New', monospace; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; margin: 0; }
+    /* 子页顶部的问题标题：由 h2 大小缩放到小字（类似 macOS 窗口缩放），每次滚入视口重放 */
+    .qlabel { font-family: Georgia, 'Times New Roman', serif; font-size: 19px; line-height: 1.3; color: var(--accent); margin: 0 0 10px; transform-origin: left top; }
+    .qlabel b { font-weight: bold; }
+    .page.in .qlabel { animation: qshrink .75s cubic-bezier(.16, .84, .3, 1) both; }
+    @keyframes qshrink { from { transform: translateY(34px) scale(2.4); opacity: 0; } 60% { opacity: 1; } to { transform: none; opacity: 1; } }
+    .qn { color: var(--accent); }
     h1 { font-size: clamp(38px, 5.4vw, 70px); line-height: 1.12; font-weight: normal; letter-spacing: -.035em; margin: 24px 0 28px; }
     h1 span { display: block; margin-top: 18px; font-size: .6em; line-height: 1.3; font-style: italic; color: var(--accent); }
     .authors { font-size: 20px; line-height: 1.6; margin: 0 0 6px; }
@@ -146,7 +152,7 @@
       .anim { overflow-x: auto; }
       .anim svg { min-width: 640px; }
     }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .page.in .qlabel { animation: none; } }
   </style>
 </head>
 <body>
@@ -229,8 +235,7 @@
 
     <section class="page" id="q1">
       <div class="wrap">
-        <p class="eyebrow">Q1</p>
-        <h2>Where is Physical RSI capability from?</h2>
+        <h2><span class="qn">Q1:</span> Where is Physical RSI capability from?</h2>
         <div class="grid3">
           <div class="card"><span class="tag">Spatial</span><div class="big">&rho; = 0.94</div><p>with A1; 0.83 with A2 and A4</p></div>
           <div class="card"><span class="tag">Perception</span><div class="big">&rho; = 0.94</div><p>with A3 and A5</p></div>
@@ -251,10 +256,38 @@
       </div>
     </section>
 
+    <!-- 雷达图动画：先逐个画出 7 个单模型雷达，再把多边形飞入左侧 overlay -->
+    <section class="page" id="q1-radar-anim">
+      <div class="wrap">
+        <p class="qlabel"><b>Q1:</b> Where is Physical RSI capability from?</p>
+        <h3>Five-axis profiles</h3>
+        <figure>
+          <div class="anim" id="radar-anim">
+            <div class="animbar"><span class="t">Five-axis profiles · seven panels, then the overlay</span><button type="button" data-replay>Replay</button></div>
+            <div class="tip"></div>
+          </div>
+          <figcaption><b>Five-axis profiles.</b> Right: one panel per system, drawn in turn. Left: the same seven profiles overlaid. Axes clockwise from the top are First-Attempt Performance (A1), Budget (A4), Success (A3), Efficiency (A2) and Improvement (A5), on a shared 0&ndash;1 scale. Hover a profile or a legend entry to isolate it. *Gemini 4 uses its ten evaluated tasks.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="page" id="q1-radar">
+      <div class="wrap">
+        <p class="qlabel"><b>Q1:</b> Where is Physical RSI capability from?</p>
+        <h3>Five-axis profiles, as drawn in the paper</h3>
+        <figure>
+          <div class="radarpair">
+            <img src="static/img/radar_overlay_7models.svg" alt="Seven five-axis profiles overlaid on one radar chart." loading="lazy">
+            <img src="static/img/radar_panels_7models.svg" alt="One five-axis radar panel per system: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol, GPT-5.6 Sol, Opus 5.5, Sonnet 5.5 and Gemini 4." loading="lazy">
+          </div>
+          <figcaption><b>Five-axis profiles, as drawn in the paper.</b> Left: seven overlaid profiles. Right: one panel per system. Axes clockwise from the top are First-Attempt Performance (A1), Budget (A4), Success (A3), Efficiency (A2) and Improvement (A5).</figcaption>
+        </figure>
+      </div>
+    </section>
+
     <section class="page" id="q2">
       <div class="wrap">
-        <p class="eyebrow">Q2</p>
-        <h2>How can we quantify Physical RSI and its scaling law?</h2>
+        <h2><span class="qn">Q2:</span> How can we quantify Physical RSI and its scaling law?</h2>
         <p class="lead">Higher attained scores can come with later gains and greater physical costs: Opus 5.5 beats GPT-6.1 Sol on Success (0.744 vs 0.703) but trails on Efficiency (0.609 vs 0.822) and Budget (0.579 vs 0.808).</p>
         <div class="table-wrap"><table>
           <thead><tr><th>System</th><th>Tasks</th><th>A1 First-Attempt</th><th>A2 Efficiency</th><th>A3 Success</th><th>A4 Budget</th><th>A5 Improvement</th></tr></thead>
@@ -272,36 +305,9 @@
       </div>
     </section>
 
-    <!-- 雷达图动画：先逐个画出 7 个单模型雷达，再把多边形飞入左侧 overlay -->
-    <section class="page" id="q2-radar-anim">
-      <div class="wrap">
-        <p class="eyebrow">Q2 · Five-axis profiles</p>
-        <figure>
-          <div class="anim" id="radar-anim">
-            <div class="animbar"><span class="t">Five-axis profiles · seven panels, then the overlay</span><button type="button" data-replay>Replay</button></div>
-            <div class="tip"></div>
-          </div>
-          <figcaption><b>Five-axis profiles.</b> Right: one panel per system, drawn in turn. Left: the same seven profiles overlaid. Axes clockwise from the top are First-Attempt Performance (A1), Budget (A4), Success (A3), Efficiency (A2) and Improvement (A5), on a shared 0&ndash;1 scale. Hover a profile or a legend entry to isolate it. *Gemini 4 uses its ten evaluated tasks.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="page" id="q2-radar">
-      <div class="wrap">
-        <p class="eyebrow">Q2 · Five-axis profiles</p>
-        <figure>
-          <div class="radarpair">
-            <img src="static/img/radar_overlay_7models.svg" alt="Seven five-axis profiles overlaid on one radar chart." loading="lazy">
-            <img src="static/img/radar_panels_7models.svg" alt="One five-axis radar panel per system: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol, GPT-5.6 Sol, Opus 5.5, Sonnet 5.5 and Gemini 4." loading="lazy">
-          </div>
-          <figcaption><b>Five-axis profiles, as drawn in the paper.</b> Left: seven overlaid profiles. Right: one panel per system. Axes clockwise from the top are First-Attempt Performance (A1), Budget (A4), Success (A3), Efficiency (A2) and Improvement (A5).</figcaption>
-        </figure>
-      </div>
-    </section>
-
     <section class="page" id="q2-killzone">
       <div class="wrap">
-        <p class="eyebrow">Q2 · Public capability vs. physical RSI</p>
+        <p class="qlabel"><b>Q2:</b> How can we quantify Physical RSI and its scaling law?</p>
         <h3>Public capability and physical RSI separate differently</h3>
         <p class="lead">Across the four GPT systems, mean public benchmark scores span 24 points; the physical profile mean spans 59.5 points. GPT-5.6 Sol stays near zero cumulative success for 16 rounds.</p>
         <figure>
@@ -314,7 +320,7 @@
     <!-- Figure 7 折线动画：各模型 best mean score 随 K 轮次爬升；数据来自本地已核验结果包 reference18 -->
     <section class="page" id="q2-climb">
       <div class="wrap">
-        <p class="eyebrow">Q2 · Observational scaling</p>
+        <p class="qlabel"><b>Q2:</b> How can we quantify Physical RSI and its scaling law?</p>
         <h3>How far, and how early?</h3>
         <figure>
           <div class="anim" id="climb-anim">
@@ -328,7 +334,7 @@
 
     <section class="page" id="q2-k50">
       <div class="wrap">
-        <p class="eyebrow">Q2 · Observational scaling</p>
+        <p class="qlabel"><b>Q2:</b> How can we quantify Physical RSI and its scaling law?</p>
         <h3>Predicting the order from public capability profiles</h3>
         <p class="lead">Public capability profiles reproduce the observed order of both the best score by K17 and <i>T</i><sub>50</sub>, the half-gain round.</p>
         <figure>
@@ -340,7 +346,7 @@
 
     <section class="page" id="q2-forecast">
       <div class="wrap">
-        <p class="eyebrow">Q2 · Early physical feedback</p>
+        <p class="qlabel"><b>Q2:</b> How can we quantify Physical RSI and its scaling law?</p>
         <h3>What can early physical feedback predict?</h3>
         <p class="lead">A Weibull template fitted to Astra, calibrated on GPT-6.1 Sol's K1&ndash;K5, forecasts K6&ndash;K17 with mean absolute error 0.019, versus 0.112 for holding the last observed score.</p>
         <figure>
@@ -352,8 +358,7 @@
 
     <section class="page" id="q3">
       <div class="wrap">
-        <p class="eyebrow">Q3</p>
-        <h2>Does Physical RSI reflect overfitting or generalization?</h2>
+        <h2><span class="qn">Q3:</span> Does Physical RSI reflect overfitting or generalization?</h2>
         <figure>
           <img src="static/img/cross_task_transfer.jpg" alt="Three task chains with and without a transferred workspace: first success moves from K9 to K1 for Sonnet 5.5 on Cover Blocks, from K14 to K7 for Opus 5.5 on Organize Table, and from K15 to K8 for Opus 5.5 on Deposit Coin." loading="lazy">
           <figcaption><b>Cross-task workspace transfer.</b> Top: original trajectories for tasks first solved at K6 or later. Bottom: trajectories initialized from a workspace pooled from all other tasks. First success advances from K9 to K1 (Sonnet 5.5, Cover Blocks), K14 to K7 (Opus 5.5, Organize Table) and K15 to K8 (Opus 5.5, Deposit Coin).</figcaption>
@@ -363,7 +368,7 @@
 
     <section class="page" id="q3-ablation">
       <div class="wrap">
-        <p class="eyebrow">Q3 · Ablation</p>
+        <p class="qlabel"><b>Q3:</b> Does Physical RSI reflect overfitting or generalization?</p>
         <h3>Does retained experience help beyond repeated attempts?</h3>
         <p class="lead">Astra ablation on six tasks, two chains each, layouts changing every round. Late-round success: 41.7% with the full loop, 8.3% without history.</p>
         <div class="table-wrap"><table>
@@ -384,7 +389,7 @@
 
     <section class="page" id="q3-frozen">
       <div class="wrap">
-        <p class="eyebrow">Q3 · Frozen workspaces</p>
+        <p class="qlabel"><b>Q3:</b> Does Physical RSI reflect overfitting or generalization?</p>
         <h3>What survives when revision stops?</h3>
         <p class="lead">Astra workspaces frozen after K6 and run on five unseen layouts, with no revision or feedback.</p>
         <div class="table-wrap"><table>
@@ -403,7 +408,7 @@
 
     <section class="page" id="q3-tools">
       <div class="wrap">
-        <p class="eyebrow">Q3 · Tool reuse</p>
+        <p class="qlabel"><b>Q3:</b> Does Physical RSI reflect overfitting or generalization?</p>
         <h3>Can experience help on a different task?</h3>
         <p class="lead">Sonnet 5.5 and Opus 5.5 encode control in self-written tools that generate over 96% of later-round actions; Opus reuses the broadest toolbox (lineage reuse 0.347 vs 0.167 for Sonnet and 0.086 for GPT-6 Sol).</p>
         <figure>
@@ -543,6 +548,19 @@
     // 卡片在窄屏下可横向滚动，绝对定位的提示框要加上滚动偏移
     tip.style.left = (left + box.scrollLeft) + 'px'; tip.style.top = top + 'px';
   }
+
+  /* ---------------- 问题标题缩放：子页滚入视口时从 h2 大小缩成页首小标签 ---------------- */
+  (function qlabelZoom() {
+    var pages = Array.prototype.slice.call(document.querySelectorAll('.page')).filter(function (p) { return p.querySelector('.qlabel'); });
+    if (!('IntersectionObserver' in window) || REDUCED) { pages.forEach(function (p) { p.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        e.target.classList.remove('in');
+        if (e.isIntersecting) { void e.target.offsetWidth; e.target.classList.add('in'); }
+      });
+    }, { threshold: 0.5 });
+    pages.forEach(function (p) { io.observe(p); });
+  })();
 
   /* ---------------- 首页背景：叠加雷达 → 折线爬升，交替循环 ---------------- */
   (function heroBg() {
