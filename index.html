@@ -36,6 +36,8 @@
     .links { display: flex; gap: 12px; flex-wrap: wrap; }
     .pill { font-family: 'Courier New', monospace; font-size: 15px; padding: 9px 18px; border: 1px solid var(--rule); border-radius: 999px; color: var(--muted); background: var(--paper); }
     .pill b { color: var(--ink); font-weight: bold; margin-right: 6px; }
+    a.pill { text-decoration: none; }
+    a.pill:hover { border-color: var(--ink); color: var(--ink); }
 
     section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
     h2 { font-weight: normal; font-size: clamp(32px, 3.8vw, 46px); letter-spacing: -.02em; line-height: 1.2; margin: 10px 0 24px; }
@@ -138,14 +140,14 @@
   <main>
     <div class="hero">
       <div class="wrap">
-        <p class="eyebrow">PhysRSI-Eval · Paper in preparation</p>
+        <p class="eyebrow">PhysRSI-Eval · arXiv 2610.26848</p>
         <h1>Where is Physical RSI capability from?<span>An Observational Scaling Law of LLM-as-policy</span></h1>
         <p class="authors">Zekai Li<sup>*</sup>, Jiayi Yu<sup>*</sup>, Jinlu Zhang<sup>*</sup>, Luyang Niu<sup>*</sup>, Zekun Qi<sup>*</sup>, Jun Zheng, Xuchuan Chen, Dairu Liu, Yintianrun Zhang, He Wang<sup>&dagger;</sup>, Li Yi<sup>&dagger;</sup></p>
         <p class="affil">Galbot Team &nbsp;·&nbsp; <sup>*</sup> Equal contribution &nbsp;·&nbsp; <sup>&dagger;</sup> Corresponding authors</p>
         <p class="tldr">PhysRSI-eval quantifies physical recursive self-improvement (RSI) through a five-axis metric &mdash; <i>First-Attempt Performance, Efficiency, Success, Budget</i> and <i>Improvement</i> &mdash; across 18 manipulation tasks under a fixed interaction budget, and asks three questions.</p>
         <div class="links">
-          <span class="pill"><b>Paper</b>coming soon</span>
-          <span class="pill"><b>Code</b>coming soon</span>
+          <a class="pill" href="https://arxiv.org/abs/2610.26848"><b>Paper</b>arXiv 2610.26848</a>
+          <a class="pill" href="https://github.com/PhysRSI-Eval/PhysRSI-Eval-code"><b>Code</b>GitHub</a>
         </div>
       </div>
     </div>
@@ -341,7 +343,15 @@
     <section id="cite">
       <div class="wrap">
         <p class="eyebrow">Citation</p>
-        <pre>BibTeX will be available when the paper is released.</pre>
+        <pre>@misc{li2026physicalrsicapabilityfrom,
+  title={Where is Physical RSI capability from? An Observational Scaling Law of LLM-as-policy},
+  author={Zekai Li and Jiayi Yu and Jinlu Zhang and Luyang Niu and Zekun Qi and Jun Zheng and Xuchuan Chen and Dairu Liu and Yintianrun Zhang and He Wang and Li Yi},
+  year={2026},
+  eprint={2610.26848},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2610.26848}
+}</pre>
       </div>
     </section>
   </main>
