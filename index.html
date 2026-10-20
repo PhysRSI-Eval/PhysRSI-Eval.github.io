@@ -48,7 +48,7 @@
     /* 子页顶部的问题标题：由 h2 大小缩放到小字（类似 macOS 窗口缩放），每次滚入视口重放 */
     .qlabel { font-family: Georgia, 'Times New Roman', serif; font-size: 19px; line-height: 1.3; color: var(--accent); margin: 0 0 10px; transform-origin: left top; }
     .qlabel b { font-weight: bold; }
-    .page.in .qlabel { animation: qshrink .75s cubic-bezier(.16, .84, .3, 1) both; }
+    .page.in .qlabel { animation: qshrink .85s cubic-bezier(.16, .84, .3, 1) both; }
     @keyframes qshrink { from { transform: translateY(34px) scale(2.4); opacity: 0; } 60% { opacity: 1; } to { transform: none; opacity: 1; } }
     .qn { color: var(--accent); }
     h1 { font-size: clamp(38px, 5.4vw, 70px); line-height: 1.12; font-weight: normal; letter-spacing: -.035em; margin: 24px 0 28px; }
@@ -549,17 +549,25 @@
     tip.style.left = (left + box.scrollLeft) + 'px'; tip.style.top = top + 'px';
   }
 
-  /* ---------------- 问题标题缩放：子页滚入视口时从 h2 大小缩成页首小标签 ---------------- */
+  /* ---------------- 问题标题缩放：翻页停稳后，子页的问题标题从 h2 大小缩成页首小标签 ---------------- */
   (function qlabelZoom() {
     var pages = Array.prototype.slice.call(document.querySelectorAll('.page')).filter(function (p) { return p.querySelector('.qlabel'); });
-    if (!('IntersectionObserver' in window) || REDUCED) { pages.forEach(function (p) { p.classList.add('in'); }); return; }
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        e.target.classList.remove('in');
-        if (e.isIntersecting) { void e.target.offsetWidth; e.target.classList.add('in'); }
-      });
-    }, { threshold: 0.5 });
-    pages.forEach(function (p) { io.observe(p); });
+    if (REDUCED) { pages.forEach(function (p) { p.classList.add('in'); }); return; }
+    var head = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--head')) || 56;
+    var current = null;
+    // 找到此刻对齐在顶栏下沿的子页；换页才重放，停在同一页或停在无标签页不动
+    function settled() {
+      var best = null, bd = Infinity;
+      pages.forEach(function (p) { var d = Math.abs(p.getBoundingClientRect().top - head); if (d < bd) { bd = d; best = p; } });
+      if (!best || bd > window.innerHeight * 0.3) { current = null; return; }
+      if (best === current) return;
+      current = best;
+      best.classList.remove('in'); void best.offsetWidth; best.classList.add('in');
+    }
+    var timer = null;
+    if ('onscrollend' in window) window.addEventListener('scrollend', settled);
+    else window.addEventListener('scroll', function () { clearTimeout(timer); timer = setTimeout(settled, 120); }, { passive: true });
+    settled();
   })();
 
   /* ---------------- 首页背景：叠加雷达 → 折线爬升，交替循环 ---------------- */
